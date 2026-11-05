@@ -1,6 +1,7 @@
 /* A compact, accessible mobile navigation, independent of the desktop mega menu. */
 (() => {
  const mobile=matchMedia('(max-width:700px)');
+ const compactNav=matchMedia('(max-width:1100px)');
  const header=document.querySelector('#header');
  const panel=document.querySelector('#mega-shop');
  const toggle=document.querySelector('#menuBtn');
@@ -15,7 +16,7 @@
   };
   panel.append(nav);render();toggle.setAttribute('aria-controls','mega-shop');
   const sync=()=>{
-   const open=mobile.matches&&panel.classList.contains('open');
+   const open=compactNav.matches&&panel.classList.contains('open');
    document.documentElement.classList.toggle('mobile-menu-open',open);
    toggle.setAttribute('aria-expanded',String(open));
    toggle.textContent=open?(document.documentElement.lang==='en'?'Close':'ปิด'):(document.documentElement.lang==='en'?'Menu':'เมนู');
@@ -23,10 +24,10 @@
   };
   new MutationObserver(sync).observe(panel,{attributes:true,attributeFilter:['class']});
   new MutationObserver(()=>{render();sync()}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-  mobile.addEventListener('change',()=>{if(!mobile.matches&&panel.classList.contains('open'))toggle.click();sync()});sync();
+  compactNav.addEventListener('change',()=>{if(!compactNav.matches&&panel.classList.contains('open'))toggle.click();sync()});sync();
   nav.addEventListener('click',e=>{if(e.target.closest('a')&&panel.classList.contains('open'))toggle.click()});
   addEventListener('keydown',e=>{
-   if(!mobile.matches||!panel.classList.contains('open'))return;
+   if(!compactNav.matches||!panel.classList.contains('open'))return;
    if(e.key==='Escape'){e.preventDefault();toggle.click();toggle.focus()}
    if(e.key==='Tab'){
     const links=[...header.querySelectorAll('button,a')].filter(el=>el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden'&&el.closest('.prod')===null);
@@ -56,10 +57,10 @@
  // Only the visible side determines the card height on phones.
  document.querySelectorAll('[data-product-deck]').forEach(deck=>{
   const track=deck.querySelector('.deck-track'),pages=[...deck.querySelectorAll('.deck-page')];
-  const fit=()=>{if(mobile.matches){const page=pages.find(p=>p.getAttribute('aria-hidden')!=='true')||pages[0];track.style.height=page.scrollHeight+'px'}else track.style.height=''};
+  const fit=()=>{if(compactNav.matches){const page=pages.find(p=>p.getAttribute('aria-hidden')!=='true')||pages[0];track.style.height=page.scrollHeight+'px'}else track.style.height=''};
   const resize=new ResizeObserver(fit);pages.forEach(page=>resize.observe(page));
   pages.forEach(page=>new MutationObserver(fit).observe(page,{attributes:true,attributeFilter:['aria-hidden']}));
-  mobile.addEventListener('change',fit);fit();
+  compactNav.addEventListener('change',fit);fit();
  });
  // Do not place a duplicate floating purchase button over the visible main action.
  const order=document.querySelector('#addBtn:not([hidden])');

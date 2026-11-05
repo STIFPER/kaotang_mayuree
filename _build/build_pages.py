@@ -26,7 +26,7 @@ for i,s0 in enumerate(starts):
     secs.append((key,blk))
 print([k for k,_ in secs])
 pages={'shop.html':['shop','flavors','menu'],'story.html':['about','story','chapters','places','why'],'craft.html':['charcoal','process','bleed','strip'],'gift.html':['gift'],'visit.html':['visit'],'corporate.html':['corp']}
-need=['addBtn','addPrice','barName','bleedPh','chSound','chVideo','chVideoWrap','duoArt','fda','flGrid','ingr','opts','price','qtys','selName','shop','sizeName','thumbs','title','track']
+need=['addBtn','addPrice','barName','bleedPh','chSound','chVideo','chVideoWrap','fda','flGrid','ingr','opts','price','qtys','selName','shop','sizeName','thumbs','title','track']
 titles={'shop.html':'เมนูและสินค้า','story.html':'เรื่องของเรา','gift.html':'ชุดของขวัญ','visit.html':'หน้าร้าน'}
 for fn,keys in pages.items():
     body=''.join(b for key in keys for k,b in secs if k==key)

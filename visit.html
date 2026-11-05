@@ -54,9 +54,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700;800&display=swap">
 
 <style>
-/* ฟอนต์เดียวทั้งเว็บ: Thonglor Soi 4 Bold (ทุกน้ำหนักชี้ไปที่ไฟล์ Bold) */
-@font-face{font-family:"Thonglor Soi 4";font-weight:100 900;font-display:swap;
-  src:local("Thonglor Soi 4 Bold"),local("ThonglorSoi4-Bold")}
+/* Font families and real weights are supplied by Adobe Fonts csi6fno. */
 
 :root{
   /* CI */
@@ -1259,7 +1257,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 /* END shared-package-graphics */
 </style>
 <link rel="stylesheet" href="assets/presentation.css?v=4">
-<link rel="stylesheet" href="assets/mobile.css?v=1">
+<link rel="stylesheet" href="assets/mobile.css?v=2">
 </head>
 <body>
 
@@ -1440,7 +1438,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 
 <div class="toast" id="toast" role="status"></div>
 
-<div hidden id="addBtn"></div><div hidden id="addPrice"></div><div hidden id="bleedPh"></div><div hidden id="chSound"></div><video hidden id="chVideo" muted></video><div hidden id="chVideoWrap"></div><div hidden id="duoArt"></div><div hidden id="fda"></div><div hidden id="flGrid"></div><div hidden id="ingr"></div><div hidden id="opts"></div><div hidden id="price"></div><div hidden id="qtys"></div><div hidden id="selName"></div><div hidden id="shop"></div><div hidden id="sizeName"></div><div hidden id="thumbs"></div><div hidden id="title"><small></small></div><div hidden id="track"></div><i hidden data-u="d"></i><i hidden data-u="h"></i><i hidden data-u="m"></i><script>
+<div hidden id="addBtn"></div><div hidden id="addPrice"></div><div hidden id="bleedPh"></div><div hidden id="chSound"></div><video hidden id="chVideo" muted></video><div hidden id="chVideoWrap"></div><div hidden id="fda"></div><div hidden id="flGrid"></div><div hidden id="ingr"></div><div hidden id="opts"></div><div hidden id="price"></div><div hidden id="qtys"></div><div hidden id="selName"></div><div hidden id="shop"></div><div hidden id="sizeName"></div><div hidden id="thumbs"></div><div hidden id="title"><small></small></div><div hidden id="track"></div><i hidden data-u="d"></i><i hidden data-u="h"></i><i hidden data-u="m"></i><script>
 /* =========================================================
    PRODUCT DATA — แก้ไขที่นี่ (ราคา/รีวิวเป็นข้อมูลตัวอย่าง)
    ========================================================= */
@@ -1558,7 +1556,7 @@ const PRODUCT = {
   });
 
   function total(){ const o = PRODUCT.options[st.opt], z = PRODUCT.sizes[st.q]; return o.mult * z.price; }
-  function render(swapArt){
+  function render(){
     const o = PRODUCT.options[st.opt];
     [...opts.children].forEach((b,i) => b.classList.toggle("on", i === st.opt));
     [...thumbs.children].forEach((b,i) => b.classList.toggle("on", i === st.opt));
@@ -1571,14 +1569,6 @@ const PRODUCT = {
     $("#addPrice").textContent = baht(total());
     $("#ingr").textContent = pick(o,"ingr"); $("#fda").textContent = pick(o,"fda");
     $("#barName").textContent = o.id === "duo" ? t("“เค็ม” และ “ข้าว”","“Salted” & “Jasmine Rice”") : pick(o,"name");
-    if (swapArt){
-      const art = $("#duoArt");
-      art.animate([{opacity:1,transform:"none"},{opacity:0,transform:"translateY(20px)"}],{duration:220}).onfinish = () => {
-        art.innerHTML = o.packs.map(p => `<div class="pack ${p}" data-pack></div>`).join("");
-        fillPacks();
-        art.animate([{opacity:0,transform:"translateY(-20px)"},{opacity:1,transform:"none"}],{duration:420,easing:"cubic-bezier(.2,.8,.2,1)"});
-      };
-    }
   }
 
   /* ----- flavors ----- */
@@ -1868,6 +1858,6 @@ const PRODUCT = {
 })();
 </script>
 <script src="assets/presentation.js?v=5" defer></script>
-<script src="assets/mobile.js?v=1" defer></script>
+<script src="assets/mobile.js?v=2" defer></script>
 </body>
 </html>
