@@ -435,7 +435,8 @@ main=f'''<main id="top">
   <video class="bg" src="assets/video/hero.mp4" poster="assets/video/hero-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
   <div class="shade"></div>
   <div class="wrap in">
-      <h1 class="display"><span class="nw">ข้าวตังทำมือ</span><br><span class="nw">ทำให้ทุกคำ</span> <em class="nw">อร่อยขึ้น</em></h1>
+      <h1 class="display"><span class="hero-brand-name">มยุรี</span><span class="hero-brand-line">ข้าวตังทรงเครื่อง</span></h1>
+    <p class="hero-descriptor" data-i18n-skip>HOMEMADE<br>THAI RICE CRACKERS</p>
     <a class="pill" href="shop.html">ดูเมนู ›</a>
   </div>
 </section>
@@ -630,7 +631,7 @@ out=head+css+'</style>\n</head>\n<body>\n\n'+hdr+main+ftr+'\n'+script
 out=out.replace('__TITLE_EN__','Mayuree Kaotang Songkrueng — Homemade Thai Rice Crackers since 1968').replace('__DESC_EN__',"Handmade Thai rice crackers roasted over charcoal, Grandma's recipe since 1968 · Sukhumvit 51, Bangkok").replace('__TITLE__','มยุรี ข้าวตังทรงเครื่อง — ข้าวตังทำมือตั้งแต่ปี 1968').replace('__DESC__','ข้าวตังทรงเครื่องทำมือ คั่วบนเตาถ่าน สูตรคุณยายตั้งแต่ปี 1968 · ร้านสุขุมวิท 51 กรุงเทพฯ · สั่งทาง LINE')
 out=re.sub(r'<title>[^<]*</title>','<title>'+'มยุรี ข้าวตังทรงเครื่อง — ข้าวตังทำมือตั้งแต่ปี 1968'+'</title>',out,count=1)
 out=out.replace('<nav>\n      <a href="index.html"','<nav>\n      <a aria-current="page" href="index.html"',1)
-out=out.replace('</head>', '<link rel="stylesheet" href="assets/presentation.css?v=4">\n<link rel="stylesheet" href="assets/mobile.css?v=4">\n</head>', 1)
+out=out.replace('</head>', '<link rel="stylesheet" href="assets/presentation.css?v=4">\n<link rel="stylesheet" href="assets/mobile.css?v=5">\n</head>', 1)
 out=out.replace('<body>', '<body class="home-page">', 1)
 out=out.replace('</body>', '<script src="assets/ui-icons.js?v=1" defer></script>\n<script src="assets/presentation.js?v=6" defer></script>\n<script src="assets/mobile.js?v=3" defer></script>\n</body>', 1)
 open('index.html','w',encoding='utf-8').write(iconize(out))

@@ -616,3 +616,15 @@ button,a.pill{line-height:1.5}
  .home-page .hm-hero h1 .nw{display:block;line-height:inherit}
  .home-page .hm-hero .shade{background:linear-gradient(180deg,rgba(25,10,8,.32) 0%,rgba(25,10,8,.14) 28%,rgba(25,10,8,.7) 57%,rgba(25,10,8,.94) 100%)!important}
 }
+/* Founder collage: retain the photographs and badge without any added shadow. */
+.story .art,.story .art .ph.founder,.story .art .polaroid,.story .art .stamp{box-shadow:none!important;filter:none!important}
+/* Brand-led opening, with separate Thai name and English product description. */
+.home-page .hm-hero h1{max-width:100%;margin:0 auto 20px;line-height:1.35;text-shadow:none}
+.home-page .hm-hero h1 .hero-brand-name,.home-page .hm-hero h1 .hero-brand-line{display:block}
+.home-page .hm-hero .hero-brand-name{font-size:1.15em}
+.home-page .hm-hero .hero-descriptor{font-size:18px;line-height:1.5;font-weight:600;letter-spacing:.12em;margin:0 auto 28px;color:var(--cream);text-shadow:none}
+@media(max-width:700px){
+ .home-page .hm-hero .in{gap:20px}
+ .home-page .hm-hero h1{font-size:clamp(28px,8vw,36px)!important;line-height:1.4!important;margin:0!important;max-width:100%}
+ .home-page .hm-hero .hero-descriptor{font-size:15px;line-height:1.5;margin:0;letter-spacing:.1em}
+}
