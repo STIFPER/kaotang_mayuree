@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Font check</title>
+<link rel="stylesheet" href="https://use.typekit.net/csi6fno.css">
+<style>
+body{margin:0;padding:16px;font:16px/1.6 -apple-system,system-ui,sans-serif;background:#fff;color:#111}
+h1{font-size:20px;margin:0 0 12px}
+.row{border:1px solid #ccc;border-radius:10px;padding:10px 12px;margin:10px 0}
+.k{font-size:12px;color:#666;margin-bottom:4px}
+.t{font-size:26px;line-height:1.4}
+.ok{color:#0a7d2c;font-weight:700}.bad{color:#c00;font-weight:700}
+pre{white-space:pre-wrap;font-size:13px;background:#f4f4f4;padding:10px;border-radius:8px}
+</style>
+</head>
+<body>
+<h1>ตรวจฟอนต์ในเครื่องนี้</h1>
+<p>แคปหน้านี้ทั้งหน้าส่งให้ผม</p>
+
+<div class="row"><div class="k">Thonglor 400 (น้ำหนักปกติ)</div><div class="t" style="font-family:'thonglor-soi-4',monospace;font-weight:400">ข้าวตังทรงเครื่อง Abc 123</div></div>
+<div class="row"><div class="k">Thonglor 600</div><div class="t" style="font-family:'thonglor-soi-4',monospace;font-weight:600">ข้าวตังทรงเครื่อง Abc 123</div></div>
+<div class="row"><div class="k">Thonglor 700</div><div class="t" style="font-family:'thonglor-soi-4',monospace;font-weight:700">ข้าวตังทรงเครื่อง Abc 123</div></div>
+<div class="row"><div class="k">Thonglor 800</div><div class="t" style="font-family:'thonglor-soi-4',monospace;font-weight:800">ข้าวตังทรงเครื่อง Abc 123</div></div>
+<div class="row"><div class="k">ฟอนต์ระบบของเครื่อง (ไว้เทียบ)</div><div class="t">ข้าวตังทรงเครื่อง Abc 123</div></div>
+
+<pre id="out">กำลังตรวจ…</pre>
+
+<script>
+(async function(){
+  var out=[];
+  function L(s){out.push(s)}
+  L('UA: '+navigator.userAgent);
+  L('width: '+innerWidth+'px, pixel ratio: '+devicePixelRatio);
+  var sheet=[].slice.call(document.styleSheets).filter(function(s){return /typekit/.test(s.href||'')})[0];
+  L('kit css linked: '+(sheet?'yes':'NO'));
+  try{ L('kit rules: '+(sheet&&sheet.cssRules?sheet.cssRules.length:'unreadable')) }catch(e){ L('kit rules: unreadable (cross-origin is normal)') }
+  var res={};
+  for (var w of ['400','600','700','800']){
+    try{
+      var r=await document.fonts.load(w+' 24px "thonglor-soi-4"','ก');
+      res[w]=r.length?'loaded':'NOT FOUND';
+    }catch(e){res[w]='ERROR '+e.message}
+  }
+  for (var w in res) L('Thonglor '+w+': '+res[w]);
+  L('fonts.status: '+document.fonts.status);
+  L('faces: '+[...document.fonts].filter(function(f){return /thonglor/.test(f.family)}).map(function(f){return f.weight+':'+f.status}).join(', '));
+  var t=document.fonts.check('700 20px "thonglor-soi-4"','ก');
+  L('check(700): '+t);
+  document.getElementById('out').textContent=out.join('\n');
+})();
+</script>
+</body>
+</html>
