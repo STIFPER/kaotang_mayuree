@@ -4,6 +4,7 @@ import re
 import sys
 sys.path.insert(0,HERE)
 from relink import relink
+from ui_icons import iconize
 src=open(HERE+'/master.html',encoding='utf-8').read()
 head=src[:src.index('</style>')]                      # head + all shared CSS
 hdr=src[src.index('<!-- ===== HEADER ===== -->'):src.index('<main id="top">')]
@@ -515,7 +516,7 @@ main=f'''<main id="top">
         <p>ไม่มีหมูหยอง ทานมังสวิรัติได้</p>
         <span class="pill outline">฿165 · ดู “ข้าว”</span>
       </a>
-      <a class="hm-prod rv-in d2" href="shop.html">
+      <a class="hm-prod rv-in d2" href="shop.html?opt=salted&amp;size=mini">
         <div class="meta"><span class="label">Mini</span><span class="label">95 g</span></div>
         <div class="stage photo"><img class="pk-ph" src="assets/photos/mini-box-in-hand-square.jpg" alt="กล่อง Mini 95 g" loading="lazy"></div>
         <span class="tag label">ตัวเล็ก พกง่าย</span>
@@ -629,8 +630,8 @@ out=head+css+'</style>\n</head>\n<body>\n\n'+hdr+main+ftr+'\n'+script
 out=out.replace('__TITLE_EN__','Mayuree Kaotang Songkrueng — Homemade Thai Rice Crackers since 1968').replace('__DESC_EN__',"Handmade Thai rice crackers roasted over charcoal, Grandma's recipe since 1968 · Sukhumvit 51, Bangkok").replace('__TITLE__','มยุรี ข้าวตังทรงเครื่อง — ข้าวตังทำมือตั้งแต่ปี 1968').replace('__DESC__','ข้าวตังทรงเครื่องทำมือ คั่วบนเตาถ่าน สูตรคุณยายตั้งแต่ปี 1968 · ร้านสุขุมวิท 51 กรุงเทพฯ · สั่งทาง LINE')
 out=re.sub(r'<title>[^<]*</title>','<title>'+'มยุรี ข้าวตังทรงเครื่อง — ข้าวตังทำมือตั้งแต่ปี 1968'+'</title>',out,count=1)
 out=out.replace('<nav>\n      <a href="index.html"','<nav>\n      <a aria-current="page" href="index.html"',1)
-out=out.replace('</head>', '<link rel="stylesheet" href="assets/presentation.css?v=4">\n<link rel="stylesheet" href="assets/mobile.css?v=2">\n</head>', 1)
+out=out.replace('</head>', '<link rel="stylesheet" href="assets/presentation.css?v=4">\n<link rel="stylesheet" href="assets/mobile.css?v=3">\n</head>', 1)
 out=out.replace('<body>', '<body class="home-page">', 1)
-out=out.replace('</body>', '<script src="assets/presentation.js?v=5" defer></script>\n<script src="assets/mobile.js?v=2" defer></script>\n</body>', 1)
-open('index.html','w',encoding='utf-8').write(out)
+out=out.replace('</body>', '<script src="assets/ui-icons.js?v=1" defer></script>\n<script src="assets/presentation.js?v=6" defer></script>\n<script src="assets/mobile.js?v=3" defer></script>\n</body>', 1)
+open('index.html','w',encoding='utf-8').write(iconize(out))
 print(len(out))

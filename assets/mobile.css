@@ -114,7 +114,7 @@
  .deck-title{font:600 14px/1.4 var(--body-font)}
  .deck-arrows{gap:8px}
  .deck-arrows button{width:44px;height:44px;font:400 22px/1 var(--body-font)}
- .deck-track{align-items:flex-start;transition:height .2s ease}
+ .deck-track{align-items:flex-start;transition:none}
  .deck-page{padding:20px 16px}
  #shop .product-deck h1{font-size:29px!important;line-height:1.2;text-align:left}
  #shop .product-deck h1 small{font:500 14px/1.5 var(--body-font);margin-top:10px}
@@ -496,6 +496,113 @@ button,a.pill{line-height:1.5}
 }
 @media(hover:none){.hm-card:hover,.hm-prod:hover,.gset:hover,.corp-card:hover .pic img{transform:none;translate:none;rotate:none}}
 @media(min-width:701px) and (max-width:1100px){
- .deck-track{align-items:flex-start;transition:height .2s ease}
+ .deck-track{align-items:flex-start;transition:none}
  .deck-page#productRead{justify-content:flex-start}
 }
+/* UI icons are SVG paths, independent of each platform's emoji font. */
+.ui-icon{display:inline-block;width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.15em}
+.ui-icon-solid{fill:currentColor;stroke:none}
+.ic *,.ui-icon *{vector-effect:non-scaling-stroke}
+.stars .ui-icon{width:1.05em;height:1.05em}
+.mobile-page-link::after{content:""!important;width:14px;height:14px;background:linear-gradient(currentColor,currentColor) right top/100% 1.5px no-repeat,linear-gradient(currentColor,currentColor) right top/1.5px 100% no-repeat;clip-path:polygon(0 0,100% 0,100% 100%,85% 100%,85% 27%,10% 100%,0 90%,73% 15%,0 15%)}
+/* A single fluid illustration stage keeps the Duo readable at every breakpoint. */
+.hm-promos .hm-card:first-child{display:flex!important;flex-direction:column;min-height:0!important;gap:12px;padding:clamp(24px,3vw,36px)!important}
+.hm-promos .hm-card:first-child h3{max-width:none;margin:0!important;font-size:clamp(27px,3vw,36px)!important}
+.hm-promos .hm-card:first-child p{max-width:34ch;margin:0}
+.hm-promos .hm-card:first-child .art{position:relative;inset:auto!important;bottom:auto!important;flex:none;isolation:isolate;overflow:visible;width:100%;height:clamp(260px,32vw,340px)!important;margin:8px 0 12px;gap:0;align-items:center}
+.hm-promos .hm-card:first-child .art .pk{height:100%!important;width:auto;max-width:48%;object-fit:contain;filter:none!important;transform:none;rotate:-3deg;z-index:1}
+.hm-promos .hm-card:first-child .art .pk+.pk{margin-left:-2%;rotate:3deg}
+.hm-promos .hm-card:first-child .art::after{content:"";position:absolute;left:16%;right:16%;bottom:-4px;height:24px;background:radial-gradient(ellipse,rgba(60,30,10,.16),transparent 70%);z-index:0;pointer-events:none}
+.hm-promos .hm-card:first-child .go{margin-top:auto;align-self:flex-start}
+@media(min-width:701px) and (max-width:1100px){
+ .hm-promos .hm-card:first-child{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);grid-template-areas:"k art" "title art" "copy art" "cta art";align-content:center;gap:16px 28px;min-height:400px!important}
+ .hm-promos .hm-card:first-child .k{grid-area:k;align-self:end}
+ .hm-promos .hm-card:first-child h3{grid-area:title}
+ .hm-promos .hm-card:first-child p{grid-area:copy}
+ .hm-promos .hm-card:first-child .go{grid-area:cta;margin-top:8px;justify-self:start}
+ .hm-promos .hm-card:first-child .art{grid-area:art;height:clamp(280px,35vw,360px)!important;margin:0}
+}
+/* Touch rendering: avoid nested filter shadows and translated hard button edges. */
+@media(max-width:1100px){
+ main :is(.pack[data-pack],.hm-card .pk,.hm-prod .pk,.blob svg,.blob img.tex,.seal68,.chap .pic.pack img,.qty.on .jar img){filter:none!important}
+ .phone{rotate:0deg;box-shadow:0 8px 20px rgba(40,10,5,.14);border-width:4px}
+ .polaroid,.story .art .ph.founder{box-shadow:0 4px 12px rgba(40,10,5,.12)}
+ .product-deck,.qty,.opt,.tabs,.visit-card{border-width:1px!important}
+ .pill,.pill.sm,.gal-btn{box-shadow:0 2px 0 rgba(126,20,22,.85);border-width:1px}
+ .dock{box-shadow:0 4px 12px rgba(60,10,10,.12);backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid rgba(126,20,22,.25)}
+}
+@media(hover:none){.pill:hover,.pill:active,.gal-btn:hover{transform:none;box-shadow:0 2px 0 rgba(126,20,22,.85)}}
+.sec-title::before{content:"";width:16px;height:16px;margin:0 auto 14px;background:var(--red);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+.hm-qual-intro .badge::before{content:"";width:8px;height:14px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg);margin-right:6px}
+/* Direct menu entry; the separate hamburger opens site navigation. */
+.mobile-header-actions{display:none}
+.flavor-more>summary{display:none}
+@media(max-width:1100px){
+ .mobile-header-actions{display:flex;align-items:center;gap:4px}
+ .mobile-header-actions .menu-btn{font-size:0!important;width:44px;min-width:44px;justify-content:center;gap:0}
+ .quick-menu{display:flex;align-items:center;justify-content:center;min-height:44px;padding:8px 10px;border:1px solid currentColor;border-radius:12px;font:600 13px/1.4 var(--body-font)}
+}
+/* Phone shop: one compact, complete purchase card instead of a poster above a long form. */
+@media(max-width:700px){
+ #shop.hero{padding:12px 16px 24px!important}
+ #shop.hero .media{grid-area:photo!important;position:relative;width:100%!important;height:112px!important;min-height:0!important;margin:0!important;border-radius:14px;align-self:start}
+ #shop.hero .frame{border-radius:14px!important}
+ #productChoose{display:grid;grid-template-columns:100px minmax(0,1fr);grid-template-areas:"photo title" "photo rating" "price price" "form form";gap:8px 12px;align-items:start}
+ #shop .product-deck h1{grid-area:title;font-size:22px!important;line-height:1.25!important;margin:0}
+ #shop .product-deck h1 small{font-size:12px;line-height:1.5;margin-top:6px}
+ #shop .product-deck .price{grid-area:price;font-size:17px!important;margin:4px 0 0;line-height:1.4!important}
+ #shop .product-deck .stars{grid-area:rating;margin:0;gap:4px;flex-wrap:wrap}
+ #shop .product-deck .stars i{font-size:12px!important}
+ #shop .product-deck .stars a{font-size:0!important;line-height:1.4!important}
+ #shop .product-deck .stars a::after{content:"5.0 · 54 รีวิว";font:400 11px/1.4 var(--body-font)}
+ html[lang="en"] #shop .product-deck .stars a::after{content:"5.0 · 54 reviews"}
+ #shop .product-deck .box-card{grid-area:form;margin:4px 0 0;padding:0}
+ .deck-page{padding:14px}
+ .deck-nav{padding:6px 12px;min-height:56px}
+ .deck-title{font-size:13px}
+ #shop .product-deck .badges{margin:0 0 12px;gap:4px}
+ #shop .product-deck .badges li{padding:4px 6px;font-size:10px}
+ #shop .sel-label{font-size:13px!important;margin-bottom:8px}
+ #shop .sel-label[style]{margin-top:14px!important}
+ #shop .opt{min-height:62px;padding:9px 4px!important;gap:3px}
+ #shop .opt b{font-size:16px!important;line-height:1.3}
+ #shop .opt span{font-size:11px!important}
+ #shop .product-deck .qty .jar{display:none!important}
+ #shop .qty em{padding:6px 0;font-size:12px!important}
+ #shop .product-deck .qty b{font-size:21px;padding:9px 0 0}
+ #shop .qty span{font-size:12px;padding:4px 0 9px}
+ #shop .cta-row{margin-top:16px}
+ #shop .cta-row .pill{min-height:50px}
+ .deck-footer button{min-height:44px;font-size:12px}
+ .hm-prods{grid-template-columns:1fr!important;gap:12px!important}
+ .hm-prods .hm-prod,.hm-prods .hm-prod:nth-child(3){display:grid!important;grid-column:auto;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"stage tag" "stage h3" "stage pill";gap:5px 14px;align-items:center;padding:14px!important;text-align:left;min-height:146px}
+ .hm-prods .hm-prod .stage,.hm-prods .hm-prod:nth-child(3) .stage{grid-area:stage;width:104px;height:112px;aspect-ratio:auto!important;margin:0!important}
+ .hm-prods .hm-prod .tag{grid-area:tag;font-size:12px!important;align-self:end}
+ .hm-prods .hm-prod h3{grid-area:h3;font-size:21px!important;line-height:1.3;margin:0}
+ .hm-prods .hm-prod p,.hm-prods .hm-prod:nth-child(3) p{display:none!important}
+ .hm-prods .hm-prod .pill,.hm-prods .hm-prod:nth-child(3) .pill{grid-area:pill;justify-self:start;align-self:start;min-height:44px;width:auto;margin-top:6px;font-size:13px!important;padding:10px 12px!important}
+ .flavor-more>summary{display:flex;align-items:center;justify-content:space-between;min-height:48px;cursor:pointer;font:600 14px/1.5 var(--body-font);list-style:none;border-bottom:1px solid rgba(126,20,22,.18)}
+ .flavor-more>summary::after{content:"+";font-size:22px}
+ .flavor-more[open]>summary::after{content:"−"}
+ .flavor-more>summary::-webkit-details-marker{display:none}
+ #flGrid .fl dl{margin:16px 0 0}
+ #flGrid .fl dl div{grid-template-columns:80px minmax(0,1fr);padding:14px 16px;gap:12px}
+ #flGrid .fl dl dd{font-size:14px;line-height:1.6;min-width:0}
+ #flGrid .fl dl dt{font-size:13px!important;padding-right:10px;line-height:1.6}
+ #flGrid .fl .pill{margin-top:16px;min-height:48px}
+ .menu-sec .sec-head{margin-bottom:24px}
+ .menu-sec .menu-card{gap:20px}
+ .menu-card li{padding:10px 0}
+ .menu-card li span{font-size:19px}
+ .menu-card li em{font-size:12px}
+ .menu-card li b{font-size:23px}
+}
+@media(max-width:700px){
+ #shop.hero #title{grid-area:title!important;align-self:start}
+ #shop.hero #price{grid-area:price!important;grid-column:1/-1!important;grid-row:3!important;margin:2px 0 0;font-size:17px!important}
+ #shop.hero .product-deck .stars{grid-area:rating!important;grid-column:2!important;grid-row:2!important}
+}
+
+.deck-track{overflow-y:hidden;overflow-anchor:none}
+@media(max-width:374px){.quick-menu{padding-inline:6px}}
+@media(max-width:1100px){.hm-prod:hover .stage.photo .pk-ph{transform:none}}

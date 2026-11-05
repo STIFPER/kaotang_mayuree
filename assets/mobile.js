@@ -19,6 +19,7 @@
    const open=compactNav.matches&&panel.classList.contains('open');
    document.documentElement.classList.toggle('mobile-menu-open',open);
    toggle.setAttribute('aria-expanded',String(open));
+   toggle.setAttribute('aria-label',document.documentElement.lang==='en'?(open?'Close navigation':'Open navigation'):(open?'ปิดเมนูนำทาง':'เปิดเมนูนำทาง'));
    toggle.textContent=open?(document.documentElement.lang==='en'?'Close':'ปิด'):(document.documentElement.lang==='en'?'Menu':'เมนู');
    document.querySelectorAll('main,footer,.dock').forEach(el=>{el.inert=open});
   };
@@ -54,10 +55,37 @@
   const go=delta=>grid.scrollTo({left:step()*(at()+delta),behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
   prev.addEventListener('click',()=>go(-1));next.addEventListener('click',()=>go(1));grid.addEventListener('scroll',update,{passive:true});new ResizeObserver(update).observe(grid);update();
  });
+ // Keep the product thumbnail beside its name on phones, restoring desktop order on resize.
+ const shop=document.querySelector('#shop.hero'),choose=document.querySelector('#productChoose');
+ if(shop&&choose){
+  const media=shop.querySelector('.media'),home=document.createComment('Desktop product media position');
+  const menu=document.querySelector('#menu.menu-sec'),menuHome=document.createComment('Desktop price menu position');if(menu)menu.before(menuHome);
+  media.before(home);const photo=media.querySelector('img'),options=document.querySelector('#opts');
+  const review=shop.querySelector('.stars a');const nameReview=()=>review.setAttribute('aria-label',review.textContent.trim());nameReview();new MutationObserver(nameReview).observe(review,{childList:true,characterData:true,subtree:true});
+  const updatePhoto=()=>{const buttons=[...options.children],selected=buttons.findIndex(b=>b.classList.contains('on'));
+   const file=mobile.matches?['product-packs-stacked.jpg','product-pack-salted.jpg','product-pack-jasmine.jpg'][selected]||'product-packs-stacked.jpg':'product-packs-stacked.jpg';
+   const src='assets/photos/'+file;if(photo.getAttribute('src')!==src)photo.src=src;
+   photo.alt=document.documentElement.lang==='en'?'Mayuree rice crackers':'ข้าวตังมยุรี';
+  };
+  const arrange=()=>{if(mobile.matches){choose.prepend(media);if(menu)shop.after(menu)}else{home.after(media);if(menu)menuHome.after(menu)}updatePhoto()};
+  new MutationObserver(updatePhoto).observe(options,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+  mobile.addEventListener('change',arrange);arrange();
+ }
+ // Secondary flavor facts are expandable; the purchase controls stay first on phones.
+ const flavors=document.querySelector('#flGrid');
+ if(flavors){
+  const fold=()=>flavors.querySelectorAll('.fl').forEach(card=>{
+   const list=card.querySelector('dl');if(!list||list.closest('details'))return;
+   const details=document.createElement('details'),summary=document.createElement('summary');details.className='flavor-more';details.open=!mobile.matches;
+   summary.textContent=document.documentElement.lang==='en'?'Flavor details':'รายละเอียดรสชาติ';list.before(details);details.append(summary,list);
+  });
+  new MutationObserver(fold).observe(flavors,{childList:true,subtree:true});fold();
+  mobile.addEventListener('change',()=>flavors.querySelectorAll('.flavor-more').forEach(d=>d.open=!mobile.matches));
+ }
  // Only the visible side determines the card height on phones.
  document.querySelectorAll('[data-product-deck]').forEach(deck=>{
   const track=deck.querySelector('.deck-track'),pages=[...deck.querySelectorAll('.deck-page')];
-  const fit=()=>{if(compactNav.matches){const page=pages.find(p=>p.getAttribute('aria-hidden')!=='true')||pages[0];track.style.height=page.scrollHeight+'px'}else track.style.height=''};
+  const fit=()=>{if(compactNav.matches){const page=pages.find(p=>p.getAttribute('aria-hidden')!=='true')||pages[0];track.style.height=page.scrollHeight+'px';track.scrollTop=0}else track.style.height=''};
   const resize=new ResizeObserver(fit);pages.forEach(page=>resize.observe(page));
   pages.forEach(page=>new MutationObserver(fit).observe(page,{attributes:true,attributeFilter:['aria-hidden']}));
   compactNav.addEventListener('change',fit);fit();
