@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /300ppi/
+Disallow: /product/
+
+# เมื่อมีโดเมนจริง ให้เพิ่มบรรทัดนี้ (แก้โดเมนให้ตรง):
+# Sitemap: https://YOUR-DOMAIN/sitemap.xml

@@ -1,0 +1,11 @@
+/* One packaging illustration system for all pages. Original printed artwork stays intact. */
+.pack[data-pack]{aspect-ratio:706/1274;filter:drop-shadow(0 15px 12px rgba(50,15,5,.16))}
+.pack[data-pack]>.package-graphic{display:block;position:static;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none}
+.pack-pair{align-items:flex-end;gap:0;isolation:isolate}
+.pack-pair .pack.mini{--w:calc(var(--pw,200px)*.72);margin-left:calc(var(--pw,200px)*-.05);margin-bottom:-2px;rotate:5deg;z-index:2}
+#flGrid .pack-pair{--pw:clamp(148px,12.5vw,194px);padding:12px 2px 18px}
+#flGrid .pack:not(.mini){--w:var(--pw);rotate:-2deg;z-index:1}
+#flGrid .fl:hover .pack{transform:translateY(-4px)}
+#flGrid .fl:hover .pack.mini{transform:translateY(-3px)}
+@media(max-width:1100px) and (min-width:701px){#flGrid .pack-pair{--pw:clamp(130px,18vw,180px)}}
+@media(max-width:700px){#flGrid .pack-pair{--pw:clamp(156px,30vw,192px);justify-content:center;padding-bottom:12px}}
