@@ -40,9 +40,9 @@
   สี / ฟอนต์    → :root
   รสชาติ / ราคา → PRODUCT ท้ายไฟล์
   ข้อความ       → แก้ใน HTML (ค้นคำว่า "แก้ไข")
-  รูปถ่าย       → <figure class="ph" data-src="">  ใส่ path เช่น data-src="assets/photos/hero.jpg"
+  รูปถ่าย       → <figure class="ph" data-src="">  ใส่ path เช่น data-src="assets/photos/store-front.jpg"
                   ช่องที่ว่างจะแสดงกรอบไกด์ไลน์ บอกประเภทรูปและสัดส่วน
-  ฟอนต์แบรนด์   → วาง ThonglorSoi4-SemiBold.woff2 / ThonglorSoi4-Bold.woff2 ใน fonts/
+  ฟอนต์แบรนด์   → Thonglor Soi 4 โหลดจาก Adobe Fonts (โปรเจกต์ mayuree-web) ไม่ต้องวางไฟล์ฟอนต์เอง
   ===========================================================
 -->
 
@@ -854,7 +854,7 @@ html[lang="en"] .fl p{line-height:1.6}
 .fl dl dd{text-align:left;line-height:1.45;font-size:.98rem}
 .fl .pill{margin-top:26px}
 
-/* ชุดของขวัญ: ช่องรูปประกอบบนการ์ด (ใส่ data-src="assets/photos/gift-set-1.jpg" ฯลฯ เพื่อแสดงรูป) */
+/* ชุดของขวัญ: ช่องรูปประกอบบนการ์ด (ใส่ data-src="assets/photos/gift-bamboo-basket.jpg" ฯลฯ เพื่อแสดงรูป) */
 .gset{gap:16px}
 .gset .gset-ph{--r:4/3;border-radius:var(--r-md);border:1.5px dashed rgba(126,20,22,.45);background:rgba(255,255,255,.35);display:grid;place-items:center;text-align:center;margin:-4px -4px 2px}
 .gset .gset-ph figcaption{font-size:.84rem;line-height:1.5;color:var(--ink-2)}
@@ -1314,7 +1314,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
           <a class="mcard" href="shop.html?opt=salted" data-pick-opt="salted" style="--bg:#F3B08F"><span class="art"><span class="pack salted" data-pack style="--w:84px"></span></span><b>“เค็ม”</b></a>
           <a class="mcard" href="shop.html?opt=jasmine" data-pick-opt="jasmine" style="--bg:#E6DCC0"><span class="art"><span class="pack jasmine" data-pack style="--w:84px"></span></span><b>“ข้าว”</b></a>
           <a class="mcard" href="shop.html?opt=duo" data-pick-opt="duo" style="--bg:#F2C4AE"><span class="art duo"><span class="pack salted" data-pack style="--w:66px"></span><span class="pack jasmine" data-pack style="--w:66px"></span></span><b>“Duo” Set</b></a>
-          <a class="mcard" href="gift.html"><span class="art"><img src="assets/photos/gift.jpg" alt=""></span><b>กล่องของขวัญ</b></a>
+          <a class="mcard" href="gift.html"><span class="art"><img src="assets/photos/gift-christmas-cloth-set.jpg" alt=""></span><b>กล่องของขวัญ</b></a>
           <a class="mcard vid" href="craft.html#charcoal"><span class="art"><video src="assets/video/charcoal-preview.mp4" poster="assets/video/charcoal-poster.jpg" muted loop playsinline preload="none"></video><i class="play">▶</i></span><b>ดูเตาถ่าน</b></a>
         </div>
       </div>
@@ -1341,9 +1341,9 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
         <h6>เบื้องหลัง</h6>
         <div class="cards">
           <a class="mcard vid tall" href="craft.html#charcoal"><span class="art"><video src="assets/video/charcoal-preview.mp4" poster="assets/video/charcoal-poster.jpg" muted loop playsinline preload="none"></video><i class="play">▶</i></span><b>“รู้มั้ย” ยังใช้เตาถ่าน</b></a>
-          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/founder.jpg" alt=""></span><b>คุณยายสมสมร</b></a>
-          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/strip-165.jpg" alt=""></span><b>แผ่นข้าวทำมือ</b></a>
-          <a class="mcard tall" href="craft.html#strip"><span class="art"><img src="assets/photos/strip-228.jpg" alt=""></span><b>กินแบบมยุรี</b></a>
+          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/story-founder-portrait.jpg" alt=""></span><b>คุณยายสมสมร</b></a>
+          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/process-cutting-sheet.jpg" alt=""></span><b>แผ่นข้าวทำมือ</b></a>
+          <a class="mcard tall" href="craft.html#strip"><span class="art"><img src="assets/photos/lifestyle-picnic-board.jpg" alt=""></span><b>กินแบบมยุรี</b></a>
         </div>
       </div>
     </div>
@@ -1375,10 +1375,10 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
         <!-- แกลเลอรีรูปหน้าร้าน: เพิ่ม/ลบ <img> ได้เลย (ไฟล์อยู่ใน assets/photos) -->
         <div class="store-gal" data-gal>
           <div class="gal-track">
-            <img src="assets/photos/store-new.jpg" alt="หน้าร้านมยุรี สุขุมวิท 51">
-            <img src="assets/photos/store-2.jpg" alt="หน้าร้านมยุรี มุมกว้าง">
-            <img src="assets/photos/storefront.jpg" alt="รูปหน้าร้าน">
-            <img src="assets/photos/interior.jpg" alt="ภายในร้านมยุรี">
+            <img src="assets/photos/store-front-new-sign.jpg" alt="หน้าร้านมยุรี สุขุมวิท 51">
+            <img src="assets/photos/store-front-alt.jpg" alt="หน้าร้านมยุรี มุมกว้าง">
+            <img src="assets/photos/store-front.jpg" alt="รูปหน้าร้าน">
+            <img src="assets/photos/store-interior.jpg" alt="ภายในร้านมยุรี">
           </div>
           <button class="gal-btn prev" type="button" aria-label="ก่อนหน้า">‹</button>
           <button class="gal-btn next" type="button" aria-label="ถัดไป">›</button>
@@ -1392,7 +1392,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
       </div>
     </div>
     </div>
-      <div class="visit-rv"><div class="rv-left"><p class="label">เสียงจากลูกค้า</p><div class="rv-score"><b>5.0</b><span class="stars">★★★★★</span></div><p class="rv-cap">จาก 54 รีวิวบน Google</p></div><div class="rv-chips"><div class="chip"><b>Google Maps</b><span>5.0 ★ · 54 รีวิว</span></div><div class="chip"><b>Lazada</b><span>คะแนนร้าน 97% · ซื้อซ้ำ 100%</span></div></div><div class="vr-photos"><img src="assets/photos/mosaic-555.jpg" alt="รูปลูกค้า" loading="lazy"><img src="assets/photos/mosaic-330.jpg" alt="รูปลูกค้า" loading="lazy"><img src="assets/photos/mosaic-234.jpg" alt="รูปลูกค้า" loading="lazy"><img src="assets/photos/mosaic-309.jpg" alt="รูปลูกค้า" loading="lazy"><img src="assets/photos/mosaic-711.jpg" alt="รูปลูกค้า" loading="lazy"></div></div>
+      <div class="visit-rv"><div class="rv-left"><p class="label">เสียงจากลูกค้า</p><div class="rv-score"><b>5.0</b><span class="stars">★★★★★</span></div><p class="rv-cap">จาก 54 รีวิวบน Google</p></div><div class="rv-chips"><div class="chip"><b>Google Maps</b><span>5.0 ★ · 54 รีวิว</span></div><div class="chip"><b>Lazada</b><span>คะแนนร้าน 97% · ซื้อซ้ำ 100%</span></div></div><div class="vr-photos"><img src="assets/photos/lifestyle-sharing-spoons.jpg" alt="ช้อนสองคันตักข้าวตังจากชามเดียวกัน" loading="lazy"><img src="assets/photos/lifestyle-pool-reading.jpg" alt="นั่งอ่านหนังสือริมสระกับข้าวตังทรงเครื่อง" loading="lazy"><img src="assets/photos/lifestyle-picnic-bowl.jpg" alt="ข้าวตังทรงเครื่องในชามบนผ้าปิกนิกลายสก็อต" loading="lazy"><img src="assets/photos/lifestyle-beach-bag-book.jpg" alt="กล่องมยุรีในกระเป๋าถักข้างหนังสือ" loading="lazy"><img src="assets/photos/lifestyle-silver-tray-breakfast.jpg" alt="ข้าวตังทรงเครื่องบนถาดเงินพร้อมมื้อเช้า" loading="lazy"></div></div>
   </div>
 </section>
 
@@ -1482,11 +1482,11 @@ const PRODUCT = {
   ],
   /* แถวรูปโซเชียล — เพิ่ม/ลด/สลับรูปได้ (ไฟล์อยู่ใน assets/photos) */
   strip: [
-    ["assets/photos/strip-6.jpg","ร่อนแป้ง"], ["assets/photos/strip-63.jpg","คลุกข้าวตัง"],
-    ["assets/photos/strip-228.jpg","ปิกนิก"], ["assets/photos/strip-165.jpg","แผ่นข้าว"],
-    ["assets/photos/strip-324.jpg","ริมสระ"], ["assets/photos/strip-423.jpg","กรอบเต็มชาม"],
-    ["assets/photos/strip-201.jpg","คั่วในกระทะ"], ["assets/photos/strip-612.jpg","มื้อเช้า"],
-    ["assets/photos/strip-690.jpg","ชายามบ่าย"], ["assets/photos/strip-585.jpg","สตูดิโอ"],
+    ["assets/photos/process-sifting-flour.jpg","ร่อนแป้ง"], ["assets/photos/process-wok-ladle.jpg","คลุกข้าวตัง"],
+    ["assets/photos/lifestyle-picnic-board.jpg","ปิกนิก"], ["assets/photos/process-cutting-sheet.jpg","แผ่นข้าว"],
+    ["assets/photos/lifestyle-pool-snack.jpg","ริมสระ"], ["assets/photos/product-bowls-stacked.jpg","กรอบเต็มชาม"],
+    ["assets/photos/process-stirring-wok.jpg","คั่วในกระทะ"], ["assets/photos/lifestyle-breakfast-table.jpg","มื้อเช้า"],
+    ["assets/photos/product-silver-tray-coffee.jpg","ชายามบ่าย"], ["assets/photos/product-pack-pink-set.jpg","สตูดิโอ"],
   ],
 };
 </script>
@@ -1545,7 +1545,7 @@ const PRODUCT = {
     PRODUCT.sizes.forEach((q,i) => {
       const b = document.createElement("button"); b.className = "qty";
       const big = q.id === "big";
-      b.innerHTML = `<em>${pick(q,"tag")}</em><span class="jar"><img src="assets/jar-line.png" alt="" style="height:${big?78:50}px"></span><b>${q.w}</b><span>${baht(q.price)} / ${t("กระปุก","jar")}</span>`;
+      b.innerHTML = `<em>${pick(q,"tag")}</em><span class="jar"><img src="assets/lineart-jar.png" alt="" style="height:${big?78:50}px"></span><b>${q.w}</b><span>${baht(q.price)} / ${t("กระปุก","jar")}</span>`;
       b.onclick = () => { st.q = i; render(); };
       qtys.appendChild(b);
     });
@@ -1788,7 +1788,7 @@ const PRODUCT = {
     "ข้าวตังทรงเครื่องในถ้วย":"Kaotang Songkrueng in a ceramic bowl","ข้าวตังทรงเครื่องในชามสแตนเลส":"Kaotang Songkrueng in a steel bowl",
     "แผนที่ร้านมยุรี ข้าวตังทรงเครื่อง":"Map of Mayuree Kaotang Songkrueng","อีเมลของคุณ":"Your email",
     /* ช่องรูป (ข้อความไกด์ไลน์ เห็นเฉพาะตอนยังไม่มีรูป) */
-    "รูปลูกค้า":"Customer photo","เสียงจากลูกค้า":"Loved by our customers","1:1 หรือ 4:5":"1:1 or 4:5","บันทึกเป็น assets/photos/storefront.jpg":"Save as assets/photos/storefront.jpg",
+    "รูปลูกค้า":"Customer photo","ช้อนสองคันตักข้าวตังจากชามเดียวกัน":"Two spoons sharing one bowl of crackers","นั่งอ่านหนังสือริมสระกับข้าวตังทรงเครื่อง":"Reading by the pool with crackers","ข้าวตังทรงเครื่องในชามบนผ้าปิกนิกลายสก็อต":"Crackers in a bowl on a checked picnic cloth","กล่องมยุรีในกระเป๋าถักข้างหนังสือ":"A Mayuree box in a woven bag beside a book","ข้าวตังทรงเครื่องบนถาดเงินพร้อมมื้อเช้า":"Crackers on a silver tray with breakfast","เสียงจากลูกค้า":"Loved by our customers","1:1 หรือ 4:5":"1:1 or 4:5","บันทึกเป็น assets/photos/store-front.jpg":"Save as assets/photos/store-front.jpg",
     "มือหยิบข้าวตังจากถาด / ช็อตโคลสอัปความกรอบ · 21:9 (มือถือ 4:5) · 2400×1030 px":"Hand picking crackers / close-up crunch shot · 21:9 (mobile 4:5) · 2400×1030 px"
   };
   const TH_RE = /[฀-๿]/, ATTRS = ["alt","aria-label","placeholder","title"];

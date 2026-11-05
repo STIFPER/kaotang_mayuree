@@ -40,9 +40,9 @@
   สี / ฟอนต์    → :root
   รสชาติ / ราคา → PRODUCT ท้ายไฟล์
   ข้อความ       → แก้ใน HTML (ค้นคำว่า "แก้ไข")
-  รูปถ่าย       → <figure class="ph" data-src="">  ใส่ path เช่น data-src="assets/photos/hero.jpg"
+  รูปถ่าย       → <figure class="ph" data-src="">  ใส่ path เช่น data-src="assets/photos/store-front.jpg"
                   ช่องที่ว่างจะแสดงกรอบไกด์ไลน์ บอกประเภทรูปและสัดส่วน
-  ฟอนต์แบรนด์   → วาง ThonglorSoi4-SemiBold.woff2 / ThonglorSoi4-Bold.woff2 ใน fonts/
+  ฟอนต์แบรนด์   → Thonglor Soi 4 โหลดจาก Adobe Fonts (โปรเจกต์ mayuree-web) ไม่ต้องวางไฟล์ฟอนต์เอง
   ===========================================================
 -->
 
@@ -854,7 +854,7 @@ html[lang="en"] .fl p{line-height:1.6}
 .fl dl dd{text-align:left;line-height:1.45;font-size:.98rem}
 .fl .pill{margin-top:26px}
 
-/* ชุดของขวัญ: ช่องรูปประกอบบนการ์ด (ใส่ data-src="assets/photos/gift-set-1.jpg" ฯลฯ เพื่อแสดงรูป) */
+/* ชุดของขวัญ: ช่องรูปประกอบบนการ์ด (ใส่ data-src="assets/photos/gift-bamboo-basket.jpg" ฯลฯ เพื่อแสดงรูป) */
 .gset{gap:16px}
 .gset .gset-ph{--r:4/3;border-radius:var(--r-md);border:1.5px dashed rgba(126,20,22,.45);background:rgba(255,255,255,.35);display:grid;place-items:center;text-align:center;margin:-4px -4px 2px}
 .gset .gset-ph figcaption{font-size:.84rem;line-height:1.5;color:var(--ink-2)}
@@ -1314,7 +1314,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
           <a class="mcard" href="shop.html?opt=salted" data-pick-opt="salted" style="--bg:#F3B08F"><span class="art"><span class="pack salted" data-pack style="--w:84px"></span></span><b>“เค็ม”</b></a>
           <a class="mcard" href="shop.html?opt=jasmine" data-pick-opt="jasmine" style="--bg:#E6DCC0"><span class="art"><span class="pack jasmine" data-pack style="--w:84px"></span></span><b>“ข้าว”</b></a>
           <a class="mcard" href="shop.html?opt=duo" data-pick-opt="duo" style="--bg:#F2C4AE"><span class="art duo"><span class="pack salted" data-pack style="--w:66px"></span><span class="pack jasmine" data-pack style="--w:66px"></span></span><b>“Duo” Set</b></a>
-          <a class="mcard" href="gift.html"><span class="art"><img src="assets/photos/gift.jpg" alt=""></span><b>กล่องของขวัญ</b></a>
+          <a class="mcard" href="gift.html"><span class="art"><img src="assets/photos/gift-christmas-cloth-set.jpg" alt=""></span><b>กล่องของขวัญ</b></a>
           <a class="mcard vid" href="craft.html#charcoal"><span class="art"><video src="assets/video/charcoal-preview.mp4" poster="assets/video/charcoal-poster.jpg" muted loop playsinline preload="none"></video><i class="play">▶</i></span><b>ดูเตาถ่าน</b></a>
         </div>
       </div>
@@ -1341,9 +1341,9 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
         <h6>เบื้องหลัง</h6>
         <div class="cards">
           <a class="mcard vid tall" href="craft.html#charcoal"><span class="art"><video src="assets/video/charcoal-preview.mp4" poster="assets/video/charcoal-poster.jpg" muted loop playsinline preload="none"></video><i class="play">▶</i></span><b>“รู้มั้ย” ยังใช้เตาถ่าน</b></a>
-          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/founder.jpg" alt=""></span><b>คุณยายสมสมร</b></a>
-          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/strip-165.jpg" alt=""></span><b>แผ่นข้าวทำมือ</b></a>
-          <a class="mcard tall" href="craft.html#strip"><span class="art"><img src="assets/photos/strip-228.jpg" alt=""></span><b>กินแบบมยุรี</b></a>
+          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/story-founder-portrait.jpg" alt=""></span><b>คุณยายสมสมร</b></a>
+          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/process-cutting-sheet.jpg" alt=""></span><b>แผ่นข้าวทำมือ</b></a>
+          <a class="mcard tall" href="craft.html#strip"><span class="art"><img src="assets/photos/lifestyle-picnic-board.jpg" alt=""></span><b>กินแบบมยุรี</b></a>
         </div>
       </div>
     </div>
@@ -1358,7 +1358,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
       <h1 class="display"><span class="nw">จากขนมที่แม่ตั้งใจทำให้ลูก</span><br><span class="nw">สู่ตำรับที่บอกต่อ</span> <span class="nw">กว่า 5 ทศวรรษ</span></h1>
       <p class="lead">ตำรับประจำครอบครัว ที่ส่งต่อมาถึงรุ่นที่สาม</p>
     </div>
-    <div class="art rv-in d1"><img src="assets/line-rice.png" alt="" role="presentation"></div>
+    <div class="art rv-in d1"><img src="assets/lineart-rice.png" alt="" role="presentation"></div>
   </div>
 </section>
 
@@ -1367,9 +1367,9 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
   <div class="wrap">
     <div class="art rv-in">
       <!-- รูปผู้ก่อตั้ง: คุณยายสมสมร คูสกุล -->
-      <figure class="ph founder" data-src="assets/photos/founder.jpg"><figcaption><b>คุณยายสมสมร คูสกุล</b>4:5</figcaption></figure>
+      <figure class="ph founder" data-src="assets/photos/story-founder-portrait.jpg"><figcaption><b>คุณยายสมสมร คูสกุล</b>4:5</figcaption></figure>
       <span class="founder-tag">คุณยายสมสมร คูสกุล · ผู้ก่อตั้ง</span>
-      <figure class="polaroid" aria-hidden="true"><img src="assets/photos/story.jpg" alt=""><figcaption>ครัวมยุรีวันนี้</figcaption></figure>
+      <figure class="polaroid" aria-hidden="true"><img src="assets/photos/story-frying-wok.jpg" alt=""><figcaption>ครัวมยุรีวันนี้</figcaption></figure>
       <div class="seal68 stamp" role="img" aria-label="Premium Thai Snack since 1968">
       <svg viewBox="0 0 100 100" aria-hidden="true"><path class="edge" d="M50.00 6.00 A8.16 8.16 0 0 1 61.39 7.50 A8.16 8.16 0 0 1 72.00 11.89 A8.16 8.16 0 0 1 81.11 18.89 A8.16 8.16 0 0 1 88.11 28.00 A8.16 8.16 0 0 1 92.50 38.61 A8.16 8.16 0 0 1 94.00 50.00 A8.16 8.16 0 0 1 92.50 61.39 A8.16 8.16 0 0 1 88.11 72.00 A8.16 8.16 0 0 1 81.11 81.11 A8.16 8.16 0 0 1 72.00 88.11 A8.16 8.16 0 0 1 61.39 92.50 A8.16 8.16 0 0 1 50.00 94.00 A8.16 8.16 0 0 1 38.61 92.50 A8.16 8.16 0 0 1 28.00 88.11 A8.16 8.16 0 0 1 18.89 81.11 A8.16 8.16 0 0 1 11.89 72.00 A8.16 8.16 0 0 1 7.50 61.39 A8.16 8.16 0 0 1 6.00 50.00 A8.16 8.16 0 0 1 7.50 38.61 A8.16 8.16 0 0 1 11.89 28.00 A8.16 8.16 0 0 1 18.89 18.89 A8.16 8.16 0 0 1 28.00 11.89 A8.16 8.16 0 0 1 38.61 7.50 A8.16 8.16 0 0 1 50.00 6.00Z"/><circle class="ring" cx="50" cy="50" r="38.5"/></svg>
       <div class="txt"><b>PREMIUM</b><b>THAI SNACK</b><i>since</i><strong>1968</strong></div>
@@ -1402,7 +1402,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
       </div>
     </article>
     <article class="chap rv-in">
-      <div class="pic photo wide"><img src="assets/photos/story-house.jpg" alt="บ้านย่านเอกมัย" loading="lazy"></div>
+      <div class="pic photo wide"><img src="assets/photos/story-house-old.jpg" alt="บ้านย่านเอกมัย" loading="lazy"></div>
       <div class="txt">
         <span class="num">02</span>
         <h3><span class="nw">ขายหน้าบ้านย่านเอกมัย</span> <span class="nw">ตั้งแต่ พ.ศ. 2511</span></h3>
@@ -1410,7 +1410,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
       </div>
     </article>
     <article class="chap rv-in">
-      <div class="pic photo"><img src="assets/photos/story-heir.jpg" alt="ทายาทรุ่นที่สามของมยุรี" loading="lazy"></div>
+      <div class="pic photo"><img src="assets/photos/story-heir-portrait.jpg" alt="ทายาทรุ่นที่สามของมยุรี" loading="lazy"></div>
       <div class="txt">
         <span class="num">03</span>
         <h3><span class="nw">รุ่นที่สาม</span> <span class="nw">กับชื่อ “มยุรี”</span></h3>
@@ -1437,7 +1437,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
         </div>
       </article>
       <article class="place now rv-in d1">
-        <div class="pic"><img src="assets/photos/store-new.jpg" alt="หน้าร้านมยุรี สุขุมวิท 51" loading="lazy"></div>
+        <div class="pic"><img src="assets/photos/store-front-new-sign.jpg" alt="หน้าร้านมยุรี สุขุมวิท 51" loading="lazy"></div>
         <div class="body">
           <p class="where">สุขุมวิท 51 · วันนี้</p>
           <h3>ครัวและหน้าร้านมยุรี</h3>
@@ -1456,9 +1456,9 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
   <div class="wrap stage">
     <svg class="drop" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 4c8 14 18 22 18 34a18 18 0 0 1-36 0C12 26 22 18 30 4z"/></svg>
 
-    <!-- ลายเส้นกระปุก (assets/jar-line.png) วาดเข้ามาจากซ้ายไปขวาเมื่อเลื่อนถึง -->
+    <!-- ลายเส้นกระปุก (assets/lineart-jar.png) วาดเข้ามาจากซ้ายไปขวาเมื่อเลื่อนถึง -->
     <div class="drawing jar-draw" aria-hidden="true">
-      <img src="assets/jar-line.png" alt="">
+      <img src="assets/lineart-jar.png" alt="">
       <span class="jar-q">ทำไมต้อง<br>มยุรี?</span>
     </div>
 
@@ -1471,7 +1471,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
       <img class="tex" src="assets/textures/disc-beige.png" alt="">
       <div><h3>ไม่ใส่ผงชูรส</h3><p>ไม่ใส่สารกันบูด<br>ทำมือทุกขั้นตอน</p></div>
     </div>
-    <img class="cutout spoons" src="assets/photos/kaotung-3500-1.jpg" alt="ข้าวตังทรงเครื่องบนช้อนสามสี">
+    <img class="cutout spoons" src="assets/photos/product-tasting-spoons.jpg" alt="ข้าวตังทรงเครื่องบนช้อนสามสี">
     <div class="blob b3">
       <img class="tex" src="assets/textures/disc-terracotta.png" alt="">
       <div style="color:var(--paper)"><h3>2 ไซส์</h3><p>กระปุกใหญ่ 190 g<br>Mini 95 g</p></div>
@@ -1565,11 +1565,11 @@ const PRODUCT = {
   ],
   /* แถวรูปโซเชียล — เพิ่ม/ลด/สลับรูปได้ (ไฟล์อยู่ใน assets/photos) */
   strip: [
-    ["assets/photos/strip-6.jpg","ร่อนแป้ง"], ["assets/photos/strip-63.jpg","คลุกข้าวตัง"],
-    ["assets/photos/strip-228.jpg","ปิกนิก"], ["assets/photos/strip-165.jpg","แผ่นข้าว"],
-    ["assets/photos/strip-324.jpg","ริมสระ"], ["assets/photos/strip-423.jpg","กรอบเต็มชาม"],
-    ["assets/photos/strip-201.jpg","คั่วในกระทะ"], ["assets/photos/strip-612.jpg","มื้อเช้า"],
-    ["assets/photos/strip-690.jpg","ชายามบ่าย"], ["assets/photos/strip-585.jpg","สตูดิโอ"],
+    ["assets/photos/process-sifting-flour.jpg","ร่อนแป้ง"], ["assets/photos/process-wok-ladle.jpg","คลุกข้าวตัง"],
+    ["assets/photos/lifestyle-picnic-board.jpg","ปิกนิก"], ["assets/photos/process-cutting-sheet.jpg","แผ่นข้าว"],
+    ["assets/photos/lifestyle-pool-snack.jpg","ริมสระ"], ["assets/photos/product-bowls-stacked.jpg","กรอบเต็มชาม"],
+    ["assets/photos/process-stirring-wok.jpg","คั่วในกระทะ"], ["assets/photos/lifestyle-breakfast-table.jpg","มื้อเช้า"],
+    ["assets/photos/product-silver-tray-coffee.jpg","ชายามบ่าย"], ["assets/photos/product-pack-pink-set.jpg","สตูดิโอ"],
   ],
 };
 </script>
@@ -1628,7 +1628,7 @@ const PRODUCT = {
     PRODUCT.sizes.forEach((q,i) => {
       const b = document.createElement("button"); b.className = "qty";
       const big = q.id === "big";
-      b.innerHTML = `<em>${pick(q,"tag")}</em><span class="jar"><img src="assets/jar-line.png" alt="" style="height:${big?78:50}px"></span><b>${q.w}</b><span>${baht(q.price)} / ${t("กระปุก","jar")}</span>`;
+      b.innerHTML = `<em>${pick(q,"tag")}</em><span class="jar"><img src="assets/lineart-jar.png" alt="" style="height:${big?78:50}px"></span><b>${q.w}</b><span>${baht(q.price)} / ${t("กระปุก","jar")}</span>`;
       b.onclick = () => { st.q = i; render(); };
       qtys.appendChild(b);
     });
@@ -1871,7 +1871,7 @@ const PRODUCT = {
     "ข้าวตังทรงเครื่องในถ้วย":"Kaotang Songkrueng in a ceramic bowl","ข้าวตังทรงเครื่องในชามสแตนเลส":"Kaotang Songkrueng in a steel bowl",
     "แผนที่ร้านมยุรี ข้าวตังทรงเครื่อง":"Map of Mayuree Kaotang Songkrueng","อีเมลของคุณ":"Your email",
     /* ช่องรูป (ข้อความไกด์ไลน์ เห็นเฉพาะตอนยังไม่มีรูป) */
-    "รูปลูกค้า":"Customer photo","เสียงจากลูกค้า":"Loved by our customers","1:1 หรือ 4:5":"1:1 or 4:5","บันทึกเป็น assets/photos/storefront.jpg":"Save as assets/photos/storefront.jpg",
+    "รูปลูกค้า":"Customer photo","ช้อนสองคันตักข้าวตังจากชามเดียวกัน":"Two spoons sharing one bowl of crackers","นั่งอ่านหนังสือริมสระกับข้าวตังทรงเครื่อง":"Reading by the pool with crackers","ข้าวตังทรงเครื่องในชามบนผ้าปิกนิกลายสก็อต":"Crackers in a bowl on a checked picnic cloth","กล่องมยุรีในกระเป๋าถักข้างหนังสือ":"A Mayuree box in a woven bag beside a book","ข้าวตังทรงเครื่องบนถาดเงินพร้อมมื้อเช้า":"Crackers on a silver tray with breakfast","เสียงจากลูกค้า":"Loved by our customers","1:1 หรือ 4:5":"1:1 or 4:5","บันทึกเป็น assets/photos/store-front.jpg":"Save as assets/photos/store-front.jpg",
     "มือหยิบข้าวตังจากถาด / ช็อตโคลสอัปความกรอบ · 21:9 (มือถือ 4:5) · 2400×1030 px":"Hand picking crackers / close-up crunch shot · 21:9 (mobile 4:5) · 2400×1030 px"
   };
   const TH_RE = /[฀-๿]/, ATTRS = ["alt","aria-label","placeholder","title"];
