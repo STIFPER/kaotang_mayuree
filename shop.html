@@ -662,6 +662,7 @@ html[lang="en"] .header .main nav{gap:22px}
 body{font-weight:400}
 h1,h2,h3,.display{font-weight:700}
 .pill,.label,.badge,.menu-btn,.dock-btn,.header nav a{font-weight:600}
+.header nav a,.header .tools a{white-space:nowrap}
 /* brand: Thonglor Soi 4 everywhere, also on phones (mobile.css points --body-font at system fonts; this wins by specificity) */
 @media (max-width:700px){html:root{--body-font:var(--display)}}
 /* language switch: equal-size segments, Thai optically matched to Latin */
@@ -1268,15 +1269,16 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 <header class="header" id="header">
   <div class="wrap bar main">
     <nav>
-      <a href="index.html">หน้าแรก</a>
+      <a href="index.html">ยินดีต้อนรับกลับบ้าน</a>
       <a aria-current="page" href="shop.html" data-mega="shop">เมนู</a>
-      <a href="gift.html">ของขวัญ</a>
+      <a href="gift.html">จัดชุดของขวัญ</a>
       <a href="story.html" data-mega="story">เรื่องของเรา</a>
     </nav>
     <button class="menu-btn label" id="menuBtn" aria-label="เมนู" aria-expanded="false" data-i18n-skip>เมนู</button>
     <a href="index.html" class="logo" aria-label="มยุรี"><img src="assets/wordmark.png" alt="มยุรี"></a>
     <div class="tools">
       <a href="visit.html">หน้าร้าน</a>
+      <a href="tel:0896666665">โทรหาเรา</a>
       <a href="https://lin.ee/xAbIkYZn" target="_blank" rel="noopener" class="ul">สั่งทาง LINE</a>
       <button class="lang" id="langBtn" data-i18n-skip aria-label="Language / ภาษา"><b data-l="th">ไทย</b><b data-l="en">EN</b></button>
     </div>
