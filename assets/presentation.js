@@ -13,7 +13,7 @@
     const prev = deck.querySelector('[data-deck-prev]');
     const next = deck.querySelector('[data-deck-next]');
     const tabs = [...deck.querySelectorAll('[data-deck-to]')];
-    let index = 0;
+    let index = 0, target = null;
     const english = () => document.documentElement.lang === 'en';
     const labels = () => english() ? ['Choose products', 'Product details'] : ['เลือกสินค้า', 'รายละเอียดสินค้า'];
     const render = () => {
@@ -27,15 +27,23 @@
     };
     const go = (to, instant=false) => {
       index = Math.max(0, Math.min(pages.length-1, to));
+      target = index;
       render();
+      track.scrollTop = 0;
       track.scrollTo({left:track.clientWidth*index, behavior:instant || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
     };
     prev.addEventListener('click', () => go(index-1));
     next.addEventListener('click', () => go(index+1));
     tabs.forEach((button, i) => button.addEventListener('click', () => go(i)));
     track.addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); go(index+(e.key === 'ArrowRight' ? 1 : -1)); } });
-    track.addEventListener('scroll', () => { const value = Math.round(track.scrollLeft/track.clientWidth); if(value !== index) { index=value; render(); } }, {passive:true});
-    new ResizeObserver(() => go(index,true)).observe(track);
+    track.addEventListener('scroll', () => {
+      if(target !== null){if(Math.abs(track.scrollLeft-track.clientWidth*target)<2)target=null;return;}
+      const value = Math.round(track.scrollLeft/track.clientWidth);
+      if(value !== index){index=value;render();}
+    }, {passive:true});
+    for(const event of ['pointerdown','touchstart','wheel'])track.addEventListener(event,()=>{target=null},{passive:true});
+    let width=0;
+    new ResizeObserver(() => {if(Math.abs(track.clientWidth-width)>.5){width=track.clientWidth;go(index,true);}}).observe(track);
     new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
     render();
   });

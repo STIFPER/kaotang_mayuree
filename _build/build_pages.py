@@ -5,6 +5,7 @@ import re,sys,json
 PAGEMETA=json.loads(open(HERE+'/pagemeta.json',encoding='utf-8').read())
 sys.path.insert(0,HERE)
 from relink import relink
+from ui_icons import iconize
 src=open(HERE+'/master.html',encoding='utf-8').read()
 head=src[:src.index('<!-- ===== HEADER')]
 hdr=src[src.index('<!-- ===== HEADER'):src.index('<main id="top">')]
@@ -26,7 +27,7 @@ for i,s0 in enumerate(starts):
     secs.append((key,blk))
 print([k for k,_ in secs])
 pages={'shop.html':['shop','flavors','menu'],'story.html':['about','story','chapters','places','why'],'craft.html':['charcoal','process','bleed','strip'],'gift.html':['gift'],'visit.html':['visit'],'corporate.html':['corp']}
-need=['addBtn','addPrice','barName','bleedPh','chSound','chVideo','chVideoWrap','duoArt','fda','flGrid','ingr','opts','price','qtys','selName','shop','sizeName','thumbs','title','track']
+need=['addBtn','addPrice','barName','bleedPh','chSound','chVideo','chVideoWrap','fda','flGrid','ingr','opts','price','qtys','selName','shop','sizeName','thumbs','title','track']
 titles={'shop.html':'เมนูและสินค้า','story.html':'เรื่องของเรา','gift.html':'ชุดของขวัญ','visit.html':'หน้าร้าน'}
 for fn,keys in pages.items():
     body=''.join(b for key in keys for k,b in secs if k==key)
@@ -52,7 +53,7 @@ for fn,keys in pages.items():
     page=page.replace('<nav>\n      <a href="'+fn+'"','<nav>\n      <a aria-current="page" href="'+fn+'"',1)
     for a_,href in (('เมนู','shop.html'),('จัดชุดของขวัญ','gift.html'),('เรื่องของเรา','story.html'),('หน้าร้าน','visit.html')):
         if href==fn: page=re.sub(r'<a href="'+href+r'"( data-mega="\w+")?>'+a_+'</a>',lambda m:'<a aria-current="page" href="'+href+'"'+(m.group(1) or '')+'>'+a_+'</a>',page,count=1)
-    open(fn,'w',encoding='utf-8').write(page)
+    open(fn,'w',encoding='utf-8').write(iconize(page))
     print(fn,len(page),sorted(ids))
 
 # ---- 404 page (same header/footer, friendly message)
@@ -64,5 +65,5 @@ tt,te,dt,de=PAGEMETA[fn]
 page=page.replace('__TITLE_EN__',te).replace('__DESC_EN__',de).replace('__TITLE__',tt).replace('__DESC__',dt)
 page=re.sub(r'<title>[^<]*</title>','<title>'+tt+'</title>',page,count=1)
 page=page.replace('<meta name="viewport"','<meta name="robots" content="noindex">\n<meta name="viewport"',1)
-open(fn,'w',encoding='utf-8').write(page)
+open(fn,'w',encoding='utf-8').write(iconize(page))
 print(fn,len(page))
