@@ -8,8 +8,8 @@
  "shop.html": [
   "เมนูและสินค้า · มยุรี ข้าวตังทรงเครื่อง",
   "Menu & Shop · Mayuree Kaotang Songkrueng",
-  "รส “เค็ม” และ “ข้าว” กระปุกใหญ่ 190 g ฿165 · Mini 95 g ฿99 · สั่งทาง LINE, Shopee, Lazada",
-  "“Salted” and “Jasmine Rice” · Large jar 190 g ฿165 · Mini 95 g ฿99 · Order on LINE, Shopee, Lazada"
+  "รสดั้งเดิม รสเค็ม และรสข้าว กระปุกใหญ่ 190 g ฿165 · Mini 95 g ฿99 · สั่งทาง LINE, Shopee, Lazada",
+  "Original, Salted and Jasmine Rice · Large jar 190 g ฿165 · Mini 95 g ฿99 · Order on LINE, Shopee, Lazada"
  ],
  "story.html": [
   "เรื่องของเรา · มยุรี ข้าวตังทรงเครื่อง",
@@ -46,5 +46,11 @@
   "How it’s made · Mayuree Kaotang Songkrueng",
   "เตาถ่าน แท่นกดแผ่นข้าว และขั้นตอนทำข้าวตังทรงเครื่องด้วยมือ ที่ครัวสุขุมวิท 51",
   "The charcoal stove, the rice press and every handmade step in our Sukhumvit 51 kitchen"
+ ],
+ "partner.html": [
+  "พาร์ทเนอร์ · มยุรี ข้าวตังทรงเครื่อง",
+  "Partners · Mayuree Kaotang Songkrueng",
+  "ร่วมเป็นพาร์ทเนอร์กับมยุรี สำหรับร้านของฝาก คาเฟ่ ร้านอาหาร และแบรนด์ที่อยากวางขายหรือทำแพ็กเกจร่วมกัน · ทักไลน์หรือโทร 089 666 6665",
+  "Become a Mayuree partner — gift shops, cafés, restaurants and brands · Message us on LINE or call 089 666 6665"
  ]
 }
