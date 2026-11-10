@@ -7,7 +7,7 @@
  const toggle=document.querySelector('#menuBtn');
  if(header&&panel&&toggle){
   const nav=document.createElement('nav');nav.className='mobile-nav';nav.dataset.i18nSkip='';
-  const pages=[['index.html','หน้าแรก','Home'],['shop.html','เมนูและสินค้า','Shop'],['gift.html','ชุดของขวัญ','Gift sets'],['story.html','เรื่องของเรา','Our story'],['craft.html','วิธีทำข้าวตัง','Our craft'],['corporate.html','ของขวัญองค์กร','Corporate gifts'],['visit.html','หน้าร้านและติดต่อ','Visit us']];
+  const pages=[['index.html','หน้าแรก','Home'],['shop.html','เมนูและสินค้า','Shop'],['gift.html','ชุดของขวัญ','Gift sets'],['story.html','เรื่องของเรา','Our story'],['craft.html','วิธีทำข้าวตัง','Our craft'],['corporate.html','ของขวัญองค์กร','Corporate gifts'],['partner.html','พาร์ทเนอร์','Partners'],['visit.html','หน้าร้านและติดต่อ','Visit us']];
   const active=location.pathname.split('/').pop()||'index.html';
   const render=()=>{
    const en=document.documentElement.lang==='en';
@@ -62,14 +62,26 @@
   const menu=document.querySelector('#menu.menu-sec'),menuHome=document.createComment('Desktop price menu position');if(menu)menu.before(menuHome);
   media.before(home);const photo=media.querySelector('img'),options=document.querySelector('#opts');
   const review=shop.querySelector('.stars a');const nameReview=()=>review.setAttribute('aria-label',review.textContent.trim());nameReview();new MutationObserver(nameReview).observe(review,{childList:true,characterData:true,subtree:true});
+  // Photo edges are feathered to the colour in PHOTO_BG, so the frame is filled with it and the whole product always shows.
+  const PHOTO_BG={"product-jar-original-square.jpg":"#eae9ed","product-jar-salted-square.jpg":"#eae9ed","product-jar-jasmine-square.jpg":"#eae9ed","product-packs-stacked-square.jpg":"#dadbdb","product-packs-row-wide.jpg":"#c7c9c9"};
   const updatePhoto=()=>{const buttons=[...options.children],selected=buttons.findIndex(b=>b.classList.contains('on'));
-   const file=mobile.matches?['product-packs-stacked.jpg','product-pack-salted.jpg','product-pack-jasmine.jpg'][selected]||'product-packs-stacked.jpg':'product-packs-stacked.jpg';
-   const src='assets/photos/'+file;if(photo.getAttribute('src')!==src)photo.src=src;
+   // Pick the photo set whose shape matches the frame (wide on phones, square on desktop) so it fills edge to edge.
+   const wide=media.clientHeight>0&&media.clientWidth/media.clientHeight>1.15;
+   const set=['product-jar-original-square.jpg','product-jar-salted-square.jpg','product-jar-jasmine-square.jpg'];
+   // Mini size shows the Mini box photos instead of the big jar.
+   const sizes=[...document.querySelectorAll('#qtys .qty')],mini=sizes.findIndex(b=>b.classList.contains('on'))===1;
+   const file=mini?(wide?'mini-box-in-hand-wide.jpg':'mini-box-in-hand-square.jpg'):(set[selected]||set[0]);
+   const src='assets/photos/'+file+'?v=12';
+   const frame=media.querySelector('.frame');if(frame){if(PHOTO_BG[file])frame.style.setProperty('--photo-bg',PHOTO_BG[file]);frame.dataset.fit=/jar/.test(file)?'contain':'cover'}if(photo.getAttribute('src')!==src)photo.src=src;
    photo.alt=document.documentElement.lang==='en'?'Mayuree rice crackers':'ข้าวตังมยุรี';
   };
-  const arrange=()=>{if(mobile.matches){choose.prepend(media);if(menu)shop.after(menu)}else{home.after(media);if(menu)menuHome.after(menu)}updatePhoto()};
-  new MutationObserver(updatePhoto).observe(options,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+  // Trust badges move to the details side on phones so the photo and order controls get the height.
+  const badges=choose.querySelector('.badges'),read=document.querySelector('#productRead'),badgesHome=document.createComment('Desktop badges position');
+  if(badges)badges.before(badgesHome);
+  const arrange=()=>{if(mobile.matches){choose.prepend(media);if(menu)shop.after(menu);if(badges&&read)read.prepend(badges)}else{home.after(media);if(menu)menuHome.after(menu);if(badges)badgesHome.after(badges)}updatePhoto()};
+  new MutationObserver(updatePhoto).observe(options,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});const sizeBox=document.querySelector('#qtys');if(sizeBox)new MutationObserver(updatePhoto).observe(sizeBox,{subtree:true,attributes:true,attributeFilter:['class']});
   mobile.addEventListener('change',arrange);arrange();
+  let shape=media.clientWidth>media.clientHeight*1.15;new ResizeObserver(()=>{const now=media.clientWidth>media.clientHeight*1.15;if(now!==shape){shape=now;updatePhoto()}}).observe(media);
  }
  // Secondary flavor facts are expandable; the purchase controls stay first on phones.
  const flavors=document.querySelector('#flGrid');
@@ -82,10 +94,10 @@
   new MutationObserver(fold).observe(flavors,{childList:true,subtree:true});fold();
   mobile.addEventListener('change',()=>flavors.querySelectorAll('.flavor-more').forEach(d=>d.open=!mobile.matches));
  }
- // Only the visible side determines the card height on phones.
+ // Both pages share the taller height so the card never changes size when switching tabs.
  document.querySelectorAll('[data-product-deck]').forEach(deck=>{
   const track=deck.querySelector('.deck-track'),pages=[...deck.querySelectorAll('.deck-page')];
-  const fit=()=>{if(compactNav.matches){const page=pages.find(p=>p.getAttribute('aria-hidden')!=='true')||pages[0];track.style.height=page.scrollHeight+'px';track.scrollTop=0}else track.style.height=''};
+  const fit=()=>{if(compactNav.matches){track.style.height=Math.max(...pages.map(p=>p.scrollHeight))+'px';track.scrollTop=0}else track.style.height=''};
   const resize=new ResizeObserver(fit);pages.forEach(page=>resize.observe(page));
   pages.forEach(page=>new MutationObserver(fit).observe(page,{attributes:true,attributeFilter:['aria-hidden']}));
   compactNav.addEventListener('change',fit);fit();

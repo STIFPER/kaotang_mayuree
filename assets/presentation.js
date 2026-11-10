@@ -13,7 +13,7 @@
     const prev = deck.querySelector('[data-deck-prev]');
     const next = deck.querySelector('[data-deck-next]');
     const tabs = [...deck.querySelectorAll('[data-deck-to]')];
-    let index = 0, target = null;
+    let index = 0, target = null, snapTimer = 0;
     const english = () => document.documentElement.lang === 'en';
     const labels = () => english() ? ['Choose products', 'Product details'] : ['เลือกสินค้า', 'รายละเอียดสินค้า'];
     const render = () => {
@@ -30,7 +30,12 @@
       target = index;
       render();
       track.scrollTop = 0;
-      track.scrollTo({left:track.clientWidth*index, behavior:instant || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+      // Smooth scrolling fights scroll-snap (it stalls half-way on phones), so snap is paused while it runs.
+      const still = instant || matchMedia('(prefers-reduced-motion: reduce)').matches;
+      clearTimeout(snapTimer);
+      track.style.scrollSnapType = 'none';
+      track.scrollTo({left:track.clientWidth*index, behavior: still ? 'auto' : 'smooth'});
+      snapTimer = setTimeout(() => { track.scrollTo({left:track.clientWidth*index, behavior:'auto'}); track.style.scrollSnapType = ''; target = null; }, still ? 0 : 450);
     };
     prev.addEventListener('click', () => go(index-1));
     next.addEventListener('click', () => go(index+1));
