@@ -7,7 +7,7 @@
  const toggle=document.querySelector('#menuBtn');
  if(header&&panel&&toggle){
   const nav=document.createElement('nav');nav.className='mobile-nav';nav.dataset.i18nSkip='';
-  const pages=[['index.html','หน้าแรก','Home'],['shop.html','เมนูและสินค้า','Shop'],['gift.html','ชุดของขวัญ','Gift sets'],['story.html','เรื่องของเรา','Our story'],['craft.html','วิธีทำข้าวตัง','Our craft'],['corporate.html','ของขวัญองค์กร','Corporate gifts'],['partner.html','พาร์ทเนอร์','Partners'],['visit.html','หน้าร้านและติดต่อ','Visit us']];
+  const pages=[['index.html','หน้าแรก','Home'],['shop.html','เมนูและสินค้า','Shop'],['gift.html','ชุดของขวัญ','Gift sets'],['story.html','เรื่องของเรา','Our story'],['craft.html','วิธีทำข้าวตัง','Our craft'],['corporate.html','ของขวัญองค์กร','Corporate gifts'],['partner.html','พาร์ทเนอร์','Partners'],['faq.html','คำถามที่พบบ่อย','FAQ'],['visit.html','หน้าร้านและติดต่อ','Visit us']];
   const active=location.pathname.split('/').pop()||'index.html';
   const render=()=>{
    const en=document.documentElement.lang==='en';
@@ -64,15 +64,40 @@
   const review=shop.querySelector('.stars a');const nameReview=()=>review.setAttribute('aria-label',review.textContent.trim());nameReview();new MutationObserver(nameReview).observe(review,{childList:true,characterData:true,subtree:true});
   // Photo edges are feathered to the colour in PHOTO_BG, so the frame is filled with it and the whole product always shows.
   const PHOTO_BG={"product-jar-original-square.jpg":"#eae9ed","product-jar-salted-square.jpg":"#eae9ed","product-jar-jasmine-square.jpg":"#eae9ed","product-packs-stacked-square.jpg":"#dadbdb","product-packs-row-wide.jpg":"#c7c9c9"};
+  // Photo gallery: round thumbnails beside the photo (first = the selected product shot, then scenes); click or swipe to change.
+  const GALLERY={big:['product-packs-trio.jpg','lifestyle-tea-table.jpg','lifestyle-shared-table.jpg','product-bowls-stacked.jpg','process-stirring-wok.jpg'],mini:['mini-box-pyramid.jpg','mini-green-basket.jpg','mini-walking-with-box.jpg','mini-red-suitcase.jpg','mini-dog-on-cabinet.jpg']};
+  const frame=media.querySelector('.frame'),thumbs=document.createElement('div');
+  thumbs.className='gallery-thumbs';thumbs.dataset.i18nSkip='';thumbs.setAttribute('role','group');
+  if(frame)frame.appendChild(thumbs);
+  let list=[],gi=0,lastKey='',lastSig='';
+  const url=f=>'assets/photos/'+f+'?v=12';
+  const showPhoto=()=>{
+   const f=list[gi];if(!f||!frame)return;
+   frame.dataset.fit=/jar/.test(f)?'contain':'cover';
+   if(PHOTO_BG[f])frame.style.setProperty('--photo-bg',PHOTO_BG[f]);
+   if(photo.getAttribute('src')!==url(f)){photo.style.opacity='.0';photo.onload=()=>{photo.style.opacity='1'};photo.src=url(f);setTimeout(()=>{photo.style.opacity='1'},400)}
+   [...thumbs.children].forEach((b,i)=>{b.classList.toggle('on',i===gi);b.setAttribute('aria-current',String(i===gi))});
+  };
+  const go=i=>{gi=(i+list.length)%list.length;showPhoto()};
+  const buildThumbs=()=>{
+   thumbs.innerHTML='';
+   list.forEach((f,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',(document.documentElement.lang==='en'?'Photo ':'รูปที่ ')+(i+1));b.innerHTML='<img src="'+url(f)+'" alt="" loading="lazy" draggable="false">';b.addEventListener('click',()=>go(i));thumbs.appendChild(b)});
+  };
+  if(frame){let x0=null;frame.addEventListener('pointerdown',e=>{if(e.target.closest('.gallery-thumbs'))return;x0=e.clientX});
+   frame.addEventListener('pointerup',e=>{if(x0===null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>45)go(gi+(dx<0?1:-1))});
+   frame.addEventListener('pointercancel',()=>{x0=null})}
   const updatePhoto=()=>{const buttons=[...options.children],selected=buttons.findIndex(b=>b.classList.contains('on'));
    // Pick the photo set whose shape matches the frame (wide on phones, square on desktop) so it fills edge to edge.
    const wide=media.clientHeight>0&&media.clientWidth/media.clientHeight>1.15;
    const set=['product-jar-original-square.jpg','product-jar-salted-square.jpg','product-jar-jasmine-square.jpg'];
    // Mini size shows the Mini box photos instead of the big jar.
    const sizes=[...document.querySelectorAll('#qtys .qty')],mini=sizes.findIndex(b=>b.classList.contains('on'))===1;
-   const file=mini?(wide?'mini-box-in-hand-wide.jpg':'mini-box-in-hand-square.jpg'):(set[selected]||set[0]);
-   const src='assets/photos/'+file+'?v=12';
-   const frame=media.querySelector('.frame');if(frame){if(PHOTO_BG[file])frame.style.setProperty('--photo-bg',PHOTO_BG[file]);frame.dataset.fit=/jar/.test(file)?'contain':'cover'}if(photo.getAttribute('src')!==src)photo.src=src;
+   const main=mini?(wide?'mini-box-in-hand-wide.jpg':'mini-box-in-hand-square.jpg'):(set[selected]||set[0]);
+   const key=selected+'|'+mini;if(key!==lastKey){gi=0;lastKey=key}
+   list=[main,...(mini?GALLERY.mini:GALLERY.big)];
+   const sig=list.join(',');if(sig!==lastSig){lastSig=sig;buildThumbs()}
+   if(gi>=list.length)gi=0;
+   showPhoto();
    photo.alt=document.documentElement.lang==='en'?'Mayuree rice crackers':'ข้าวตังมยุรี';
   };
   // Trust badges move to the details side on phones so the photo and order controls get the height.

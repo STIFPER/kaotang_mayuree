@@ -1,6 +1,6 @@
 # เว็บไซต์ มยุรี ข้าวตังทรงเครื่อง
 
-> **อัปเดตล่าสุด: 2026-11-10** — ฉบับล่าสุดมี 3 รสชาติ (ดั้งเดิม / เค็ม / ข้าว; Mini เฉพาะรสดั้งเดิม), หน้าพาร์ทเนอร์ (`partner.html`), ตารางโภชนาการตามฉลากจริง และรวมการแก้ไขล่าสุดจากเอเจนต์อีกท่าน (ข้อความหน้าพาร์ทเนอร์ในหน้า `partner.html`)
+> **อัปเดตล่าสุด: 2026-11-11** — เพิ่มหน้าคำถามที่พบบ่อย (`faq.html`) และลิงก์ในเมนูบน, แกลเลอรีรูปหน้าร้าน (วงกลมเลื่อนรูป), ตารางโภชนาการและกราฟิกกล่องแก้ตามเอกสาร SGS, ไอคอนใหม่ และการ์ดชุดของขวัญ Happy Holiday ในหน้า `gift.html` (ยังไม่ใส่ราคา) ก่อนหน้านี้ (2026-11-10): 3 รสชาติ (ดั้งเดิม / เค็ม / ข้าว; Mini เฉพาะรสดั้งเดิม), หน้าพาร์ทเนอร์ และตารางโภชนาการตามฉลากจริง
 
 เว็บสแตติก (HTML/CSS/JS ล้วน ไม่ต้องติดตั้งอะไร) ภาษาไทย/อังกฤษ ฟอนต์ Thonglor Soi 4 จาก Adobe Fonts
 
@@ -16,14 +16,14 @@ python3 -m http.server 5173
 
 | ที่ | คืออะไร |
 |---|---|
-| `index.html` `shop.html` `story.html` `craft.html` `gift.html` `visit.html` `corporate.html` `404.html` | หน้าเว็บ **สร้างอัตโนมัติจาก `_build/`** อย่าแก้ตรงนี้ |
+| `index.html` `shop.html` `story.html` `craft.html` `gift.html` `visit.html` `corporate.html` `partner.html` `faq.html` `404.html` | หน้าเว็บ **สร้างอัตโนมัติจาก `_build/`** อย่าแก้ตรงนี้ |
 | `_build/` | ต้นฉบับของทุกหน้า (แก้ที่นี่ แล้วรัน `_build/build.sh`) **ไม่ต้องอัปขึ้นเว็บ** |
 | `assets/photos/` | รูปถ่าย ตั้งชื่อตามเนื้อหา (ดูด้านล่าง) |
 | `assets/video/` | วิดีโอ hero และเตาถ่าน |
 | `assets/icons/` | ไอคอนเว็บ / แอปบนมือถือ |
 | `assets/lineart-*.png` | ภาพลายเส้น |
 | `assets/partner/` | ภาพตัวอย่างกระปุกร่วมแบรนด์ (ชื่อแบรนด์เป็นตัวอย่าง) ใช้ในหน้า `partner.html` |
-| `assets/flavor-salty-orange.svg` | กราฟิกกล่องสีส้มรสเค็ม (ขนาดเดียว) สร้างด้วย `_build/packs/make_salty_orange_pack.py` ไม่แตะไฟล์ `flavor-salted*.svg` |
+| `assets/flavor-original.svg` `flavor-lite.svg` `flavor-salty-orange.svg` `flavor-lite-mini.svg` `flavor-salty-orange-mini.svg` | กราฟิกกล่องที่แก้ตารางโภชนาการตามเอกสาร SGS (ใหญ่ 190 g / Mini 95 g) สร้างด้วย `_build/packs/make_pack_graphics.py` ไม่แตะไฟล์เดิม `flavor-salted*.svg` / `flavor-jasmine*.svg` |
 | `assets/presentation.*` `assets/mobile.*` | สไตล์และสคริปต์ของหน้าเว็บ (ส่วนมือถือและการแสดงผล) |
 | `assets/flavor-*.svg` `assets/pack-*.png` `assets/package-graphics.css` | กราฟิกแพ็กเกจ **ดูแลโดยอีกคน** อย่าแก้หรือย้อนกลับ |
 | `site.webmanifest` `robots.txt` `favicon.ico` | ไฟล์ประกอบเว็บ |
@@ -79,3 +79,9 @@ Thonglor Soi 4 โหลดจาก Adobe Fonts โปรเจกต์ `mayur
 ## ก่อนขึ้นโดเมนจริง
 
 - ใส่โดเมนจริงใน `og:image` / `og:url` ของทุกหน้า (ตอนนี้เป็น `assets/og-image.jpg` แบบไม่มีโดเมน บางแอปแชร์ลิงก์ต้องการ URL เต็ม) และเพิ่ม `sitemap.xml` กับบรรทัด `Sitemap:` ใน `robots.txt`
+
+## ไอคอน
+
+ไอคอนหน้าคำถามที่พบบ่อยใช้ชุด Lucide (ใบอนุญาต ISC) และ Tabler Icons (MIT) คัดลอกเป็น SVG ในหน้า ไม่ต้องโหลดไลบรารี
+
+ไอคอนโซเชียลในฟุตเตอร์ (Instagram / Facebook / TikTok / Linktree) ใช้เส้นของเครื่องหมายการค้าจริงจาก [Simple Icons](https://simpleicons.org) (CC0) ฝังเป็น SVG ทึบใน `_build/master.html` คลาส `ic ic-brand` — เครื่องหมายการค้ายังเป็นของเจ้าของแบรนด์แต่ละราย ถ้าจะเพิ่มช่องทางใหม่ ให้ใช้ path จาก Simple Icons ชุดเดียวกันเพื่อให้ขนาด/น้ำหนักเส้นสม่ำเสมอ

@@ -368,6 +368,30 @@ hr.dash{border:0;border-top:var(--rule);opacity:.7}
 .fl .q{font-size:clamp(1.9rem,2.6vw,2.4rem)}
 .fl dl{margin-top:4px}
 
+
+/* FAQ page */
+.faq{padding:clamp(40px,6vw,90px) 0 clamp(60px,8vw,110px)}
+.faq-head{text-align:center;max-width:720px;margin:0 auto clamp(28px,4vw,52px)}
+.faq-head h1{font-size:clamp(2.4rem,6vw,4.6rem);margin:.15em 0 .25em}
+.faq-head .label{margin-bottom:.6em}
+.faq-head .lead{color:var(--ink-2)}
+.faq-grid>.faq-card:last-child:nth-child(odd){grid-column:1/-1}
+.faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,22px)}
+.faq-card{position:relative;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:start;background:var(--cream);border-radius:var(--r-lg);padding:clamp(22px,2.4vw,34px)}
+.faq-n{grid-row:1/3;width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--cream);display:grid;place-items:center;font:700 1.15rem var(--display);font-variant-numeric:lining-nums}
+.faq-ic{position:absolute;right:clamp(18px,2vw,28px);top:clamp(18px,2vw,26px);width:54px;height:54px;border-radius:50%;background:rgba(188,52,42,.1);display:grid;place-items:center;color:var(--red)}
+.faq-ic .ic{width:27px;height:27px;stroke-width:1.9}
+.faq-body{min-width:0;padding-right:62px}
+.faq-body h3{font-size:clamp(1.15rem,1.7vw,1.4rem);line-height:1.35;margin:2px 0 10px}
+.faq-a{margin:0 0 10px}
+.faq-a b{display:inline-block;background:var(--ochre);color:var(--ink);padding:.18em .85em;border-radius:999px;font-weight:700;line-height:1.5}
+.faq-d{margin:0;color:var(--ink-2);line-height:1.75;max-width:60ch}
+.faq-more{text-align:center;margin-top:clamp(36px,5vw,64px)}
+.faq-more h2{font-size:clamp(1.8rem,3.6vw,2.8rem);margin:0 0 .3em}
+.faq-more p{color:var(--ink-2)}
+.faq-more .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+@media (max-width:800px){.faq-grid{grid-template-columns:1fr}.faq-card{grid-template-columns:1fr;gap:14px}.faq-n{grid-row:auto}.faq-body{padding-right:0}.faq-ic{width:46px;height:46px}.faq-ic .ic{width:23px;height:23px}}
+
 /* Partner page: co-branding label samples (all tiles share one studio colour so the jars match) */
 .pt-intro{text-align:center;max-width:760px;margin:clamp(56px,8vw,110px) auto 0}
 .pt-intro h2{font-size:clamp(2rem,4.4vw,3.4rem);margin:.3em 0 .4em}
@@ -610,6 +634,18 @@ ol.timeline span{font-size:.78rem;color:var(--ink-2);line-height:1.5;display:blo
 .nutri dt{padding:4px 0;border-bottom:1px solid var(--ink)}
 .nutri dd{padding:5px 0;font-size:.85rem}
 .nutri span{display:block;padding:3px 0;border-top:1px solid var(--ink);color:var(--ink-2)}
+.nutri-more{margin-top:14px;border:1.5px solid rgba(126,20,22,.28);border-radius:14px;padding:0 14px;background:rgba(255,255,255,.4)}
+.nutri-more summary{cursor:pointer;padding:12px 0;font-weight:600;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.nutri-more summary::-webkit-details-marker{display:none}
+.nutri-more summary::after{content:"+";font:600 1.2rem/1 var(--display);color:var(--red)}
+.nutri-more[open] summary::after{content:"\2212"}
+.nutri-table{width:100%;border-collapse:collapse;font-size:.9rem;margin-bottom:6px}
+.nutri-table th,.nutri-table td{padding:7px 0;border-top:1px solid rgba(126,20,22,.16);text-align:left;font-weight:500}
+.nutri-table thead th,.nutri-table thead td{border-top:0;font-size:.76rem;color:var(--ink-2)}
+.nutri-table td{text-align:right;white-space:nowrap;padding-left:10px;font-variant-numeric:lining-nums tabular-nums}
+.nutri-table tbody th{font-weight:600}
+.nutri-table tr.sub th{padding-left:16px;font-weight:400;color:var(--ink-2)}
+.nutri-more .fine{margin:6px 0 12px;font-size:.76rem;line-height:1.5}
 
 hr.dash{display:none}
 .box-card .badges{margin-bottom:20px}
@@ -1120,6 +1156,7 @@ html[lang="th"] .nw{white-space:nowrap}                    /* ไม่ตัด
 
 /* ===== ไอคอน UI + การเข้าถึง ===== */
 .ic{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
+.ic.ic-brand{fill:currentColor;stroke:none;stroke-width:0;vertical-align:0}
 footer .links .ic{width:1.5em;height:1.5em;stroke-width:1.5;vertical-align:-.35em;margin-right:.1em}
 .dock-btn{display:flex!important;align-items:center;justify-content:center;gap:6px}
 .visit-card dl dt{display:flex;align-items:center;gap:8px}
@@ -1277,7 +1314,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 /* END shared-package-graphics */
 </style>
 <link rel="stylesheet" href="assets/presentation.css?v=4">
-<link rel="stylesheet" href="assets/mobile.css?v=34">
+<link rel="stylesheet" href="assets/mobile.css?v=54">
 </head>
 <body>
 
@@ -1296,6 +1333,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
     <a href="index.html" class="logo" aria-label="มยุรี"><img src="assets/wordmark.png" alt="มยุรี"></a>
     <div class="tools">
       <a href="visit.html">หน้าร้าน</a>
+      <a class="nav-faq" href="faq.html">คำถามที่พบบ่อย</a>
       <a href="tel:0896666665">โทรหาเรา</a>
       <a href="https://lin.ee/xAbIkYZn" target="_blank" rel="noopener" class="ul">สั่งทาง LINE</a>
       <button class="lang" id="langBtn" data-i18n-skip aria-label="Language / ภาษา"><b data-l="th">ไทย</b><b data-l="en">EN</b></button>
@@ -1381,6 +1419,13 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
     </div>
     <div class="gift-grid" tabindex="0" aria-label="ชุดของขวัญ">
       <article class="gset rv-in">
+        <figure class="ph gset-ph" data-src="assets/photos/gift-happy-holiday-tote.jpg" data-pos="hh"><figcaption><b>Happy Holiday gift set</b></figcaption></figure>
+        <h3>Happy Holiday<small>ชุดเทศกาล · ถุงผ้าปักลาย</small></h3>
+        <dl>
+          <div><dt>เนื้อในชุด</dt><dd>กระเป๋าผ้าปักลาย + กล่อง Mini 95 g × 2</dd></div>
+        </dl>
+      </article>
+      <article class="gset rv-in">
         <figure class="ph gset-ph" data-src="assets/photos/gift-small-bamboo-basket.jpg?v=3"><figcaption><b>รูปชุดของขวัญ</b></figcaption></figure>
         <h3>ชุดเล็กชะลอม</h3>
         <dl>
@@ -1450,16 +1495,17 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
           <li><a href="visit.html">หน้าร้าน สุขุมวิท 51</a></li>
           <li><a href="corporate.html">สั่งสำหรับองค์กร</a></li>
           <li><a href="partner.html">พาร์ทเนอร์</a></li>
+          <li><a href="faq.html">คำถามที่พบบ่อย</a></li>
           <li><a href="tel:0896666665">โทร 089 666 6665</a></li>
           <li><a href="https://lin.ee/xAbIkYZn" target="_blank" rel="noopener">LINE @kaotang_songkrueng</a></li>
           <li><a href="https://shopee.co.th/kaotang_songkrueng" target="_blank" rel="noopener">Shopee</a></li>
           <li><a href="https://s.lazada.co.th/s.J6WK" target="_blank" rel="noopener">Lazada</a></li>
           <li><a href="https://static.robinhood.in.th/share_link.html?URI=robinhoodth://merchantlanding/id/239231" target="_blank" rel="noopener">Robinhood</a></li></ul></div>
         <div><h5>โซเชียล</h5><ul>
-          <li><a href="https://www.instagram.com/kaotang_mayuree" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".9" fill="currentColor"/></svg>Instagram</a></li>
-          <li><a href="https://www.facebook.com/Mayureekaotang/" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M14.3 20.5v-7h2.3l.4-2.7h-2.7V9.2c0-.8.3-1.3 1.4-1.3h1.4V5.5c-.3 0-1.1-.1-2-.1-2 0-3.3 1.2-3.3 3.4v2H9.3v2.7h2.5v7"/></svg>Facebook</a></li>
-          <li><a href="https://www.tiktok.com/@kaotang_mayuree" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M13.2 7v7.1a2.6 2.6 0 1 1-2.6-2.6"/><path d="M13.2 7c.3 1.7 1.4 2.8 3.3 3"/></svg>TikTok</a></li>
-          <li><a href="https://linktr.ee/mayureekaotangsongkrueng" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>Linktree</a></li></ul></div>
+          <li><a href="https://www.instagram.com/kaotang_mayuree" target="_blank" rel="noopener"><svg class="ic ic-brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>Instagram</a></li>
+          <li><a href="https://www.facebook.com/Mayureekaotang/" target="_blank" rel="noopener"><svg class="ic ic-brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>Facebook</a></li>
+          <li><a href="https://www.tiktok.com/@kaotang_mayuree" target="_blank" rel="noopener"><svg class="ic ic-brand" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a></li>
+          <li><a href="https://linktr.ee/mayureekaotangsongkrueng" target="_blank" rel="noopener"><svg class="ic ic-brand" viewBox="0 0 24 24" aria-hidden="true"><path d="m13.73635 5.85251 4.00467-4.11665 2.3248 2.3808-4.20064 4.00466h5.9085v3.30473h-5.9365l4.22865 4.10766-2.3248 2.3338L12.0005 12.099l-5.74052 5.76852-2.3248-2.3248 4.22864-4.10766h-5.9375V8.12132h5.9085L3.93417 4.11666l2.3248-2.3808 4.00468 4.11665V0h3.4727zm-3.4727 10.30614h3.4727V24h-3.4727z"/></svg>Linktree</a></li></ul></div>
       </div>
     </div>
     <div class="legal"><span>Deliciously authentic and original Thai snack!</span><span>© มยุรี ข้าวตังทรงเครื่อง 2026 · Authentic Thai rice crackers for 50+ years</span></div>
@@ -1482,15 +1528,15 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 const PRODUCT = {
   /* ราคาและน้ำหนักจากเมนูหน้าร้าน (ไซส์ใหญ่ 190 g ฿165 · Mini 95 g ฿99) — แก้ไขได้ที่ sizes */
   options: [
-    { id:"original", name:"รสดั้งเดิม",   short:"ดั้งเดิม", note:"สูตรโบราณ", mult:1, packs:["original"], mini:true, nutri:{e:900,ep:45,s:24,sp:37,f:36,fp:55,n:780,np:39,serv:"ประมาณ 6 ครั้ง",en:"about 6 servings"},
+    { id:"original", name:"รสดั้งเดิม",   short:"ดั้งเดิม", note:"สูตรโบราณ", mult:1, packs:["original"], mini:true, nutri:{big:{e:900,ep:45,s:24,sp:37,f:36,fp:55,n:780,np:39},mini:{e:450,ep:22,s:12,sp:18,f:18,fp:28,n:390,np:20},per:{fat:[6,9],sat:[3,15],chol:[0,0],prot:'2',carb:[21,7],sug:'4',na:[130,6],k:[25,1]}},
       ingr:"ข้าวหอมมะลิ · หมูหยอง · น้ำมันพืช · น้ำตาล · เกลือ · พริกไทย", fda:"อย. 10-1-19165-5-0002",
       en:{ name:"Original", short:"Original", note:"Classic recipe",
            ingr:"Jasmine rice · pork floss · vegetable oil · sugar · salt · pepper", fda:"Thai FDA 10-1-19165-5-0002" } },
-    { id:"salted",  name:"รสเค็ม",          short:"เค็ม",     note:"ไม่ใส่น้ำตาลเพิ่ม", mult:1, packs:["salted"], nutri:{e:900,ep:45,s:4,sp:6,f:42,fp:65,n:540,np:27,serv:"ประมาณ 6 ครั้ง",en:"about 6 servings"},
+    { id:"salted",  name:"รสเค็ม",          short:"เค็ม",     note:"ไม่ใส่น้ำตาลเพิ่ม", mult:1, packs:["salted"], nutri:{big:{e:900,ep:45,s:4,sp:6,f:42,fp:65,n:540,np:27},mini:{e:450,ep:22,s:2,sp:3,f:21,fp:32,n:270,np:14},per:{fat:[7,11],sat:[3,15],chol:[0,0],prot:'2',carb:[20,7],sug:'<1',na:[90,4],k:[35,1]}},
       ingr:"ข้าวหอมมะลิ · หมูหยอง · น้ำมันพืช · เกลือ · พริกไทย — สูตรนี้ไม่ใส่น้ำตาลเพิ่ม", fda:"",
       en:{ name:"Salted", short:"Salted", note:"No added sugar",
            ingr:"Jasmine rice · pork floss · vegetable oil · salt · pepper — no added sugar", fda:"" } },
-    { id:"jasmine", name:"รสข้าว",          short:"ข้าว",  note:"Jasmine Rice", mult:1, packs:["jasmine"], nutri:{e:900,ep:45,s:24,sp:37,f:42,fp:65,n:570,np:28,serv:"หลายครั้ง",en:"several servings"},
+    { id:"jasmine", name:"รสข้าว",          short:"ข้าว",  note:"Jasmine Rice", mult:1, packs:["jasmine"], nutri:{big:{e:900,ep:45,s:24,sp:37,f:42,fp:65,n:570,np:28},mini:{e:450,ep:22,s:12,sp:18,f:21,fp:32,n:280,np:14},per:{fat:[7,11],sat:[3,15],chol:[0,0],prot:'1',carb:[21,7],sug:'4',na:[95,5],k:[25,1]}},
       ingr:"ข้าวหอมมะลิ · น้ำมันพืช · น้ำตาล · เกลือ · พริกไทย — ไม่มีหมูหยอง ทานมังสวิรัติได้", fda:"อย. 10-1-19165-5-0003",
       en:{ name:"Jasmine Rice", short:"Jasmine Rice", note:"ข้าว",
            ingr:"Jasmine rice · vegetable oil · sugar · salt · pepper — no pork floss, vegetarian-friendly", fda:"Thai FDA 10-1-19165-5-0003" } },
@@ -1544,8 +1590,8 @@ const PRODUCT = {
 
   /* แพ็กเกจจริงจากไฟล์อาร์ตเวิร์ก: assets/pack-{salted|jasmine}[-mini].png */
   const packHTML = p => {
-    const kind = p.classList.contains("jasmine") ? "jasmine" : p.classList.contains("orange") ? "salty-orange" : "salted", mini = p.dataset.size === "mini" ? "-mini" : "";
-    return `<img class="package-graphic" src="assets/flavor-${kind}${mini}.svg" alt="" aria-hidden="true">`;
+    const mini = p.dataset.size === "mini", file = p.classList.contains("jasmine") ? (mini ? "flavor-lite-mini" : "flavor-lite") : p.classList.contains("orange") ? (mini ? "flavor-salty-orange-mini" : "flavor-salty-orange") : (mini ? "flavor-salted-mini" : "flavor-original");
+    return `<img class="package-graphic" src="assets/${file}.svg" alt="" aria-hidden="true">`;
   };
   const fillPacks = () => $$("[data-pack]").forEach(p => { if (!p.children.length) p.innerHTML = packHTML(p); });
 
@@ -1614,12 +1660,25 @@ const PRODUCT = {
     $("#addPrice").textContent = baht(total());
     const nu = $("#nutri"), nn = $("#nutriNote");
     if (nu && nn) {
-      const d = o.nutri;
-      if (miniSel) { nu.innerHTML = ""; nn.textContent = t("โภชนาการของ Mini 95 g ดูที่ฉลากบนกล่อง","See the label on the Mini box for its nutrition facts"); }
-      else {
-        nn.textContent = t("โภชนาการต่อ 1 กระปุกใหญ่ (190 g) · ควรแบ่งกิน"+d.serv, "Nutrition per large jar (190 g) · "+d.en);
-        const kc = t("กิโลแคลอรี","kcal"), g = t("กรัม","g"), mg = t("มิลลิกรัม","mg");
-        nu.innerHTML = `<div><dt>${t("พลังงาน","Energy")}</dt><dd>${d.e} ${kc}</dd><span>${d.ep}%</span></div><div><dt>${t("น้ำตาล","Sugar")}</dt><dd>${d.s} ${g}</dd><span>${d.sp}%</span></div><div><dt>${t("ไขมัน","Fat")}</dt><dd>${d.f} ${g}</dd><span>${d.fp}%</span></div><div><dt>${t("โซเดียม","Sodium")}</dt><dd>${d.n} ${mg}</dd><span>${d.np}%</span></div>`;
+      const N = o.nutri, d = miniSel ? N.mini : N.big, jar = miniSel ? "95 g" : "190 g", srv = miniSel ? 3 : 6;
+      nn.textContent = t(`โภชนาการต่อ 1 กระปุก (${jar}) · ควรแบ่งกินประมาณ ${srv} ครั้ง`, `Nutrition per jar (${jar}) · about ${srv} servings`);
+      const kc = t("กิโลแคลอรี","kcal"), g = t("กรัม","g"), mg = t("มิลลิกรัม","mg");
+      nu.innerHTML = `<div><dt>${t("พลังงาน","Energy")}</dt><dd>${d.e} ${kc}</dd><span>${d.ep}%</span></div><div><dt>${t("น้ำตาล","Sugar")}</dt><dd>${d.s} ${g}</dd><span>${d.sp}%</span></div><div><dt>${t("ไขมัน","Fat")}</dt><dd>${d.f} ${g}</dd><span>${d.fp}%</span></div><div><dt>${t("โซเดียม","Sodium")}</dt><dd>${d.n} ${mg}</dd><span>${d.np}%</span></div>`;
+      const P = N.per, sug = P.sug === "<1" ? t("น้อยกว่า 1","< 1") : P.sug, row = (lab, val, pc, sub) => `<tr${sub ? ' class="sub"' : ''}><th scope="row">${lab}</th><td>${val}</td><td>${pc}</td></tr>`;
+      const sumEl = $("#nutriSum"), tbl = $("#nutriTable"), src = $("#nutriSrc");
+      if (sumEl && tbl) {
+        sumEl.textContent = t(`ตารางโภชนาการเต็ม · ต่อ 1 ครั้ง (${miniSel ? "1/3" : "1/6"} กระปุก = 30 g)`, `Full nutrition facts · per serving (${miniSel ? "1/3" : "1/6"} jar = 30 g)`);
+        tbl.innerHTML = `<thead><tr><th></th><td></td><td>${t("% ค่าอ้างอิง/วัน*","% Thai RDI*")}</td></tr></thead><tbody>`
+          + row(t("พลังงาน","Energy"), `${P.kcal || 150} ${kc}`, "")
+          + row(t("ไขมันทั้งหมด","Total fat"), `${P.fat[0]} ${g}`, P.fat[1] + "%")
+          + row(t("ไขมันอิ่มตัว","Saturated fat"), `${P.sat[0]} ${g}`, P.sat[1] + "%", 1)
+          + row(t("คอเลสเตอรอล","Cholesterol"), `${P.chol[0]} ${mg}`, P.chol[1] + "%")
+          + row(t("โปรตีน","Protein"), `${P.prot} ${g}`, "")
+          + row(t("คาร์โบไฮเดรตทั้งหมด","Total carbohydrate"), `${P.carb[0]} ${g}`, P.carb[1] + "%")
+          + row(t("น้ำตาลทั้งหมด","Total sugars"), `${sug} ${g}`, "", 1)
+          + row(t("โซเดียม","Sodium"), `${P.na[0]} ${mg}`, P.na[1] + "%")
+          + row(t("โพแทสเซียม","Potassium"), `${P.k[0]} ${mg}`, P.k[1] + "%") + "</tbody>";
+        if (src) src.textContent = t("*ร้อยละของค่าอ้างอิงสารอาหารต่อวันสำหรับคนไทย จากความต้องการพลังงานวันละ 2,000 กิโลแคลอรี · คำนวณจากผลวิเคราะห์ของห้องปฏิบัติการ SGS", "*Percent Thai Reference Daily Intakes based on 2,000 kcal a day · Calculated from SGS laboratory analysis");
       }
     }
     $("#ingr").textContent = pick(o,"ingr"); $("#fda").textContent = pick(o,"fda");
@@ -1783,7 +1842,7 @@ const PRODUCT = {
     "ทำมือสูตรเดิมทุกแผ่น ต่างกันที่การปรุง เลือกตามอารมณ์ หรือจะลองทุกรสก็ได้":"The same handmade recipe, seasoned three ways. Pick by mood — or try them all.",
     /* menu */
     "เมนู มยุรี":"Mayuree","3 รสชาติ 2 ไซส์ ทำมือทุกกระปุก":"3 flavors · 2 sizes · handmade in every jar","Size ใหญ่":"Large size",
-    "พาร์ทเนอร์":"Partners","ร่วมเป็นพาร์ทเนอร์":"Become a partner","กับมยุรี":"with Mayuree","ร้านของฝาก คาเฟ่ ร้านอาหาร และแบรนด์ที่อยากนำข้าวตังมยุรีไปวางขาย หรือทำแพ็กเกจร่วมกัน คุยกับเราได้เลย":"Gift shops, cafés, restaurants and brands that want to stock Mayuree or build a pack together — talk to us","คุยเรื่องพาร์ทเนอร์ทาง LINE":"Talk partnership on LINE","ร้านของฝากและร้านค้า":"Gift shops and stores","นำข้าวตังมยุรีไปวางขายในร้านของคุณ พูดคุยเรื่องรูปแบบการขายและจำนวนได้":"Stock Mayuree in your store — we can talk about format and quantities","คาเฟ่และร้านอาหาร":"Cafés and restaurants","เสิร์ฟคู่เครื่องดื่มหรือเป็นของทานเล่นในร้าน":"Serve with drinks or as a snack in your venue","ร่วมแบรนด์ (Co-branding)":"Co-branding","ทำสายคาด สติกเกอร์ หรือกล่องร่วมกับโลโก้และสีของแบรนด์คุณ":"Sleeves, stickers or boxes with your logo and colors","เริ่มคุยกันง่ายๆ":"Easy to get started","บอกว่าเป็นร้านหรือแบรนด์แบบไหน และสนใจอะไร":"Tell us about your shop or brand and what you are after","คุยรูปแบบและราคา":"Discuss format and pricing","ตกลงรสชาติ ขนาด จำนวน และเงื่อนไขร่วมกัน":"Agree flavors, sizes, quantities and terms together","เริ่มส่งสินค้า":"Start shipping","ทำมือที่ครัวสุขุมวิท 51 แล้วส่งถึงร้านของคุณ":"Handmade at our Sukhumvit 51 kitchen and delivered to your shop","ตัวอย่างงานออกแบบ Co-branding":"Co-branding design samples","มยุรี × แบรนด์พาร์ทเนอร์":"Mayuree × partner brands","ตัวอย่างฉลากร่วมแบรนด์บนกระปุกมยุรี เลือกได้ 2 สไตล์ ชื่อแบรนด์ในภาพเป็นตัวอย่างเพื่อแสดงรูปแบบ":"Sample co-branded labels on the Mayuree jar, in two styles. Brand names shown are examples of the format.","สไตล์ A · ฉลากสีเต็ม":"Style A · Full-color label","สไตล์ B · ฉลากพื้นครีม":"Style B · Cream label","สไตล์ A":"Style A","สไตล์ B":"Style B","ฉลากสีเต็ม":"Full-color label","ฉลากพื้นครีม":"Cream label","พื้นสีเต็มของแบรนด์พาร์ทเนอร์อยู่ใต้โลโก้มยุรี ให้แบรนด์ของคุณโดดเด่นบนชั้นวาง":"The partner brand's full-color panel sits under the Mayuree logo so your brand stands out on the shelf","พื้นครีมกลมกลืนกับมยุรี และแทรกภาพเมนูของแบรนด์ลงในฉลาก":"A cream base that blends with Mayuree, with your signature menu artwork worked into the label","ชาไทย":"Thai tea","ชา":"Tea","รีสอร์ต":"Resort","เบเกอรี่":"Bakery","มะพร้าว":"Coconut","พริก":"Chili","กาแฟ":"Coffee","น้ำผึ้ง":"Honey","แบ่งกันกิน":"Sharing","รสเค็ม Salted":"Salted","฿165 · ดูรสเค็ม":"฿165 · View Salted","ภาพบรรยากาศ":"Lifestyle photo","รูปชุดของขวัญ":"Gift set photo","ตัวอย่างฉลากร่วมแบรนด์บนกระปุกมยุรี ชื่อแบรนด์ในภาพเป็นตัวอย่างเพื่อแสดงรูปแบบ":"Sample co-branded labels on the Mayuree jar. The brand names shown are examples of the format.","มยุรี × Tawan Tea House":"Mayuree × Tawan Tea House","มยุรี × Rimnam Resort":"Mayuree × Rimnam Resort","มยุรี × Suan Bakery":"Mayuree × Suan Bakery","ของขวัญบริษัท · Co-branding · ใบเสนอราคา":"Company gifts · Co-branding · Quotation","ข้อมูลสินค้า":"Product information","หน้าข้อมูลสินค้า":"Product information page","ข้าวตังเสิร์ฟคู่ชาเขียวบนโต๊ะเล็ก":"Rice crackers served with green tea on a small table","ข้าวตังและผลไม้บนโต๊ะที่แบ่งกันกิน":"Rice crackers and fruit on a shared table","กล่อง Mini ในตะกร้า":"Mini boxes in a basket","กระปุกมยุรี × Tawan Tea House ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Tawan Tea House — sample co-branded label","กระปุกมยุรี × Rimnam Resort ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Rimnam Resort — sample co-branded label","กระปุกมยุรี × Suan Bakery ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Suan Bakery — sample co-branded label","ชุดของขวัญก่อนหน้า":"Previous gift set","ชุดของขวัญถัดไป":"Next gift set","รูปก่อนหน้า":"Previous photo","รูปถัดไป":"Next photo","ข้าวตังในกระทะใหญ่":"Rice crackers in a large wok","รสดั้งเดิม":"Original","รสข้าว":"Jasmine Rice","รสเค็ม":"Salted","1 กระปุก":"1 jar","สั่งได้ที่ร้านสุขุมวิท 51 ·":"Order at our Sukhumvit 51 shop ·",
+    "พาร์ทเนอร์":"Partners","ร่วมเป็นพาร์ทเนอร์":"Become a partner","กับมยุรี":"with Mayuree","ร้านของฝาก คาเฟ่ ร้านอาหาร และแบรนด์ที่อยากนำข้าวตังมยุรีไปวางขาย หรือทำแพ็กเกจร่วมกัน คุยกับเราได้เลย":"Gift shops, cafés, restaurants and brands that want to stock Mayuree or build a pack together — talk to us","คุยเรื่องพาร์ทเนอร์ทาง LINE":"Talk partnership on LINE","ร้านของฝากและร้านค้า":"Gift shops and stores","นำข้าวตังมยุรีไปวางขายในร้านของคุณ พูดคุยเรื่องรูปแบบการขายและจำนวนได้":"Stock Mayuree in your store — we can talk about format and quantities","คาเฟ่และร้านอาหาร":"Cafés and restaurants","เสิร์ฟคู่เครื่องดื่มหรือเป็นของทานเล่นในร้าน":"Serve with drinks or as a snack in your venue","ร่วมแบรนด์ (Co-branding)":"Co-branding","ทำสายคาด สติกเกอร์ หรือกล่องร่วมกับโลโก้และสีของแบรนด์คุณ":"Sleeves, stickers or boxes with your logo and colors","เริ่มคุยกันง่ายๆ":"Easy to get started","บอกว่าเป็นร้านหรือแบรนด์แบบไหน และสนใจอะไร":"Tell us about your shop or brand and what you are after","คุยรูปแบบและราคา":"Discuss format and pricing","ตกลงรสชาติ ขนาด จำนวน และเงื่อนไขร่วมกัน":"Agree flavors, sizes, quantities and terms together","เริ่มส่งสินค้า":"Start shipping","ทำมือที่ครัวสุขุมวิท 51 แล้วส่งถึงร้านของคุณ":"Handmade at our Sukhumvit 51 kitchen and delivered to your shop","ตัวอย่างงานออกแบบ Co-branding":"Co-branding design samples","มยุรี × แบรนด์พาร์ทเนอร์":"Mayuree × partner brands","ตัวอย่างฉลากร่วมแบรนด์บนกระปุกมยุรี เลือกได้ 2 สไตล์ ชื่อแบรนด์ในภาพเป็นตัวอย่างเพื่อแสดงรูปแบบ":"Sample co-branded labels on the Mayuree jar, in two styles. Brand names shown are examples of the format.","สไตล์ A · ฉลากสีเต็ม":"Style A · Full-color label","สไตล์ B · ฉลากพื้นครีม":"Style B · Cream label","สไตล์ A":"Style A","สไตล์ B":"Style B","ฉลากสีเต็ม":"Full-color label","ฉลากพื้นครีม":"Cream label","พื้นสีเต็มของแบรนด์พาร์ทเนอร์อยู่ใต้โลโก้มยุรี ให้แบรนด์ของคุณโดดเด่นบนชั้นวาง":"The partner brand's full-color panel sits under the Mayuree logo so your brand stands out on the shelf","พื้นครีมกลมกลืนกับมยุรี และแทรกภาพเมนูของแบรนด์ลงในฉลาก":"A cream base that blends with Mayuree, with your signature menu artwork worked into the label","ชาไทย":"Thai tea","ชา":"Tea","รีสอร์ต":"Resort","เบเกอรี่":"Bakery","มะพร้าว":"Coconut","พริก":"Chili","กาแฟ":"Coffee","น้ำผึ้ง":"Honey","แบ่งกันกิน":"Sharing","รสเค็ม Salted":"Salted","฿165 · ดูรสเค็ม":"฿165 · View Salted","ภาพบรรยากาศ":"Lifestyle photo","รูปชุดของขวัญ":"Gift set photo","ตัวอย่างฉลากร่วมแบรนด์บนกระปุกมยุรี ชื่อแบรนด์ในภาพเป็นตัวอย่างเพื่อแสดงรูปแบบ":"Sample co-branded labels on the Mayuree jar. The brand names shown are examples of the format.","มยุรี × Tawan Tea House":"Mayuree × Tawan Tea House","มยุรี × Rimnam Resort":"Mayuree × Rimnam Resort","มยุรี × Suan Bakery":"Mayuree × Suan Bakery","ของขวัญบริษัท · Co-branding · ใบเสนอราคา":"Company gifts · Co-branding · Quotation","ข้อมูลสินค้า":"Product information","หน้าข้อมูลสินค้า":"Product information page","ข้าวตังเสิร์ฟคู่ชาเขียวบนโต๊ะเล็ก":"Rice crackers served with green tea on a small table","ข้าวตังและผลไม้บนโต๊ะที่แบ่งกันกิน":"Rice crackers and fruit on a shared table","กล่อง Mini ในตะกร้า":"Mini boxes in a basket","กระปุกมยุรี × Tawan Tea House ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Tawan Tea House — sample co-branded label","กระปุกมยุรี × Rimnam Resort ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Rimnam Resort — sample co-branded label","กระปุกมยุรี × Suan Bakery ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Suan Bakery — sample co-branded label","ชุดของขวัญก่อนหน้า":"Previous gift set","ชุดของขวัญถัดไป":"Next gift set","รูปก่อนหน้า":"Previous photo","รูปถัดไป":"Next photo","ข้าวตังในกระทะใหญ่":"Rice crackers in a large wok","คำถามที่พบบ่อย":"Frequently asked questions","รวมคำตอบเรื่องการสั่งซื้อ การจัดส่ง และตัวสินค้า":"Answers about ordering, delivery and the product","ยังมีคำถามอื่น?":"Any other questions?","ทักไลน์หรือโทรหาเราได้เลย":"Message us on LINE or call us","ค่าจัดส่งเท่าไหร่?":"How much is shipping?","EMS 100 บาท / กล่อง":"EMS 100 baht per box","หากแยกหลายกล่องหรือหลายที่อยู่ จะคิดค่าจัดส่งแยกตามจำนวนกล่อง":"If an order is split into several boxes or addresses, shipping is charged per box.","ใช้เวลาจัดส่งกี่วัน?":"How long does delivery take?","กรุงเทพฯ และปริมณฑลประมาณ 1–2 วัน":"About 1–2 days in Bangkok and the metropolitan area","ระยะเวลาจัดส่งขึ้นอยู่กับการดำเนินงานของไปรษณีย์ไทย และอาจล่าช้าได้ในกรณีเหตุสุดวิสัย โดยทางร้านจะจัดส่งสินค้าให้เร็วที่สุดค่ะ":"Delivery time depends on Thailand Post and may be delayed by circumstances beyond our control. We will send your order as quickly as we can.","สามารถเรียกรถมารับสินค้าได้ไหม?":"Can I book my own courier for pickup?","ได้ค่ะ":"Yes","รบกวนคุณลูกค้าเรียกรถเข้ามารับสินค้าที่ร้านเอง เพื่อความสะดวกในการติดต่อและลดความสับสนในการจัดส่ง":"Please book the courier yourself to pick up at the shop, which keeps contact simple and avoids delivery mix-ups.","ข้าวตังเก็บได้นานแค่ไหน?":"How long does it keep?","อายุสินค้าประมาณ 6 เดือน":"Shelf life is about 6 months","สามารถตรวจสอบวันหมดอายุบนบรรจุภัณฑ์ได้ค่ะ":"You can check the expiry date on the packaging.","สามารถขอถุงเพิ่มได้ไหม?":"Can I get extra bags?","ทางร้านจะจัดให้ตามความเหมาะสม ขั้นต่ำซื้อ 2 กระปุกได้ฟรี 1 ถุง หากต้องการถุงเพิ่มสามารถเพิ่มได้ถุงละ 10 บาทค่ะ":"We will provide bags as appropriate. Buy at least 2 jars and get 1 bag free; extra bags are 10 baht each.","มีผงชูรสหรือวัตถุกันเสียไหม?":"Does it contain MSG or preservatives?","ไม่มีค่ะ":"No","เราไม่ใส่ผงชูรส ผงปรุงแต่ง และไม่เติมวัตถุกันเสียในตัวข้าวตัง":"We use no MSG or flavor-enhancing powders, and add no preservatives to the crackers.","สามารถออกใบเสร็จ / ใบกำกับภาษีได้ไหม?":"Can you issue a receipt or tax invoice?","กรุณาแจ้ง ณ วันที่สั่งซื้อ":"Please tell us when you place the order.","nav-faq|คำถามที่พบบ่อย":"FAQ","Happy Holiday":"Happy Holiday","ชุดเทศกาล · ถุงผ้าปักลาย":"Festive set · embroidered tote","เนื้อในชุด":"Contents","กระเป๋าผ้าปักลาย + กล่อง Mini 95 g × 2":"Embroidered tote + 2 Mini 95 g boxes","Happy Holiday gift set":"Happy Holiday gift set","รสดั้งเดิม":"Original","รสข้าว":"Jasmine Rice","รสเค็ม":"Salted","1 กระปุก":"1 jar","สั่งได้ที่ร้านสุขุมวิท 51 ·":"Order at our Sukhumvit 51 shop ·",
     /* story */
     "คุณยายสมสมร คูสกุล":"Khun Yai Somsamorn Kusakul","คุณยายสมสมร คูสกุล · ผู้ก่อตั้ง":"Khun Yai Somsamorn Kusakul · Founder",
     "ครัวมยุรีวันนี้":"The Mayuree kitchen today","เรื่องราวของมยุรี":"The Mayuree story",
@@ -1910,6 +1969,6 @@ const PRODUCT = {
 </script>
 <script src="assets/ui-icons.js?v=1" defer></script>
 <script src="assets/presentation.js?v=7" defer></script>
-<script src="assets/mobile.js?v=22" defer></script>
+<script src="assets/mobile.js?v=24" defer></script>
 </body>
 </html>

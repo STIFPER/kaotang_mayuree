@@ -728,3 +728,33 @@ button,a.pill{line-height:1.5}
  #flGrid .fl{display:flex!important;flex-direction:column;gap:16px;padding:clamp(28px,3vw,44px) clamp(20px,2.4vw,36px)}
  #flGrid .fl .pack-pair{align-self:center}
 }
+
+/* Product gallery: round thumbnails beside the photo */
+#shop.hero .frame{overflow:hidden}
+#shop.hero .frame .ph.filled img{transition:opacity .25s ease}
+.gallery-thumbs{position:absolute;z-index:6;left:clamp(12px,1.6vw,22px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px}
+.gallery-thumbs button{width:clamp(52px,4.6vw,66px);height:clamp(52px,4.6vw,66px);border-radius:50%;padding:0;border:3px solid #fff;background:#fff;box-shadow:0 3px 10px rgba(60,20,10,.22);overflow:hidden;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.gallery-thumbs button img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.gallery-thumbs button:hover{transform:scale(1.07)}
+.gallery-thumbs button.on{box-shadow:0 0 0 2.5px var(--ink),0 3px 10px rgba(60,20,10,.22)}
+.gallery-thumbs button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+@media(max-width:700px){
+ .gallery-thumbs{left:50%;top:auto;bottom:10px;transform:translateX(-50%);flex-direction:row;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(246,241,227,.72);backdrop-filter:blur(6px)}
+ .gallery-thumbs button{width:38px;height:38px;border-width:2px}
+}
+
+/* Phone: the details page of the product card scrolls inside the card, so the opened nutrition table is never cut off */
+@media(max-width:700px){
+ .product-deck .deck-page#productRead .tabs{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ .product-deck .deck-track{overflow-y:hidden}
+}
+@media(max-width:700px){
+ .nutri-table{table-layout:fixed;font-size:.84rem}
+ .nutri-table th:first-child{width:46%}
+ .nutri-table td{white-space:normal;padding-left:6px}
+ .nutri-table td:last-child{width:20%}
+ .nutri-more{padding:0 12px}
+}
+
+/* Gift card photos marked data-fit="contain" show the whole product on a matching background */
+.gset .gset-ph[data-pos=hh] img{object-fit:cover!important;object-position:46% 62%!important}

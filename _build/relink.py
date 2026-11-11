@@ -1,6 +1,6 @@
 import re
-PAGE={'about':'story.html','chapters':'story.html','places':'story.html','corp':'corporate.html','partner':'partner.html','shop':'shop.html','menu':'shop.html','flavors':'shop.html','gift':'gift.html','story':'story.html','charcoal':'craft.html','process':'craft.html','why':'story.html','strip':'craft.html','bleed':'craft.html','visit':'visit.html','reviews':'visit.html'}
-TOP={'shop','menu','gift','story','visit','corp','partner'}
+PAGE={'about':'story.html','chapters':'story.html','places':'story.html','corp':'corporate.html','partner':'partner.html','faq':'faq.html','shop':'shop.html','menu':'shop.html','flavors':'shop.html','gift':'gift.html','story':'story.html','charcoal':'craft.html','process':'craft.html','why':'story.html','strip':'craft.html','bleed':'craft.html','visit':'visit.html','reviews':'visit.html'}
+TOP={'shop','menu','gift','story','visit','corp','partner','faq'}
 def relink(html, ids):
     def tag(m):
         t=m.group(0)

@@ -2,6 +2,7 @@ import os
 HERE=os.path.dirname(os.path.abspath(__file__))
 ALTS={'lifestyle-sharing-spoons': 'ช้อนสองคันตักข้าวตังจากชามเดียวกัน', 'lifestyle-tea-table': 'ข้าวตังเสิร์ฟคู่ชาเขียวบนโต๊ะเล็ก', 'lifestyle-picnic-bowl': 'ข้าวตังทรงเครื่องในชามบนผ้าปิกนิกลายสก็อต', 'lifestyle-beach-bag-book': 'กล่องมยุรีในกระเป๋าถักข้างหนังสือ', 'lifestyle-shared-table': 'ข้าวตังและผลไม้บนโต๊ะที่แบ่งกันกิน'}
 import re,sys,json
+FAQ_LD='{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ค่าจัดส่งเท่าไหร่?", "acceptedAnswer": {"@type": "Answer", "text": "EMS 100 บาท / กล่อง หากแยกหลายกล่องหรือหลายที่อยู่ จะคิดค่าจัดส่งแยกตามจำนวนกล่อง"}}, {"@type": "Question", "name": "ใช้เวลาจัดส่งกี่วัน?", "acceptedAnswer": {"@type": "Answer", "text": "กรุงเทพฯ และปริมณฑลประมาณ 1–2 วัน ระยะเวลาจัดส่งขึ้นอยู่กับการดำเนินงานของไปรษณีย์ไทย และอาจล่าช้าได้ในกรณีเหตุสุดวิสัย โดยทางร้านจะจัดส่งสินค้าให้เร็วที่สุดค่ะ"}}, {"@type": "Question", "name": "สามารถเรียกรถมารับสินค้าได้ไหม?", "acceptedAnswer": {"@type": "Answer", "text": "ได้ค่ะ รบกวนคุณลูกค้าเรียกรถเข้ามารับสินค้าที่ร้านเอง เพื่อความสะดวกในการติดต่อและลดความสับสนในการจัดส่ง"}}, {"@type": "Question", "name": "ข้าวตังเก็บได้นานแค่ไหน?", "acceptedAnswer": {"@type": "Answer", "text": "อายุสินค้าประมาณ 6 เดือน สามารถตรวจสอบวันหมดอายุบนบรรจุภัณฑ์ได้ค่ะ"}}, {"@type": "Question", "name": "สามารถขอถุงเพิ่มได้ไหม?", "acceptedAnswer": {"@type": "Answer", "text": "ได้ค่ะ ทางร้านจะจัดให้ตามความเหมาะสม ขั้นต่ำซื้อ 2 กระปุกได้ฟรี 1 ถุง หากต้องการถุงเพิ่มสามารถเพิ่มได้ถุงละ 10 บาทค่ะ"}}, {"@type": "Question", "name": "มีผงชูรสหรือวัตถุกันเสียไหม?", "acceptedAnswer": {"@type": "Answer", "text": "ไม่มีค่ะ เราไม่ใส่ผงชูรส ผงปรุงแต่ง และไม่เติมวัตถุกันเสียในตัวข้าวตัง"}}, {"@type": "Question", "name": "สามารถออกใบเสร็จ / ใบกำกับภาษีได้ไหม?", "acceptedAnswer": {"@type": "Answer", "text": "ได้ค่ะ กรุณาแจ้ง ณ วันที่สั่งซื้อ"}}]}'
 PAGEMETA=json.loads(open(HERE+'/pagemeta.json',encoding='utf-8').read())
 sys.path.insert(0,HERE)
 from relink import relink
@@ -26,7 +27,7 @@ for i,s0 in enumerate(starts):
     key=(re.search(r'id="(\w+)"',tag) or re.search(r'class="(\w+)',tag)).group(1)
     secs.append((key,blk))
 print([k for k,_ in secs])
-pages={'shop.html':['shop','flavors','menu'],'story.html':['about','story','chapters','places','why'],'craft.html':['charcoal','process','bleed','strip'],'gift.html':['gift'],'visit.html':['visit'],'corporate.html':['corp'],'partner.html':['partner']}
+pages={'shop.html':['shop','flavors','menu'],'story.html':['about','story','chapters','places','why'],'craft.html':['charcoal','process','bleed','strip'],'gift.html':['gift'],'visit.html':['visit'],'corporate.html':['corp'],'partner.html':['partner'],'faq.html':['faq']}
 need=['addBtn','addPrice','barName','bleedPh','chSound','chVideo','chVideoWrap','fda','flGrid','ingr','opts','price','qtys','selName','shop','sizeName','thumbs','title','track']
 titles={'shop.html':'เมนูและสินค้า','story.html':'เรื่องของเรา','gift.html':'ชุดของขวัญ','visit.html':'หน้าร้าน'}
 for fn,keys in pages.items():
@@ -51,8 +52,9 @@ for fn,keys in pages.items():
     page=page.replace('__TITLE_EN__',te).replace('__DESC_EN__',de).replace('__TITLE__',tt).replace('__DESC__',dt)
     page=re.sub(r'<title>[^<]*</title>','<title>'+tt+'</title>',page,count=1)
     page=page.replace('<nav>\n      <a href="'+fn+'"','<nav>\n      <a aria-current="page" href="'+fn+'"',1)
-    for a_,href in (('เมนู','shop.html'),('จัดชุดของขวัญ','gift.html'),('เรื่องของเรา','story.html'),('พาร์ทเนอร์','partner.html'),('หน้าร้าน','visit.html')):
+    for a_,href in (('เมนู','shop.html'),('จัดชุดของขวัญ','gift.html'),('เรื่องของเรา','story.html'),('พาร์ทเนอร์','partner.html'),('คำถามที่พบบ่อย','faq.html'),('หน้าร้าน','visit.html')):
         if href==fn: page=re.sub(r'<a href="'+href+r'"( data-mega="\w+")?>'+a_+'</a>',lambda m:'<a aria-current="page" href="'+href+'"'+(m.group(1) or '')+'>'+a_+'</a>',page,count=1)
+    if fn=='faq.html': page=page.replace('</head>','<script type="application/ld+json">'+FAQ_LD+'</script>\n</head>',1)
     open(fn,'w',encoding='utf-8').write(iconize(page))
     print(fn,len(page),sorted(ids))
 

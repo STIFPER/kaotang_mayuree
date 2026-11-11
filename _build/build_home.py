@@ -281,7 +281,7 @@ html[lang="th"] .nw{white-space:nowrap}                    /* ไม่ตัด
   footer .links{grid-template-columns:1fr 1fr!important;padding-left:0;border-left:0;gap:22px 16px}
   footer .links>div:last-child{grid-column:1/-1}
   footer .links>div:last-child ul{display:flex;flex-wrap:wrap;gap:8px}
-  footer .links>div:last-child a{display:inline-block;padding:8px 14px;border:1.5px solid var(--ink);border-radius:999px}
+  footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1.5px solid var(--ink);border-radius:999px}
   footer form{margin-top:22px}
   footer .legal{flex-direction:column;gap:6px}
 
@@ -650,8 +650,8 @@ out=head+css+'</style>\n</head>\n<body>\n\n'+hdr+main+ftr+'\n'+script
 out=out.replace('__TITLE_EN__','Mayuree Kaotang Songkrueng — Homemade Thai Rice Crackers since 1968').replace('__DESC_EN__',"Handmade Thai rice crackers roasted over charcoal, Grandma's recipe since 1968 · Sukhumvit 51, Bangkok").replace('__TITLE__','มยุรี ข้าวตังทรงเครื่อง — ข้าวตังทำมือตั้งแต่ปี 1968').replace('__DESC__','ข้าวตังทรงเครื่องทำมือ คั่วบนเตาถ่าน สูตรคุณยายตั้งแต่ปี 1968 · ร้านสุขุมวิท 51 กรุงเทพฯ · สั่งทาง LINE')
 out=re.sub(r'<title>[^<]*</title>','<title>'+'มยุรี ข้าวตังทรงเครื่อง — ข้าวตังทำมือตั้งแต่ปี 1968'+'</title>',out,count=1)
 out=out.replace('<nav>\n      <a href="index.html"','<nav>\n      <a aria-current="page" href="index.html"',1)
-out=out.replace('</head>', '<link rel="stylesheet" href="assets/presentation.css?v=4">\n<link rel="stylesheet" href="assets/mobile.css?v=34">\n</head>', 1)
+out=out.replace('</head>', '<link rel="stylesheet" href="assets/presentation.css?v=4">\n<link rel="stylesheet" href="assets/mobile.css?v=54">\n</head>', 1)
 out=out.replace('<body>', '<body class="home-page">', 1)
-out=out.replace('</body>', '<script src="assets/ui-icons.js?v=1" defer></script>\n<script src="assets/presentation.js?v=7" defer></script>\n<script src="assets/mobile.js?v=22" defer></script>\n</body>', 1)
+out=out.replace('</body>', '<script src="assets/ui-icons.js?v=1" defer></script>\n<script src="assets/presentation.js?v=7" defer></script>\n<script src="assets/mobile.js?v=24" defer></script>\n</body>', 1)
 open('index.html','w',encoding='utf-8').write(iconize(out))
 print(len(out))
