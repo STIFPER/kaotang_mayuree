@@ -7,7 +7,7 @@
  const toggle=document.querySelector('#menuBtn');
  if(header&&panel&&toggle){
   const nav=document.createElement('nav');nav.className='mobile-nav';nav.dataset.i18nSkip='';
-  const pages=[['index.html','หน้าแรก','Home'],['shop.html','เมนูและสินค้า','Shop'],['gift.html','ชุดของขวัญ','Gift sets'],['story.html','เรื่องของเรา','Our story'],['craft.html','วิธีทำข้าวตัง','Our craft'],['corporate.html','ของขวัญองค์กร','Corporate gifts'],['partner.html','พาร์ทเนอร์','Partners'],['faq.html','คำถามที่พบบ่อย','FAQ'],['visit.html','หน้าร้านและติดต่อ','Visit us']];
+  const pages=[['index.html','หน้าแรก','Home'],['shop.html','เมนูและสินค้า','Shop'],['gift.html','ชุดของขวัญ','Gift Set'],['story.html','เรื่องของเรา','Our Story'],['craft.html','วิธีทำข้าวตัง','Process'],['partner.html','พาร์ทเนอร์','Partners'],['faq.html','คำถามที่พบบ่อย','FAQ'],['visit.html','หน้าร้านและติดต่อ','Visit us']];
   const active=location.pathname.split('/').pop()||'index.html';
   const render=()=>{
    const en=document.documentElement.lang==='en';
@@ -65,7 +65,8 @@
   // Photo edges are feathered to the colour in PHOTO_BG, so the frame is filled with it and the whole product always shows.
   const PHOTO_BG={"product-jar-original-square.jpg":"#eae9ed","product-jar-salted-square.jpg":"#eae9ed","product-jar-jasmine-square.jpg":"#eae9ed","product-packs-stacked-square.jpg":"#dadbdb","product-packs-row-wide.jpg":"#c7c9c9"};
   // Photo gallery: round thumbnails beside the photo (first = the selected product shot, then scenes); click or swipe to change.
-  const GALLERY={big:['product-packs-trio.jpg','lifestyle-tea-table.jpg','lifestyle-shared-table.jpg','product-bowls-stacked.jpg','process-stirring-wok.jpg'],mini:['mini-box-pyramid.jpg','mini-green-basket.jpg','mini-walking-with-box.jpg','mini-red-suitcase.jpg','mini-dog-on-cabinet.jpg']};
+  // รอบแก้ 1: รูปหลักบนหินอ่อน + รูปบรรยากาศ 2 รูปต่อรส (ตามสไลด์ลูกค้า)
+  const GALLERY={big:[['lifestyle-original-picnic-reading.jpg','lifestyle-original-poolside.jpg'],['lifestyle-salted-striped-table.jpg','lifestyle-salted-sharing-bowl.jpg'],['lifestyle-jasmine-silver-tray.jpg','lifestyle-jasmine-picnic-jars.jpg']],mini:['lifestyle-mini-hands-lap.jpg','lifestyle-mini-red-suitcase.jpg']};
   const frame=media.querySelector('.frame'),thumbs=document.createElement('div');
   thumbs.className='gallery-thumbs';thumbs.dataset.i18nSkip='';thumbs.setAttribute('role','group');
   if(frame)frame.appendChild(thumbs);
@@ -81,7 +82,7 @@
   const go=i=>{gi=(i+list.length)%list.length;showPhoto()};
   const buildThumbs=()=>{
    thumbs.innerHTML='';
-   list.forEach((f,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',(document.documentElement.lang==='en'?'Photo ':'รูปที่ ')+(i+1));b.innerHTML='<img src="'+url(f)+'" alt="" loading="lazy" draggable="false">';b.addEventListener('click',()=>go(i));thumbs.appendChild(b)});
+   list.forEach((f,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',(document.documentElement.lang==='en'?'Photo ':'รูปที่ ')+(i+1));b.innerHTML='<img src="'+url(f)+'" alt="" draggable="false">';b.addEventListener('click',()=>go(i));thumbs.appendChild(b)});
   };
   if(frame){let x0=null;frame.addEventListener('pointerdown',e=>{if(e.target.closest('.gallery-thumbs'))return;x0=e.clientX});
    frame.addEventListener('pointerup',e=>{if(x0===null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>45)go(gi+(dx<0?1:-1))});
@@ -89,12 +90,12 @@
   const updatePhoto=()=>{const buttons=[...options.children],selected=buttons.findIndex(b=>b.classList.contains('on'));
    // Pick the photo set whose shape matches the frame (wide on phones, square on desktop) so it fills edge to edge.
    const wide=media.clientHeight>0&&media.clientWidth/media.clientHeight>1.15;
-   const set=['product-jar-original-square.jpg','product-jar-salted-square.jpg','product-jar-jasmine-square.jpg'];
+   const set=['product-marble-original.jpg','product-marble-salted.jpg','product-marble-jasmine.jpg'];
    // Mini size shows the Mini box photos instead of the big jar.
    const sizes=[...document.querySelectorAll('#qtys .qty')],mini=sizes.findIndex(b=>b.classList.contains('on'))===1;
-   const main=mini?(wide?'mini-box-in-hand-wide.jpg':'mini-box-in-hand-square.jpg'):(set[selected]||set[0]);
+   const main=mini?'product-marble-mini.jpg':(set[selected]||set[0]);
    const key=selected+'|'+mini;if(key!==lastKey){gi=0;lastKey=key}
-   list=[main,...(mini?GALLERY.mini:GALLERY.big)];
+   list=[main,...(mini?GALLERY.mini:(GALLERY.big[selected]||GALLERY.big[0]))];
    const sig=list.join(',');if(sig!==lastSig){lastSig=sig;buildThumbs()}
    if(gi>=list.length)gi=0;
    showPhoto();

@@ -16,7 +16,7 @@ python3 -m http.server 5173
 
 | ที่ | คืออะไร |
 |---|---|
-| `index.html` `shop.html` `story.html` `craft.html` `gift.html` `visit.html` `corporate.html` `partner.html` `faq.html` `404.html` | หน้าเว็บ **สร้างอัตโนมัติจาก `_build/`** อย่าแก้ตรงนี้ |
+| `index.html` `shop.html` `story.html` `craft.html` `gift.html` `visit.html` `partner.html` `faq.html` `404.html` | หน้าเว็บ **สร้างอัตโนมัติจาก `_build/`** อย่าแก้ตรงนี้ |
 | `_build/` | ต้นฉบับของทุกหน้า (แก้ที่นี่ แล้วรัน `_build/build.sh`) **ไม่ต้องอัปขึ้นเว็บ** |
 | `assets/photos/` | รูปถ่าย ตั้งชื่อตามเนื้อหา (ดูด้านล่าง) |
 | `assets/video/` | วิดีโอ hero และเตาถ่าน |

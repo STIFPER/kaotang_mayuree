@@ -18,7 +18,7 @@
     const labels = () => english() ? ['Choose products', 'Product details'] : ['เลือกสินค้า', 'รายละเอียดสินค้า'];
     const render = () => {
       const names = labels();
-      deck.querySelector('.deck-title').textContent = names[index];
+      deck.querySelector('.deck-title').textContent = index ? '' : names[index];
       tabs.forEach((button, i) => { button.textContent = names[i]; button.classList.toggle('on', i === index); button.setAttribute('aria-selected', String(i === index)); });
       pages.forEach((page, i) => { page.inert = i !== index; page.setAttribute('aria-hidden', String(i !== index)); });
       prev.disabled = index === 0; next.disabled = index === pages.length - 1;

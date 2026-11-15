@@ -21,7 +21,7 @@ git status --short && git log --oneline -5
 
 ## 1. ห้ามแก้ `.html` ตรง ๆ
 
-`index.html` `shop.html` `story.html` `craft.html` `gift.html` `visit.html` `corporate.html` `partner.html` `faq.html` `404.html`
+`index.html` `shop.html` `story.html` `craft.html` `gift.html` `visit.html` `partner.html` `faq.html` `404.html`
 = **ผลลัพธ์ที่ generate ขึ้นมา** แก้ที่ `_build/` แล้ว build ใหม่เท่านั้น
 ถ้าแก้ `.html` มือ จะหายทันทีที่ใครรัน build — และจะกลายเป็น diff ที่อธิบายไม่ได้
 
@@ -86,7 +86,7 @@ sh _build/build.sh
 ## 7. ตรวจก่อนบอกว่า "เสร็จ"
 
 1. `sh _build/build.sh` ผ่าน ไม่มี error/assert
-2. ทุกหน้าตอบ 200 (ทั้ง 10 หน้า)
+2. ทุกหน้าตอบ 200 (ทั้ง 9 หน้า — ลบ corporate.html ตามฟีดแบ็กลูกค้า พ.ย. 2026)
 3. สลับ TH → EN ในหน้าที่แก้ แล้วไม่มีข้อความไทยค้าง
 4. ความกว้าง 375px ไม่ล้น/ไม่ทับ
 5. ลิงก์ที่แตะไม่มี 404

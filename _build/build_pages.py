@@ -27,7 +27,7 @@ for i,s0 in enumerate(starts):
     key=(re.search(r'id="(\w+)"',tag) or re.search(r'class="(\w+)',tag)).group(1)
     secs.append((key,blk))
 print([k for k,_ in secs])
-pages={'shop.html':['shop','flavors','menu'],'story.html':['about','story','chapters','places','why'],'craft.html':['charcoal','process','bleed','strip'],'gift.html':['gift'],'visit.html':['visit'],'corporate.html':['corp'],'partner.html':['partner'],'faq.html':['faq']}
+pages={'shop.html':['shop','flavors'],'story.html':['about','story','chapters','places','why'],'craft.html':['charcoal','process','bleed','strip'],'gift.html':['gift'],'visit.html':['visit'],'partner.html':['partner'],'faq.html':['faq']}
 need=['addBtn','addPrice','barName','bleedPh','chSound','chVideo','chVideoWrap','fda','flGrid','ingr','opts','price','qtys','selName','shop','sizeName','thumbs','title','track']
 titles={'shop.html':'เมนูและสินค้า','story.html':'เรื่องของเรา','gift.html':'ชุดของขวัญ','visit.html':'หน้าร้าน'}
 for fn,keys in pages.items():
@@ -52,7 +52,7 @@ for fn,keys in pages.items():
     page=page.replace('__TITLE_EN__',te).replace('__DESC_EN__',de).replace('__TITLE__',tt).replace('__DESC__',dt)
     page=re.sub(r'<title>[^<]*</title>','<title>'+tt+'</title>',page,count=1)
     page=page.replace('<nav>\n      <a href="'+fn+'"','<nav>\n      <a aria-current="page" href="'+fn+'"',1)
-    for a_,href in (('เมนู','shop.html'),('จัดชุดของขวัญ','gift.html'),('เรื่องของเรา','story.html'),('พาร์ทเนอร์','partner.html'),('คำถามที่พบบ่อย','faq.html'),('หน้าร้าน','visit.html')):
+    for a_,href in (('เมนู','shop.html'),('ชุดของขวัญ','gift.html'),('เรื่องของเรา','story.html'),('พาร์ทเนอร์','partner.html'),('คำถามที่พบบ่อย','faq.html'),('หน้าร้าน','visit.html')):
         if href==fn: page=re.sub(r'<a href="'+href+r'"( data-mega="\w+")?>'+a_+'</a>',lambda m:'<a aria-current="page" href="'+href+'"'+(m.group(1) or '')+'>'+a_+'</a>',page,count=1)
     if fn=='faq.html': page=page.replace('</head>','<script type="application/ld+json">'+FAQ_LD+'</script>\n</head>',1)
     open(fn,'w',encoding='utf-8').write(iconize(page))
