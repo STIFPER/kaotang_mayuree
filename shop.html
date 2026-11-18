@@ -1331,22 +1331,18 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 .gift-story .sec-head h2{font-size:clamp(2rem,3.6vw,3rem);line-height:1.15;margin:.15em 0 .3em}
 .gift-story .sec-head p:last-child{font-size:1rem;line-height:1.75}
 .gp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,18px)}
-.hh-story .gp-grid{grid-template-columns:repeat(12,1fr)}
-.hh-story .gp{grid-column:span 4}
-.hh-story .gp:nth-child(n+4){grid-column:span 3}
+.hh-story .gp-grid{grid-template-columns:repeat(4,1fr)}
 .gp{margin:0;aspect-ratio:2/3;border-radius:var(--r-lg);overflow:hidden;background:#EFEAD6;cursor:zoom-in}
 .gp img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
 .gp:hover img{transform:scale(1.04)}
+.sb-grid{grid-template-columns:repeat(2,1fr)!important;max-width:560px;margin-inline:auto}
 .sb-grid .gp{aspect-ratio:3/4}
 .gift-cta{margin-top:clamp(20px,3vw,32px)}
 .gset-ph[data-pos=sb] img{object-fit:cover!important;object-position:50% 70%!important}
 @media (max-width:700px){
   .gp-grid,.hh-story .gp-grid{grid-template-columns:1fr 1fr;gap:10px}
-  .hh-story .gp,.hh-story .gp:nth-child(n+4){grid-column:auto}
-  .hh-story .gp:last-child{grid-column:1/-1;aspect-ratio:4/3}
-  .hh-story .gp:last-child img{object-position:50% 40%}
-  .sb-grid .gp:first-child{grid-column:1/-1;aspect-ratio:4/3}
-  .sb-grid .gp:first-child img{object-position:50% 70%}
+  .hh-story .gp-grid{grid-template-columns:1fr 1fr!important}
+  .sb-grid{max-width:none}
   .gift-cta .pill{width:100%}
 }
 
@@ -2114,6 +2110,6 @@ const PRODUCT = {
 </script>
 <script src="assets/ui-icons.js?v=1" defer></script>
 <script src="assets/presentation.js?v=8" defer></script>
-<script src="assets/mobile.js?v=27" defer></script>
+<script src="assets/mobile.js?v=28" defer></script>
 </body>
 </html>

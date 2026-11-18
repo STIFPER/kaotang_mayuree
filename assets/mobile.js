@@ -74,7 +74,7 @@
   const url=f=>'assets/photos/'+f+'?v=12';
   const showPhoto=()=>{
    const f=list[gi];if(!f||!frame)return;
-   frame.dataset.fit=/jar/.test(f)?'contain':'cover';
+   frame.dataset.fit=/^product-jar/.test(f)?'contain':'cover';
    if(PHOTO_BG[f])frame.style.setProperty('--photo-bg',PHOTO_BG[f]);
    if(photo.getAttribute('src')!==url(f)){photo.style.opacity='.0';photo.onload=()=>{photo.style.opacity='1'};photo.src=url(f);setTimeout(()=>{photo.style.opacity='1'},400)}
    [...thumbs.children].forEach((b,i)=>{b.classList.toggle('on',i===gi);b.setAttribute('aria-current',String(i===gi))});
