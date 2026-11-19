@@ -58,9 +58,9 @@
  // Keep the product thumbnail beside its name on phones, restoring desktop order on resize.
  const shop=document.querySelector('#shop.hero'),choose=document.querySelector('#productChoose');
  if(shop&&choose){
-  const media=shop.querySelector('.media'),home=document.createComment('Desktop product media position');
+  const media=shop.querySelector('.media'),home=window.__mediaHome||document.createComment('Desktop product media position');
   const menu=document.querySelector('#menu.menu-sec'),menuHome=document.createComment('Desktop price menu position');if(menu)menu.before(menuHome);
-  media.before(home);const photo=media.querySelector('img'),options=document.querySelector('#opts');
+  if(!home.parentNode)media.before(home);const photo=media.querySelector('img'),options=document.querySelector('#opts');
   const review=shop.querySelector('.stars a');const nameReview=()=>review.setAttribute('aria-label',review.textContent.trim());nameReview();new MutationObserver(nameReview).observe(review,{childList:true,characterData:true,subtree:true});
   // Photo edges are feathered to the colour in PHOTO_BG, so the frame is filled with it and the whole product always shows.
   const PHOTO_BG={"product-jar-original-square.jpg":"#eae9ed","product-jar-salted-square.jpg":"#eae9ed","product-jar-jasmine-square.jpg":"#eae9ed","product-packs-stacked-square.jpg":"#dadbdb","product-packs-row-wide.jpg":"#c7c9c9"};
@@ -71,7 +71,7 @@
   thumbs.className='gallery-thumbs';thumbs.dataset.i18nSkip='';thumbs.setAttribute('role','group');
   if(frame)frame.appendChild(thumbs);
   let list=[],gi=0,lastKey='',lastSig='';
-  const url=f=>'assets/photos/'+f+'?v=12';
+  const url=f=>'assets/photos/'+f+'?v=13';
   const showPhoto=()=>{
    const f=list[gi];if(!f||!frame)return;
    frame.dataset.fit=/^product-jar/.test(f)?'contain':'cover';
@@ -120,12 +120,14 @@
   new MutationObserver(fold).observe(flavors,{childList:true,subtree:true});fold();
   mobile.addEventListener('change',()=>flavors.querySelectorAll('.flavor-more').forEach(d=>d.open=!mobile.matches));
  }
- // Both pages share the taller height so the card never changes size when switching tabs.
+ // หน้าสินค้าบนมือถือเลื่อนลงได้ตามปกติ: กรอบสูงเท่าหน้าที่เปิดอยู่ ไม่เหลือที่ว่างจากอีกหน้า
  document.querySelectorAll('[data-product-deck]').forEach(deck=>{
   const track=deck.querySelector('.deck-track'),pages=[...deck.querySelectorAll('.deck-page')];
-  const fit=()=>{if(compactNav.matches){track.style.height=Math.max(...pages.map(p=>p.scrollHeight))+'px';track.scrollTop=0}else track.style.height=''};
+  let fitBusy=false;
+  const fit=()=>{if(fitBusy)return;fitBusy=true;requestAnimationFrame(()=>{fitBusy=false;fitNow()})};
+  const fitNow=()=>{if(compactNav.matches){const on=pages.find(p=>p.getAttribute('aria-hidden')!=='true')||pages[0];track.style.setProperty('height',on.scrollHeight+'px','important');track.scrollTop=0}else track.style.removeProperty('height')};
   const resize=new ResizeObserver(fit);pages.forEach(page=>resize.observe(page));
-  pages.forEach(page=>new MutationObserver(fit).observe(page,{attributes:true,attributeFilter:['aria-hidden']}));
+  pages.forEach(page=>new MutationObserver(()=>fitNow()).observe(page,{attributes:true,attributeFilter:['aria-hidden']}));
   compactNav.addEventListener('change',fit);fit();
  });
  // Do not place a duplicate floating purchase button over the visible main action.

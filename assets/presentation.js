@@ -31,7 +31,7 @@
       render();
       track.scrollTop = 0;
       // Smooth scrolling fights scroll-snap (it stalls half-way on phones), so snap is paused while it runs.
-      const still = instant || matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const still = instant || matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(max-width:700px)').matches;
       clearTimeout(snapTimer);
       track.style.scrollSnapType = 'none';
       track.scrollTo({left:track.clientWidth*index, behavior: still ? 'auto' : 'smooth'});

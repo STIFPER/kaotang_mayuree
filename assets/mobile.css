@@ -77,7 +77,7 @@
  .hm-blurb p{font:400 16px/1.75 var(--body-font)!important}
  .hm-qual{padding:32px 0 40px}
  .hm-qual-grid{display:flex!important;width:calc(100% - 40px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0;overscroll-behavior-x:contain}
- .hm-qual-grid li{flex:0 0 82%;aspect-ratio:3/4;scroll-snap-align:start;border-radius:16px}
+ .hm-qual-grid li{flex:0 0 82%;aspect-ratio:4/5;scroll-snap-align:start;border-radius:16px}
  .photo-carousel-controls{width:calc(100% - 40px);margin:16px auto 0;display:flex;align-items:center;justify-content:space-between}
  .photo-carousel-controls button{width:44px;height:44px;border:1px solid var(--ink);border-radius:50%;font:400 22px var(--body-font)}
  .photo-carousel-controls button:disabled{opacity:.3}
@@ -139,7 +139,7 @@
  #shop .product-deck .qty b{font:600 21px/1.3 var(--body-font);padding-top:3px}
  #shop .qty span{font:500 12px/1.5 var(--body-font);padding:3px 0 10px}
  #shop .cta-row{margin-top:22px}
- #shop .cta-row .pill{min-height:52px;width:100%;font-size:16px!important}
+ #shop .cta-row .pill{min-height:44px;width:100%;font-size:14.5px!important;padding-block:0}
  .deck-footer button{min-height:48px;padding:12px 6px;font:600 13px/1.4 var(--body-font)}
  .deck-page#productRead{justify-content:flex-start;padding:20px 16px}
  .deck-page .tabs nav button{font:600 13px/1.4 var(--body-font);min-height:48px;padding:8px 4px}
@@ -156,6 +156,7 @@
  .fl-head .bowl{display:none}
  .sec-title{font-size:30px;line-height:1.3;max-width:18ch}
  .sec-sub{font:400 15px/1.7 var(--body-font);padding-inline:20px}
+ .sec-sub.fl-sub{font-size:18px}
  .fl-head{padding-bottom:0}
  .fl-grid{margin-top:28px;gap:16px;border:0}
  #flGrid .fl{padding:28px 20px;border:0;gap:24px;text-align:left;justify-items:stretch}
@@ -175,13 +176,13 @@
  /* Gifts: legible horizontal cards, with a visible next-card cue and controls. */
  .gift{padding-bottom:48px}
  .gift-overview{min-height:0;display:block;padding:28px 0 36px}
- .gift-overview .sec-head{max-width:none;text-align:left;margin:0 0 24px}
+ .gift-overview .sec-head{max-width:none;text-align:center;margin:0 0 24px}
  .gift-overview .sec-head h2{font-size:32px;line-height:1.25;margin:6px 0 12px}
  .gift-overview .sec-head h2 br{display:none}
  .gift-overview .sec-head p:last-child{font:400 15px/1.7 var(--body-font)}
  .gift-overview .gift-grid{gap:12px!important;padding:0 0 4px;align-items:stretch}
  .gift-overview .gset{flex-basis:calc(100% - 24px);padding:16px!important;gap:16px!important;border-radius:22px!important}
- .gift-overview .gset .gset-ph{height:240px!important;aspect-ratio:auto!important;border-radius:14px!important}
+ .gift-overview .gset .gset-ph{height:auto!important;aspect-ratio:4/5!important;border-radius:14px!important}
  .gift-overview .gset h3{font-size:24px!important;line-height:1.3}
  .gift-overview .gset h3 small{font:400 14px/1.5 var(--body-font)!important;margin-top:4px}
  .gift-overview .gset dl{gap:12px!important}
@@ -247,8 +248,9 @@
  .charcoal .wrap{gap:32px}
  .charcoal h2{font-size:36px;line-height:1.25;margin:14px 0 20px}
  .charcoal p{font:400 16px/1.8 var(--body-font)}
- .charcoal .ch-facts{margin:24px 0!important;gap:8px}
- .charcoal .ch-facts b{font-size:23px;line-height:1.25}
+ .charcoal .ch-facts{margin:24px 0!important;gap:8px;grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .charcoal .ch-facts li{padding-right:0!important}
+ .charcoal .ch-facts b{font-size:20px;line-height:1.25}
  .charcoal .ch-facts span{display:block;font:400 12px/1.6 var(--body-font);margin-top:5px}
  .charcoal .pill{width:100%;min-height:48px}
  .charcoal .ch-media{width:100%;padding:0 20px}
@@ -272,14 +274,16 @@
  .visit-overview{min-height:0;display:block;padding:20px 0 32px}
  .visit-overview .visit-card{border-radius:22px;border-width:1px;height:auto}
  .visit-overview .visit-media,.visit-overview .store-gal{height:240px!important;min-height:0!important}
+ .visit-overview .gal-track img{object-position:50% 30%!important}
  .visit-overview .visit-card .body{padding:24px 20px}
- .visit-overview .visit-card h2{font-size:32px;line-height:1.2;margin:10px 0 20px}
+ .visit-overview .visit-card h2{font-size:32px;line-height:1.45;margin:10px 0 20px}
  .visit-overview .visit-card .label{font-size:12px!important}
  .visit-overview .visit-card .tagline{font:400 13px/1.6 var(--body-font);margin:0 0 24px}
  .visit-overview .visit-card dl{margin:0}
- .visit-overview .visit-card dl div{grid-template-columns:80px 1fr!important;gap:12px;padding:14px 0;border-top:1px solid rgba(126,20,22,.12)}
- .visit-overview .visit-card dl dt{font:500 13px/1.6 var(--body-font)!important;align-items:flex-start;gap:6px}
- .visit-overview .visit-card dl dt .ic{margin-top:3px}
+ .visit-overview .visit-card dl div{grid-template-columns:1fr!important;gap:2px;padding:12px 0;border-top:1px solid rgba(126,20,22,.16)}
+ .visit-overview .visit-card dl div:first-child{border-top:0!important}
+ .visit-overview .visit-card dl dt{font:500 13px/1.6 var(--body-font)!important;align-items:flex-start;gap:10px}
+ .visit-overview .visit-card dl dt .ic{width:22px;height:22px;margin-top:1px}
  .visit-overview .visit-card dl dd{font:400 14px/1.7 var(--body-font);min-width:0}
  .visit-overview .visit-card dl dd .stars{font:400 13px/1.6 var(--body-font)!important}
  .visit-overview .visit-cta{margin-top:24px;gap:12px!important}
@@ -288,7 +292,8 @@
  .gal-btn{width:44px;height:44px}
  .visit-media .map-inset{right:12px;bottom:12px}
  .visit-media .map-inset a{min-height:44px;padding:8px 12px;font:500 12px/1.4 var(--body-font)!important}
- .visit-rv{padding-top:0;gap:24px}
+ .visit-rv{padding:24px 0 0!important;gap:20px}
+ .visit-rv .chip{padding:0!important;background:none}
  .visit-rv .rv-cap,.chip span{font:400 14px/1.6 var(--body-font)}
  .visit-rv .vr-photos{gap:8px!important;grid-template-columns:repeat(3,1fr)!important}
  .visit-rv .vr-photos img{width:100%;aspect-ratio:1;object-fit:cover}
@@ -335,7 +340,7 @@
  .home-page .hm-hero h1{font-size:35px!important}
  .about-hero h1{font-size:31px}
  .visit-overview .visit-card .body{padding:22px 16px}
- .gift-overview .gset .gset-ph{height:220px!important}
+ .gift-overview .gset .gset-ph{height:auto!important;aspect-ratio:4/5!important}
 }
 @media (prefers-reduced-motion:reduce){.mobile-nav *, .deck-track{scroll-behavior:auto!important}}
 /* Landscape phones keep the product and controls together instead of an 844px-tall photo. */
@@ -441,7 +446,7 @@
  .chap p{font-size:16px;line-height:1.85;max-width:none}
  .gift-overview .gift-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
  .gift-overview .gset{padding:20px;gap:16px}
- .gift-overview .gset .gset-ph{height:260px}
+ .gift-overview .gset .gset-ph{height:auto;aspect-ratio:4/5}
  .gift-overview .gset h3{font-size:25px;line-height:1.4}
  .gift-overview .gset dd{font-size:16px}
  .gift-overview .gset dt{font-size:13px!important}
@@ -573,7 +578,7 @@ button,a.pill{line-height:1.5}
  #shop .product-deck .qty b{font-size:21px;padding:9px 0 0}
  #shop .qty span{font-size:12px;padding:4px 0 9px}
  #shop .cta-row{margin-top:16px}
- #shop .cta-row .pill{min-height:50px}
+ #shop .cta-row .pill{min-height:44px}
  .deck-footer button{min-height:44px;font-size:12px}
  .hm-prods{grid-template-columns:1fr!important;gap:12px!important}
  .hm-prods .hm-prod,.hm-prods .hm-prod:nth-child(3){display:grid!important;grid-column:auto;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"stage tag" "stage h3" "stage pill";gap:5px 14px;align-items:center;padding:14px!important;text-align:left;min-height:146px}
@@ -702,7 +707,8 @@ button,a.pill{line-height:1.5}
  #productChoose .qtys .qty{display:flex!important;flex-wrap:wrap;align-items:baseline;justify-content:center;column-gap:8px;padding-bottom:7px}
  #productChoose .qtys .qty em{flex:0 0 100%}
  #productChoose .qtys .qty b{padding:5px 0 0;font-size:20px}
- #productChoose .qtys .qty span:not(.jar){padding:0;font-size:12.5px}
+ #productChoose .qtys .qty span:not(.jar){padding:0 0 2px;font-size:12.5px;flex:0 0 100%;text-align:center}
+ #productChoose .qtys .qty b{line-height:1.2}
  #productRead .badges{margin:0 0 10px;justify-content:center}
 }
 
@@ -758,3 +764,51 @@ button,a.pill{line-height:1.5}
 
 /* Gift card photos marked data-fit="contain" show the whole product on a matching background */
 .gset .gset-ph[data-pos=hh] img{object-fit:cover!important;object-position:46% 62%!important}
+
+/* หน้า Shop บนมือถือ: เลื่อนลงได้ตามปกติ ไม่บังคับให้พอดีหนึ่งจอแบบแอป — รูปใหญ่ขึ้น ระยะห่างโปร่งขึ้น */
+@media(max-width:700px){
+ .product-deck{height:auto!important;min-height:0!important;max-height:none!important}
+ .product-deck .deck-track{flex:0 0 auto!important;align-items:flex-start!important}
+ .product-deck .deck-page{height:auto!important;overflow:visible!important;padding:18px 18px 28px!important}
+ #productChoose{gap:12px!important}
+ #shop.hero .media{flex:0 0 auto!important;height:clamp(300px,96vw,420px)!important;max-height:none!important;margin:0 0 6px!important}
+ #shop .product-deck h1{font-size:28px!important;line-height:1.25!important}
+ #shop .product-deck h1 small{margin-top:8px!important;font-size:13px!important}
+ #shop .product-deck .price{margin:2px 0 0!important;font-size:17px!important}
+ #shop .product-deck .stars{margin:0 0 4px!important}
+ #productChoose .box-card{flex:none!important;display:block!important;margin:8px 0 0!important}
+ #productChoose .badges{margin:0 0 20px!important}
+ #productChoose .sel-label{margin:0 0 10px!important}
+ #productChoose .sel-label[style]{margin-top:22px!important}
+ #shop .opts{gap:10px}
+ #shop .opt{min-height:84px;padding:14px 6px!important}
+ #shop .qtys{gap:12px}
+ #productChoose .qtys .qty{padding-bottom:10px}
+ #productChoose .cta-row{margin-top:24px!important}
+ #productRead .tabs,#productRead .tabs .panel.on{flex:0 0 auto!important}
+ #productRead .tabs .nutri{flex:0 0 auto!important;margin:16px 0!important}
+ #productRead .purchase-channels{margin-top:0!important;padding-top:26px!important}
+}
+
+/* จองที่ให้ส่วนที่สคริปต์สร้างทีหลัง (ชื่อรส ราคา ตัวเลือก) หน้าไม่กระโดดตอนโหลดเสร็จ */
+@media(max-width:700px){
+ #productChoose{min-height:820px}
+}
+
+/* สลับ "เลือกสินค้า / รายละเอียดสินค้า": เปลี่ยนทันที มีแค่เฟดเข้าสั้น ๆ (ไม่สไลด์) */
+@keyframes deckIn{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){
+ .product-deck .deck-page:not([aria-hidden="true"]){animation:deckIn .14s ease-out}
+ .product-deck .deck-track{scroll-behavior:auto!important}
+}
+@media(prefers-reduced-motion:reduce){.product-deck .deck-page{animation:none!important}}
+
+/* ปุ่มเลือกรส: ชื่อรสอยู่ระดับเดียวกันทุกปุ่ม และกันที่คำอธิบายไว้ 2 บรรทัดเสมอ (ปุ่มสูงเท่ากัน) */
+@media(max-width:700px){
+ #shop .opt{justify-content:flex-start!important;gap:6px!important;padding:14px 6px 12px!important}
+ #shop .opt b{line-height:1.3}
+ #shop .opt span{display:block;min-height:2.8em}
+ /* อังกฤษ: ชื่อรสบางชื่อยาวขึ้นบรรทัดที่สองได้ จึงกันที่ชื่อไว้ 2 บรรทัดและจัดกึ่งกลาง ให้คำอธิบายเริ่มระดับเดียวกัน */
+ html[lang="en"] #shop .opt b{display:flex;align-items:center;justify-content:center;min-height:2.6em;text-align:center}
+}
+

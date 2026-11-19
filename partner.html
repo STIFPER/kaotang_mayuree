@@ -329,6 +329,7 @@ hr.dash{border:0;border-top:var(--rule);opacity:.7}
    WHY TRAY — line drawing + blob stickers
    ========================================================= */
 .why{padding:140px 0 120px;overflow:hidden}
+@media (min-width:1001px){.why{padding:clamp(24px,5svh,60px) 0}}
 .why .stage{position:relative;height:clamp(560px,62vw,760px)}
 .why .drawing{position:absolute;left:4%;top:8%;width:min(46%,520px);rotate:-14deg}
 .why .drawing path,.why .drawing rect,.why .drawing line,.why .drawing circle{fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s var(--ease)}
@@ -362,10 +363,17 @@ hr.dash{border:0;border-top:var(--rule);opacity:.7}
 .flavors{padding:130px 0 110px}
 .sec-title{text-align:center;font-size:clamp(2rem,4.2vw,3.6rem);max-width:16ch;margin:0 auto}
 .sec-sub{text-align:center;font-size:.88rem;margin:16px auto 0;max-width:52ch}
+.sec-sub.fl-sub{font-size:1.15rem;line-height:1.6;max-width:40ch}
 .fl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,24px);margin-top:70px;border-top:0}
 /* Three flavour cards side by side: pack on top (same height area), text and details below. */
 .fl{padding:clamp(28px,3vw,44px) clamp(20px,2.4vw,36px);display:flex;flex-direction:column;align-items:stretch;gap:16px;background:var(--cream);border-radius:var(--r-lg)}
 .fl .pack-pair{align-self:center;min-height:clamp(230px,20vw,290px);align-items:flex-end}
+/* จัดให้ dl และปุ่มเลือกรสอยู่แนวเดียวกันทุกการ์ด แม้ข้อความยาวไม่เท่ากัน:
+   กันที่ของคำอธิบาย (สูงสุด 3 บรรทัด) และแถว "จุดเด่น" (สูงสุด 2 บรรทัด) ไว้เท่ากันทุกใบ
+   แล้วค่อยดันปุ่มชิดขอบล่างเป็นตัวกันพลาดรอบสุดท้าย */
+.fl>div:last-child{display:flex;flex-direction:column;flex:1 1 auto}
+.fl dl{flex:0 0 auto}
+@media (min-width:1101px){.fl .pill{margin-top:24px!important}}
 .fl .q{font-size:clamp(1.9rem,2.6vw,2.4rem)}
 .fl dl{margin-top:4px}
 
@@ -385,7 +393,7 @@ hr.dash{border:0;border-top:var(--rule);opacity:.7}
 .faq-body{min-width:0;padding-right:62px}
 .faq-body h3{font-size:clamp(1.15rem,1.7vw,1.4rem);line-height:1.35;margin:2px 0 10px}
 .faq-a{margin:0 0 10px}
-.faq-a b{display:inline-block;background:var(--ochre);color:var(--ink);padding:.18em .85em;border-radius:999px;font-weight:700;line-height:1.5}
+.faq-a b{text-wrap:balance;display:inline-block;background:var(--ochre);color:var(--ink);padding:.18em .85em;border-radius:999px;font-weight:700;line-height:1.5}
 .faq-d{margin:0;color:var(--ink-2);line-height:1.75;max-width:60ch}
 .faq-more{text-align:center;margin-top:clamp(36px,5vw,64px)}
 .faq-more h2{font-size:clamp(1.8rem,3.6vw,2.8rem);margin:0 0 .3em}
@@ -681,9 +689,8 @@ hr.dash{display:none}
 .gift-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
 .gset{background:#EFEAD6;color:var(--ink);border-radius:var(--r-lg);padding:28px 24px;display:flex;flex-direction:column;gap:18px;transition:translate .35s var(--ease),rotate .35s var(--ease)}
 .gset:hover{translate:0 -6px;rotate:-1deg}
-.gset:nth-child(1){background:var(--pink,#E8C5BB)}
-.gset:nth-child(2){background:var(--cream)}
-.gset:nth-child(4){background:var(--pink,#E8C5BB)}
+.gset:nth-child(odd){background:var(--pink,#E8C5BB)}
+.gset:nth-child(even){background:var(--cream)}
 .gset h3{font-size:1.4rem;line-height:1.2}
 .gset h3 small{display:block;font-family:var(--mono);font-weight:400;font-size:.8rem;color:var(--ink-2);margin-top:4px}
 .gset dl,dl.ny{display:grid;gap:12px}
@@ -876,7 +883,7 @@ ol.timeline span{font-size:.88rem}
 .rv-cap{font-size:.96rem}
 .visit-card dl{font-size:.96rem}
 .visit-card .tagline{font-size:.92rem}
-.map-inset a{font-size:.78rem}
+.map-inset a{font-size:.78rem;align-items:center;gap:5px}
 .strip .head p{font-size:1.05rem}
 .follow{font-size:.9rem}
 footer .links{font-size:.95rem}
@@ -910,7 +917,7 @@ html[lang="en"] .fl p{line-height:1.6}
 
 /* ชุดของขวัญ: ช่องรูปประกอบบนการ์ด (ใส่ data-src="assets/photos/gift-small-bamboo-basket.jpg?v=3" ฯลฯ เพื่อแสดงรูป) */
 .gset{gap:16px}
-.gset .gset-ph{--r:4/3;border-radius:var(--r-md);border:1.5px dashed rgba(126,20,22,.45);background:rgba(255,255,255,.35);display:grid;place-items:center;text-align:center;margin:-4px -4px 2px}
+.gset .gset-ph{--r:4/5;border-radius:var(--r-md);border:1.5px dashed rgba(126,20,22,.45);background:rgba(255,255,255,.35);display:grid;place-items:center;text-align:center;margin:-4px -4px 2px}
 .gset .gset-ph figcaption{font-size:.84rem;line-height:1.5;color:var(--ink-2)}
 .gset .gset-ph.filled{border:0}
 
@@ -1338,6 +1345,11 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 .sb-grid{grid-template-columns:repeat(2,1fr)!important;max-width:560px;margin-inline:auto}
 .sb-grid .gp{aspect-ratio:3/4}
 .gift-cta{margin-top:clamp(20px,3vw,32px)}
+.gset-ph[data-pos=c1] img{object-position:50% 40%}
+.gset-ph[data-pos=c2] img{object-position:50% 25%}
+.gset-ph[data-pos=c3] img{object-position:50% 30%}
+.gset-ph[data-pos=c4] img{object-position:50% 35%}
+.gset-ph[data-pos=c5] img{object-position:50% 25%}
 .gset-ph[data-pos=sb] img{object-fit:cover!important;object-position:50% 70%!important}
 @media (max-width:700px){
   .gp-grid,.hh-story .gp-grid{grid-template-columns:1fr 1fr;gap:10px}
@@ -1384,7 +1396,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 /* ขั้นตอนการทำ: หัวข้อเดียว ขนาดใหญ่ */
 .process .sec-head h2{margin-top:0}
 .charcoal .label{font-size:1rem;letter-spacing:.06em}
-.ch-facts li:last-child b{white-space:nowrap}
+.ch-facts b{white-space:nowrap}
 /* เรื่องของเรา */
 .chap .pic{position:relative}
 .chap .pic-cap{position:absolute;left:12px;bottom:12px;padding:.4em .9em;border-radius:999px;background:rgba(251,239,230,.94);color:var(--ink);font-size:.85rem;line-height:1.3}
@@ -1392,17 +1404,35 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 /* ชุดของขวัญ */
 .gift-overview .sec-head .gift-kicker{font-size:clamp(1.5rem,2.6vw,2.2rem)!important;font-weight:700;letter-spacing:.04em!important;margin-bottom:.2em}
 html[lang="en"] .gift-kicker{display:none}
+html[lang="en"] .visit-title-br{display:none}
 .gset dt{font-weight:700}
-.gset dt:empty{display:none}
+.gset dt:empty{display:block;visibility:hidden;min-height:1.4em}
+@media (min-width:1001px){
+  .gift-grid{grid-template-columns:repeat(3,1fr)!important;grid-auto-rows:auto;gap:40px}
+  .gset{grid-row:span 3;display:grid;grid-template-rows:subgrid;row-gap:16px;gap:16px}
+  .gset dl{align-content:start}
+  /* ให้ทั้ง 3 การ์ดแถวแรกอยู่ในหนึ่งหน้าจอ: ขนาดรูปคำนวณจากความสูงหน้าต่าง (คงสัดส่วน 2:3) */
+  .gift-overview{--gw:max(140px,calc((100svh - 500px)*4/5))}
+  .gift-overview .gift-grid{max-width:min(100%,calc(3*var(--gw) + 3*40px + 2*40px));margin-inline:auto;gap:40px}
+  .gift-overview .gset{padding:20px;row-gap:12px;gap:12px}
+  .gift-overview .gset h3{font-size:1.2rem}
+  .gift-overview .gset h3 small{font-size:.74rem;margin-top:2px}
+  .gift-overview .gset dl{gap:6px}
+  .gift-overview .gset dt{font-size:.72rem!important}
+  .gift-overview .gset dd{font-size:.82rem!important}
+  .gift-overview .gset dl b{font-size:1.2rem!important}
+}
 .gset-ph{cursor:zoom-in}
 .lightbox{border:0;padding:0;background:transparent;max-width:min(92vw,1100px);max-height:92svh;overflow:visible}
 .lightbox::backdrop{background:rgba(30,6,8,.82)}
+.lightbox.fixed img{height:min(88svh,860px);width:auto;max-width:92vw;aspect-ratio:2/3;object-fit:contain;background:var(--cream)}
+@media (max-width:700px){.lightbox.fixed img{width:auto;height:auto;max-width:92vw;max-height:84svh;aspect-ratio:auto;background:none}}
 .lightbox img{display:block;max-width:min(92vw,1100px);max-height:88svh;width:auto;height:auto;border-radius:14px}
 .lb-x{position:absolute;top:-14px;right:-14px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font-size:1.4rem;line-height:1;cursor:pointer}
 @media (max-width:700px){.lb-x{top:8px;right:8px}}
 </style>
-<link rel="stylesheet" href="assets/presentation.css?v=4">
-<link rel="stylesheet" href="assets/mobile.css?v=54">
+<link rel="stylesheet" href="assets/presentation.css?v=39">
+<link rel="stylesheet" href="assets/mobile.css?v=72">
 </head>
 <body>
 
@@ -1418,7 +1448,7 @@ html[lang="en"] .gift-kicker{display:none}
       <a aria-current="page" href="partner.html">พาร์ทเนอร์</a>
     </nav>
     <div class="mobile-header-actions"><button class="menu-btn label" id="menuBtn" aria-label="เมนู" aria-expanded="false" data-i18n-skip>เมนู</button><a class="quick-menu" href="shop.html">เมนูสินค้า</a></div>
-    <a href="index.html" class="logo" aria-label="มยุรี"><img src="assets/wordmark.png" alt="มยุรี"></a>
+    <a href="index.html" class="logo" aria-label="มยุรี"><img src="assets/wordmark.png" alt="มยุรี" loading="lazy" decoding="async"></a>
     <div class="tools">
       <a href="visit.html">หน้าร้าน</a>
       <a class="nav-faq" href="faq.html">คำถามที่พบบ่อย</a>
@@ -1457,9 +1487,9 @@ html[lang="en"] .gift-kicker{display:none}
       <div class="mega-feat">
         <h6>แนะนำ</h6>
         <div class="cards">
-          <a class="mcard" href="shop.html?opt=original" data-pick-opt="original" style="--bg:#E8C5BB"><span class="art"><span class="pack salted" data-pack style="--w:84px"></span></span><b>รสดั้งเดิม</b></a>
+          <a class="mcard" href="shop.html?opt=original" data-pick-opt="original" style="--bg:#EFEAD6"><span class="art"><span class="pack salted" data-pack style="--w:84px"></span></span><b>รสดั้งเดิม</b></a>
           <a class="mcard" href="shop.html?opt=jasmine" data-pick-opt="jasmine" style="--bg:#EFEAD6"><span class="art"><span class="pack jasmine" data-pack style="--w:84px"></span></span><b>รสข้าว</b></a>
-          <a class="mcard" href="gift.html"><span class="art"><img src="assets/photos/gift-happy-holiday-tote.jpg" alt=""></span><b>กล่องของขวัญ</b></a>
+          <a class="mcard" href="gift.html"><span class="art"><img src="assets/photos/gift-happy-holiday-tote.jpg" alt="" loading="lazy" decoding="async"></span><b>กล่องของขวัญ</b></a>
           <a class="mcard vid" href="craft.html#charcoal"><span class="art"><video src="assets/video/charcoal-preview.mp4?v=3" poster="assets/video/charcoal-poster.jpg?v=3" muted loop playsinline preload="none"></video><i class="play"><svg class="ui-icon ui-icon-solid" viewBox="0 0 24 24" aria-hidden="true" focusable="false" data-i18n-skip><path d="m8 5 11 7-11 7Z"/></svg></i></span><b>ดูเตาถ่าน</b></a>
         </div>
       </div>
@@ -1486,7 +1516,7 @@ html[lang="en"] .gift-kicker{display:none}
         <h6>เบื้องหลัง</h6>
         <div class="cards">
           <a class="mcard vid tall" href="craft.html#charcoal"><span class="art"><video src="assets/video/charcoal-preview.mp4?v=3" poster="assets/video/charcoal-poster.jpg?v=3" muted loop playsinline preload="none"></video><i class="play"><svg class="ui-icon ui-icon-solid" viewBox="0 0 24 24" aria-hidden="true" focusable="false" data-i18n-skip><path d="m8 5 11 7-11 7Z"/></svg></i></span><b>รู้มั้ยเราใช้เตาถ่านผัดข้าวตังอยู่นะ</b></a>
-          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/story-founder-portrait.jpg" alt=""></span><b>คุณยายสมสมร</b></a>
+          <a class="mcard tall" href="story.html"><span class="art"><img src="assets/photos/story-founder-portrait.jpg" alt="" loading="lazy" decoding="async"></span><b>คุณยายสมสมร</b></a>
           <a class="mcard vid tall" href="craft.html#process"><span class="art"><video src="assets/video/care-cutting-loop.mp4?v=3" poster="assets/video/care-cutting-poster.jpg" muted loop playsinline preload="none"></video><i class="play"><svg class="ui-icon ui-icon-solid" viewBox="0 0 24 24" aria-hidden="true" focusable="false" data-i18n-skip><path d="m8 5 11 7-11 7Z"/></svg></i></span><b>ใส่ใจทุกขั้นตอน</b></a>
           <a class="mcard vid tall" href="craft.html#strip"><span class="art"><video src="assets/video/howto-picnic-stopmotion.mp4" poster="assets/video/howto-picnic-poster.jpg" muted loop playsinline preload="none"></video><i class="play"><svg class="ui-icon ui-icon-solid" viewBox="0 0 24 24" aria-hidden="true" focusable="false" data-i18n-skip><path d="m8 5 11 7-11 7Z"/></svg></i></span><b>ทานยังไงให้อร่อย</b></a>
         </div>
@@ -1507,7 +1537,7 @@ html[lang="en"] .gift-kicker{display:none}
           <a class="pill outline" href="tel:0896666665">โทร 089 666 6665</a>
         </div>
       </div>
-      <figure class="shot rv-in d1"><img src="assets/photos/mini-green-basket.jpg" alt="กล่อง Mini ในตะกร้า"></figure>
+      <figure class="shot rv-in d1"><img src="assets/photos/mini-green-basket.jpg" alt="กล่อง Mini ในตะกร้า" loading="lazy" decoding="async"></figure>
     </div>
 
     <div class="corp-grid">
@@ -1534,7 +1564,7 @@ html[lang="en"] .gift-kicker{display:none}
       <h2 class="display">มยุรี × แบรนด์พาร์ทเนอร์</h2>
       <p>ตัวอย่างฉลากร่วมแบรนด์บนกระปุกมยุรี ชื่อแบรนด์ในภาพเป็นตัวอย่างเพื่อแสดงรูปแบบ</p>
     </div>
-    <div class="pt-trio rv-in"><figure class="pt-tile"><div class="pt-photo"><img src="assets/partner/jar-namwan-honey.jpg?v=2" alt="กระปุกมยุรี × Namwan Honey ตัวอย่างฉลากร่วมแบรนด์" loading="lazy"></div><figcaption><b>มยุรี × Namwan Honey</b><span>น้ำผึ้ง</span></figcaption></figure><figure class="pt-tile"><div class="pt-photo"><img src="assets/partner/jar-prik-baan.jpg?v=2" alt="กระปุกมยุรี × Prik Baan ตัวอย่างฉลากร่วมแบรนด์" loading="lazy"></div><figcaption><b>มยุรี × Prik Baan</b><span>น้ำพริก</span></figcaption></figure><figure class="pt-tile"><div class="pt-photo"><img src="assets/partner/jar-rimnam-resort.jpg?v=6" alt="กระปุกมยุรี × Rimnam Resort ตัวอย่างฉลากร่วมแบรนด์" loading="lazy"></div><figcaption><b>มยุรี × Rimnam Resort</b><span>รีสอร์ต</span></figcaption></figure></div>
+    <div class="pt-trio rv-in"><figure class="pt-tile"><div class="pt-photo"><img src="assets/partner/jar-namwan-honey.jpg?v=2" alt="กระปุกมยุรี × Namwan Honey ตัวอย่างฉลากร่วมแบรนด์" loading="lazy"></div><figcaption><b>มยุรี × Namwan Honey</b><span>น้ำผึ้ง</span></figcaption></figure><figure class="pt-tile"><div class="pt-photo"><img src="assets/partner/jar-prik-baan.jpg?v=2" alt="กระปุกมยุรี × Prik Baan ตัวอย่างฉลากร่วมแบรนด์" loading="lazy"></div><figcaption><b>มยุรี × Prik Baan</b><span>น้ำพริก</span></figcaption></figure><figure class="pt-tile"><div class="pt-photo"><img src="assets/partner/jar-partner-sample-blue.jpg" alt="กระปุกมยุรี × แบรนด์พาร์ทเนอร์ ตัวอย่างฉลากร่วมแบรนด์" loading="lazy"></div><figcaption><b>มยุรี × แบรนด์พาร์ทเนอร์</b><span>ดีไซน์ตัวอย่าง</span></figcaption></figure></div>
 
     <a class="corp-band rv-in" href="https://lin.ee/xAbIkYZn" target="_blank" rel="noopener"><div><b>ติดต่อเราได้ที่ LINE OFFICIAL</b></div><i><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" data-i18n-skip><path d="M4 12h16m-7-7 7 7-7 7"/></svg></i></a>
   </div>
@@ -1625,9 +1655,9 @@ const PRODUCT = {
       notes:[["รสชาติ","หอมหมูหยอง ไม่มีความหวานจากน้ำตาลเพิ่ม เค็มนำ"],["จุดเด่น","ทานได้เรื่อย ๆ ไม่มีความหวาน"],["ขนาด","190 g"]], pickLabel:"เลือกรสเค็ม",
       en:{ q:"Salted", sub:"เค็ม", text:"The classic salty recipe, as delicious as ever, with no added sugar — for anyone who prefers less sweet. Charcoal-fragrant crackers with generous pork floss.",
            notes:[["Flavor","Pork floss aroma, salty-forward, no added sugar"],["Highlight","Easy to keep snacking — not sweet at all"],["Size","190 g"]], pickLabel:"Choose Salted" } },
-    { pack:"jasmine", opt:"jasmine", photos:["assets/photos/product-dicut-jasmine.webp?v=1"], q:"รสข้าว", sub:"Jasmine Rice", text:"หอมข้าวหอมมะลิล้วน ๆ สูตรนี้ไม่ใส่หมูหยอง คนไม่ทานเนื้อสัตว์ก็ทานได้ ให้กลิ่นข้าวและไฟถ่านเป็นพระเอก",
+    { pack:"jasmine", opt:"jasmine", photos:["assets/photos/product-dicut-jasmine.webp?v=1"], q:"รสข้าว", sub:"Jasmine Rice", text:"หอมข้าวหอมมะลิล้วน ๆ สูตรนี้ไม่ใส่หมูหยอง คนไม่ทานเนื้อสัตว์ก็ทานได้ ให้กลิ่นข้าวเป็นหลัก",
       notes:[["รสชาติ","หวานเค็มเบา ๆ ได้กลิ่นหอมของข้าว"],["จุดเด่น","ข้าวเน้น ๆ ไม่มีหมูหยอง"],["ขนาด","190 g"]], pickLabel:"เลือกรสข้าว",
-      en:{ q:"Jasmine Rice", sub:"ข้าว", text:"Pure jasmine-rice fragrance. This recipe has no pork floss, so vegetarians can enjoy it too — the aroma of rice and charcoal takes the lead.",
+      en:{ q:"Jasmine Rice", sub:"ข้าว", text:"Pure jasmine-rice fragrance. This recipe has no pork floss, so vegetarians can enjoy it too — the aroma of rice comes first.",
            notes:[["Flavor","Lightly sweet & salty with a jasmine rice aroma"],["Highlight","All about the rice — no pork floss"],["Size","190 g"]], pickLabel:"Choose Jasmine Rice" } },
   ],
   reviews: [
@@ -1661,18 +1691,34 @@ const PRODUCT = {
   /* แพ็กเกจจริงจากไฟล์อาร์ตเวิร์ก: assets/pack-{salted|jasmine}[-mini].png */
   const packHTML = p => {
     const mini = p.dataset.size === "mini", file = p.classList.contains("jasmine") ? (mini ? "flavor-lite-mini" : "flavor-lite") : p.classList.contains("orange") ? (mini ? "flavor-salty-orange-mini" : "flavor-salty-orange") : (mini ? "flavor-salted-mini" : "flavor-original");
-    return `<img class="package-graphic" src="assets/${file}.svg" alt="" aria-hidden="true">`;
+    return `<img class="package-graphic" src="assets/${file}.svg" alt="" aria-hidden="true" loading="lazy" decoding="async">`;
   };
   const fillPacks = () => $$("[data-pack]").forEach(p => { if (!p.children.length) p.innerHTML = packHTML(p); });
 
   const ph = (cap, sub="", src="") => `<figure class="ph" data-src="${src}"><figcaption><b>${cap}</b>${sub}</figcaption></figure>`;
+  /* โหลดรูปเมื่อใกล้ถึงจอ (ล่วงหน้า ~700px) แทนการโหลดทุกใบพร้อมกันตอนเปิดหน้า — จอแรกขึ้นเร็วขึ้น ไม่แย่งแบนด์วิดท์ */
+  const photoIO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ photoIO.unobserve(e.target); attachPhoto(e.target); }
+  }), { rootMargin:"700px" }) : null;
+  function attachPhoto(f){
+    const src = f.dataset.src.trim();
+    if (!src || f.querySelector("img")) return;
+    const img = new Image(); img.alt = f.querySelector("b")?.textContent || ""; img.decoding = "async";
+    img.onload = () => f.classList.add("filled"); img.src = src; f.prepend(img);
+  }
+  /* รูปที่อยู่นอกจอทางซ้าย/ขวา (แถบเลื่อนข้าง/ป้ายวิ่ง) ตัวสังเกตตรวจไม่เจอ จึงโหลดหลังหน้าโหลดเสร็จแทน */
+  const lateQueue = [];
+  const flushLate = () => { lateQueue.splice(0).forEach(attachPhoto); };
+  addEventListener("load", () => setTimeout(flushLate, 300));
   function loadPhotos(){
     $$(".ph[data-src]").forEach(f => {
-      const src = f.dataset.src.trim();
-      if (!src || f.querySelector("img")) return;
-      const img = new Image(); img.alt = f.querySelector("b")?.textContent || "";
-      img.onload = () => f.classList.add("filled"); img.src = src; f.prepend(img);
+      if (!f.dataset.src.trim() || f.querySelector("img") || f.dataset.watching) return;
+      f.dataset.watching = "1";
+      const r = f.getBoundingClientRect();
+      if (r.width && (r.left < 0 || r.right > innerWidth + 1)){ lateQueue.push(f); return; }
+      if (photoIO) photoIO.observe(f); else attachPhoto(f);
     });
+    if (document.readyState === "complete") flushLate();
   }
 
   /* ----- hero options ----- */
@@ -1693,7 +1739,7 @@ const PRODUCT = {
     PRODUCT.sizes.forEach((q,i) => {
       const b = document.createElement("button"); b.className = "qty";
       const big = q.id === "big";
-      b.innerHTML = `<em>${pick(q,"tag")}</em><span class="jar"><img src="assets/lineart-jar.png" alt="" style="height:${big?78:50}px"></span><b>${q.w}</b><span>${baht(q.price)} / ${t("กระปุก","jar")}</span>`;
+      b.innerHTML = `<em>${pick(q,"tag")}</em><span class="jar"><img src="assets/lineart-jar.webp" alt="" style="height:${big?78:50}px" loading="lazy" decoding="async"></span><b>${q.w}</b><span>${baht(q.price)} / ${t("กระปุก","jar")}</span>`;
       b.onclick = () => { st.q = i; if (q.id === "mini") st.opt = PRODUCT.options.findIndex(o => o.mini); render(true); };
       qtys.appendChild(b);
     });
@@ -1766,7 +1812,7 @@ const PRODUCT = {
     document.addEventListener("click", e => {
       const f = e.target.closest(".gset-ph, .gp"); if (!f) return;
       const im = f.querySelector("img"); if (!im) return;
-      lbImg.src = im.currentSrc || im.src; lbImg.alt = im.alt; lb.showModal();
+      lb.classList.toggle("fixed", f.classList.contains("gset-ph")); lbImg.src = im.currentSrc || im.src; lbImg.alt = im.alt; lb.showModal();
     });
     lb.querySelector(".lb-x").onclick = () => lb.close();
     lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
@@ -1786,12 +1832,48 @@ const PRODUCT = {
         </div>
       </article>`).join("");
     $$("[data-pick]").forEach(a => a.onclick = () => { st.opt = PRODUCT.options.findIndex(o => o.id === a.dataset.pick); render(true); });
+    syncFlRows();
   }
+  /* การ์ด 3 รสวางเรียงกัน: ทำให้คำอธิบายและแต่ละแถวในตาราง (รสชาติ/จุดเด่น/ขนาด) สูงเท่ากันทุกใบ
+     กรอบตารางและปุ่มจึงอยู่แนวเดียวกันทุกความกว้างจอและทุกภาษา (ไม่แตะข้อความ) */
+  function syncFlRows(){
+    const cards = $$("#flGrid .fl"); if (!cards.length) return;
+    const parts = c => [c.querySelector("p"), ...c.querySelectorAll("dl > div")];
+    cards.forEach(c => parts(c).forEach(e => e && (e.style.minHeight = "")));
+    const tops = cards.map(c => Math.round(c.getBoundingClientRect().top));
+    if (new Set(tops).size !== 1) return;            /* ไม่ได้วางเรียงแถวเดียว (มือถือ/แท็บเล็ต) ไม่ต้องจัด */
+    const n = Math.max(...cards.map(c => parts(c).length));
+    for (let i = 0; i < n; i++){
+      const els = cards.map(c => parts(c)[i]).filter(Boolean);
+      const h = Math.max(...els.map(e => e.getBoundingClientRect().height));
+      els.forEach(e => e.style.minHeight = h + "px");
+    }
+  }
+  let flT; addEventListener("resize", () => { clearTimeout(flT); flT = setTimeout(syncFlRows, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncFlRows);
   buildFlavors();
 
+  /* ทำไมต้องมยุรี: ย่อทั้งองค์ประกอบให้พอดีหนึ่งหน้าจอ (Desktop) เลื่อนมาถึงแล้วเห็นครบโดยไม่ต้องเลื่อนขึ้นลง */
+  function fitWhy(){
+    const st = document.querySelector(".why .stage"); if (!st) return;
+    st.style.zoom = "";
+    if (innerWidth <= 1000) return;
+    const cs = getComputedStyle(st.closest(".why"));
+    const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    const head = (document.querySelector("header") || {}).offsetHeight || 68;
+    const z = Math.max(.45, Math.min(1, (innerHeight - head - pad) / st.getBoundingClientRect().height));
+    if (z < 1) st.style.zoom = z;
+  }
+  fitWhy();
+  let whyT; addEventListener("resize", () => { clearTimeout(whyT); whyT = setTimeout(fitWhy, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWhy);
+
   /* ----- photo strip (duplicated for seamless loop) ----- */
-  const items = PRODUCT.strip.map(([src, cap]) => ph(cap, "รูปโซเชียล", src)).join("");
-  $("#track").innerHTML = items + items;
+  /* หน้าที่ไม่มีแถบรูป (#track เป็นตัวหุ้มที่ซ่อนอยู่) ไม่ต้องสร้างและโหลดรูป 20 ใบที่มองไม่เห็น */
+  if (!$("#track").hidden){
+    const items = PRODUCT.strip.map(([src, cap]) => ph(cap, "รูปโซเชียล", src)).join("");
+    $("#track").innerHTML = items + items;
+  }
 
   fillPacks(); loadPhotos(); render();
 
@@ -1811,12 +1893,22 @@ const PRODUCT = {
 
   /* ----- header swap + bleed zoom ----- */
   const header = $("#header"), hero = $("#shop"), bleed = $("#bleedPh");
-  addEventListener("scroll", () => {
-    header.classList.toggle("alt", hero.offsetHeight > 0 && scrollY > hero.offsetTop + hero.offsetHeight - 120);
-    header.classList.toggle("scrolled", scrollY > 10);
-    const r = bleed.getBoundingClientRect();
-    if (r.top < innerHeight && r.bottom > 0) bleed.style.setProperty("--z", (1.12 - .12 * (1 - r.top / innerHeight)).toFixed(3));
-  }, { passive:true });
+  let heroEnd = 0, hdrBusy = false;
+  /* หน้าที่ไม่มีส่วนสินค้า (hero สูง 0) ไม่ต้องสลับสีเมนู */
+  const measureHero = () => { heroEnd = hero.offsetHeight > 0 ? hero.offsetTop + hero.offsetHeight - 120 : Infinity; };
+  const hdrTick = () => {
+    hdrBusy = false;
+    const alt = scrollY > heroEnd, sc = scrollY > 10;
+    if (alt !== header.classList.contains("alt")) header.classList.toggle("alt", alt);
+    if (sc !== header.classList.contains("scrolled")) header.classList.toggle("scrolled", sc);
+    if (bleed.offsetParent !== null){
+      const r = bleed.getBoundingClientRect();
+      if (r.top < innerHeight && r.bottom > 0) bleed.style.setProperty("--z", (1.12 - .12 * (1 - r.top / innerHeight)).toFixed(3));
+    }
+  };
+  measureHero(); addEventListener("load", measureHero); addEventListener("resize", measureHero);
+  addEventListener("scroll", () => { if (!hdrBusy){ hdrBusy = true; requestAnimationFrame(hdrTick); } }, { passive:true });
+  hdrTick();
 
   /* ----- mega menu: hover (desktop) / ปุ่มเมนู (มือถือ) ----- */
   const panels = { shop:$("#mega-shop"), story:$("#mega-story") }, scrim = $("#megaScrim");
@@ -1866,10 +1958,16 @@ const PRODUCT = {
   });
   /* ----- ภาพชามหมุนตามการเลื่อน ----- */
   const spins = $$("[data-spin]");
-  addEventListener("scroll", () => spins.forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (r.bottom > 0 && r.top < innerHeight) el.style.rotate = ((r.top - innerHeight/2) * +el.dataset.spin).toFixed(1) + "deg";
-  }), { passive:true });
+  let spinBusy = false;
+  const spinTick = () => {
+    spinBusy = false;
+    spins.forEach(el => {
+      if (el.offsetParent === null) return;
+      const r = el.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < innerHeight) el.style.rotate = ((r.top - innerHeight/2) * +el.dataset.spin).toFixed(1) + "deg";
+    });
+  };
+  if (spins.length) addEventListener("scroll", () => { if (!spinBusy){ spinBusy = true; requestAnimationFrame(spinTick); } }, { passive:true });
 
   /* =========================================================
      I18N — พจนานุกรมไทย → English (ข้อความคงที่ในหน้า)
@@ -1926,16 +2024,16 @@ const PRODUCT = {
     "ดูคลิปเพิ่มใน TikTok ↗":"More clips on TikTok ↗","ไฟถ่าน":"Charcoal","เปิดเสียง":"Sound on",
     /* flavors */
     "ข้าวตังแผ่นเดียวกัน":"One cracker,","อร่อยสามแบบ":"three ways to enjoy","รับข่าวทาง LINE":"Get updates on LINE",
-    "ทำมือสูตรเดิมทุกแผ่น ต่างกันที่การปรุง เลือกตามอารมณ์ หรือจะลองทุกรสก็ได้":"The same handmade recipe, seasoned three ways. Pick by mood — or try them all.",
+    "ทำมือสูตรเดิมทุกแผ่น ต่างกันที่การปรุง":"The same handmade recipe, seasoned three ways.","เลือกตามอารมณ์ หรือจะลองทุกรสก็ได้":"Pick by mood — or try them all.",
     /* menu */
     "เมนู มยุรี":"Mayuree","3 รสชาติ 2 ไซส์ ทำมือทุกกระปุก":"3 flavors · 2 sizes · handmade in every jar","Size ใหญ่":"Large size",
-    "พาร์ทเนอร์":"Partners","ร่วมเป็นพาร์ทเนอร์":"Become a partner","กับมยุรี":"with Mayuree","ร้านของฝาก คาเฟ่ ร้านอาหาร และแบรนด์ที่อยากนำข้าวตังมยุรีไปวางขาย หรือทำแพ็กเกจร่วมกัน คุยกับเราได้เลย":"Gift shops, cafés, restaurants and brands that want to stock Mayuree or build a pack together — talk to us","คุยเรื่องพาร์ทเนอร์ทาง LINE":"Talk partnership on LINE","ร้านของฝากและร้านค้า":"Gift shops and stores","นำข้าวตังมยุรีไปวางขายในร้านของคุณ พูดคุยเรื่องรูปแบบการขายและจำนวนได้":"Stock Mayuree in your store — we can talk about format and quantities","คาเฟ่และร้านอาหาร":"Cafés and restaurants","เสิร์ฟคู่เครื่องดื่มหรือเป็นของทานเล่นในร้าน":"Serve with drinks or as a snack in your venue","ร่วมแบรนด์ (Co-branding)":"Co-branding","ทำสายคาด สติกเกอร์ หรือกล่องร่วมกับโลโก้และสีของแบรนด์คุณ":"Sleeves, stickers or boxes with your logo and colors","เริ่มคุยกันง่ายๆ":"Easy to get started","บอกว่าเป็นร้านหรือแบรนด์แบบไหน และสนใจอะไร":"Tell us about your shop or brand and what you are after","คุยรูปแบบและราคา":"Discuss format and pricing","ตกลงรสชาติ ขนาด จำนวน และเงื่อนไขร่วมกัน":"Agree flavors, sizes, quantities and terms together","เริ่มส่งสินค้า":"Start shipping","ทำมือที่ครัวสุขุมวิท 51 แล้วส่งถึงร้านของคุณ":"Handmade at our Sukhumvit 51 kitchen and delivered to your shop","ตัวอย่างงานออกแบบ Co-branding":"Co-branding design samples","มยุรี × แบรนด์พาร์ทเนอร์":"Mayuree × partner brands","ตัวอย่างฉลากร่วมแบรนด์บนกระปุกมยุรี เลือกได้ 2 สไตล์ ชื่อแบรนด์ในภาพเป็นตัวอย่างเพื่อแสดงรูปแบบ":"Sample co-branded labels on the Mayuree jar, in two styles. Brand names shown are examples of the format.","สไตล์ A · ฉลากสีเต็ม":"Style A · Full-color label","สไตล์ B · ฉลากพื้นครีม":"Style B · Cream label","สไตล์ A":"Style A","สไตล์ B":"Style B","ฉลากสีเต็ม":"Full-color label","ฉลากพื้นครีม":"Cream label","พื้นสีเต็มของแบรนด์พาร์ทเนอร์อยู่ใต้โลโก้มยุรี ให้แบรนด์ของคุณโดดเด่นบนชั้นวาง":"The partner brand's full-color panel sits under the Mayuree logo so your brand stands out on the shelf","พื้นครีมกลมกลืนกับมยุรี และแทรกภาพเมนูของแบรนด์ลงในฉลาก":"A cream base that blends with Mayuree, with your signature menu artwork worked into the label","ชาไทย":"Thai tea","ชา":"Tea","รีสอร์ต":"Resort","เบเกอรี่":"Bakery","มะพร้าว":"Coconut","พริก":"Chili","กาแฟ":"Coffee","น้ำผึ้ง":"Honey","แบ่งกันกิน":"Sharing","รสเค็ม Salted":"Salted","฿165 · ดูรสเค็ม":"฿165 · View Salted","ภาพบรรยากาศ":"Lifestyle photo","รูปชุดของขวัญ":"Gift set photo","ตัวอย่างฉลากร่วมแบรนด์บนกระปุกมยุรี ชื่อแบรนด์ในภาพเป็นตัวอย่างเพื่อแสดงรูปแบบ":"Sample co-branded labels on the Mayuree jar. The brand names shown are examples of the format.","มยุรี × Rimnam Resort":"Mayuree × Rimnam Resort","มยุรี × Prik Baan":"Mayuree × Prik Baan","มยุรี × Namwan Honey":"Mayuree × Namwan Honey","น้ำพริก":"Chili relish","น้ำผึ้ง":"Honey","ของขวัญบริษัท · Co-branding · ใบเสนอราคา":"Company gifts · Co-branding · Quotation","ข้อมูลสินค้า":"Product information","หน้าข้อมูลสินค้า":"Product information page","ข้าวตังเสิร์ฟคู่ชาเขียวบนโต๊ะเล็ก":"Rice crackers served with green tea on a small table","ข้าวตังและผลไม้บนโต๊ะที่แบ่งกันกิน":"Rice crackers and fruit on a shared table","กล่อง Mini ในตะกร้า":"Mini boxes in a basket","กระปุกมยุรี × Rimnam Resort ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Rimnam Resort — sample co-branded label","กระปุกมยุรี × Prik Baan ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Prik Baan — sample co-branded label","กระปุกมยุรี × Namwan Honey ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Namwan Honey — sample co-branded label","ชุดของขวัญก่อนหน้า":"Previous gift set","ชุดของขวัญถัดไป":"Next gift set","รูปก่อนหน้า":"Previous photo","รูปถัดไป":"Next photo","ข้าวตังในกระทะใหญ่":"Rice crackers in a large wok","คำถามที่พบบ่อย":"Frequently asked questions","รวมคำตอบเรื่องการสั่งซื้อ การจัดส่ง และตัวสินค้า":"Answers about ordering, delivery and the product","ยังมีคำถามอื่น?":"Any other questions?","ทักไลน์หรือโทรหาเราได้เลย":"Message us on LINE or call us","ค่าจัดส่งเท่าไหร่?":"How much is shipping?","EMS 100 บาท / กล่อง":"EMS shipping: 100 baht per box","หากแยกหลายกล่องหรือหลายที่อยู่ จะคิดค่าจัดส่งแยกตามจำนวนกล่อง":"If an order is split into several boxes or addresses, shipping is charged per box.","ใช้เวลาจัดส่งกี่วัน?":"How long does delivery take?","กรุงเทพฯ และปริมณฑลประมาณ 1–2 วัน":"About 1–2 days within Bangkok and the surrounding areas","ระยะเวลาจัดส่งขึ้นอยู่กับการดำเนินงานของไปรษณีย์ไทย และอาจล่าช้าได้ในกรณีเหตุสุดวิสัย โดยทางร้านจะจัดส่งสินค้าให้เร็วที่สุดค่ะ":"Delivery times depend on Thailand Post, and delays may occur. We’ll dispatch your order as quickly as possible.","สามารถเรียกรถมารับสินค้าได้ไหม?":"Can I arrange my own courier pickup?","ได้ค่ะ":"Yes","รบกวนคุณลูกค้าเรียกรถเข้ามารับสินค้าที่ร้านเอง เพื่อความสะดวกในการติดต่อและลดความสับสนในการจัดส่ง":"Please arrange for your courier to collect your order from our shop. Booking directly makes communication easier and helps avoid delivery mix-ups.","ข้าวตังเก็บได้นานแค่ไหน?":"What’s the shelf life?","อายุสินค้าประมาณ 6 เดือน":"6 months","สามารถตรวจสอบวันหมดอายุบนบรรจุภัณฑ์ได้ค่ะ":"You can check the expiry date on the packaging.","สามารถขอถุงเพิ่มได้ไหม?":"Can I get extra bags?","ทางร้านจะจัดให้ตามความเหมาะสม ขั้นต่ำซื้อ 2 กระปุกได้ฟรี 1 ถุง หากต้องการถุงเพิ่มสามารถเพิ่มได้ถุงละ 10 บาทค่ะ":"We will provide bags as appropriate. Buy at least 2 jars and get 1 bag free; extra bags are 10 baht each.","มีผงชูรสหรือวัตถุกันเสียไหม?":"Does it contain MSG or preservatives?","ไม่มีค่ะ":"No","เราไม่ใส่ผงชูรส ผงปรุงแต่ง และไม่เติมวัตถุกันเสียในตัวข้าวตัง":"We use no MSG or flavor-enhancing powders, and add no preservatives to the crackers.","สามารถออกใบเสร็จ / ใบกำกับภาษีได้ไหม?":"Can I get a receipt or tax invoice?","กรุณาแจ้ง ณ วันที่สั่งซื้อ":"Please tell us within the day you place the order.","nav-faq|คำถามที่พบบ่อย":"FAQ","Happy Holiday":"Happy Holiday","ชุดเทศกาล · ถุงผ้าปักลาย":"Festive set · embroidered tote","เนื้อในชุด":"Contents","กระเป๋าผ้าปักลาย + กล่อง Mini 95 g × 2":"Embroidered tote + 2 Mini 95 g boxes","Happy Holiday gift set":"Happy Holiday gift set","รสดั้งเดิม":"Original","รสข้าว":"Jasmine Rice","รสเค็ม":"Salted","1 กระปุก":"1 jar","สั่งได้ที่ร้านสุขุมวิท 51 ·":"Order at our Sukhumvit 51 shop ·",
+    "พาร์ทเนอร์":"Partners","ร่วมเป็นพาร์ทเนอร์":"Become a partner","กับมยุรี":"with Mayuree","ร้านของฝาก คาเฟ่ ร้านอาหาร และแบรนด์ที่อยากนำข้าวตังมยุรีไปวางขาย หรือทำแพ็กเกจร่วมกัน คุยกับเราได้เลย":"Gift shops, cafés, restaurants and brands that want to stock Mayuree or build a pack together — talk to us","คุยเรื่องพาร์ทเนอร์ทาง LINE":"Talk partnership on LINE","ร้านของฝากและร้านค้า":"Gift shops and stores","นำข้าวตังมยุรีไปวางขายในร้านของคุณ พูดคุยเรื่องรูปแบบการขายและจำนวนได้":"Stock Mayuree in your store — we can talk about format and quantities","คาเฟ่และร้านอาหาร":"Cafés and restaurants","เสิร์ฟคู่เครื่องดื่มหรือเป็นของทานเล่นในร้าน":"Serve with drinks or as a snack in your venue","ร่วมแบรนด์ (Co-branding)":"Co-branding","ทำสายคาด สติกเกอร์ หรือกล่องร่วมกับโลโก้และสีของแบรนด์คุณ":"Sleeves, stickers or boxes with your logo and colors","เริ่มคุยกันง่ายๆ":"Easy to get started","บอกว่าเป็นร้านหรือแบรนด์แบบไหน และสนใจอะไร":"Tell us about your shop or brand and what you are after","คุยรูปแบบและราคา":"Discuss format and pricing","ตกลงรสชาติ ขนาด จำนวน และเงื่อนไขร่วมกัน":"Agree flavors, sizes, quantities and terms together","เริ่มส่งสินค้า":"Start shipping","ทำมือที่ครัวสุขุมวิท 51 แล้วส่งถึงร้านของคุณ":"Handmade at our Sukhumvit 51 kitchen and delivered to your shop","ตัวอย่างงานออกแบบ Co-branding":"Co-branding design samples","มยุรี × แบรนด์พาร์ทเนอร์":"Mayuree × partner brands","ตัวอย่างฉลากร่วมแบรนด์บนกระปุกมยุรี เลือกได้ 2 สไตล์ ชื่อแบรนด์ในภาพเป็นตัวอย่างเพื่อแสดงรูปแบบ":"Sample co-branded labels on the Mayuree jar, in two styles. Brand names shown are examples of the format.","สไตล์ A · ฉลากสีเต็ม":"Style A · Full-color label","สไตล์ B · ฉลากพื้นครีม":"Style B · Cream label","สไตล์ A":"Style A","สไตล์ B":"Style B","ฉลากสีเต็ม":"Full-color label","ฉลากพื้นครีม":"Cream label","พื้นสีเต็มของแบรนด์พาร์ทเนอร์อยู่ใต้โลโก้มยุรี ให้แบรนด์ของคุณโดดเด่นบนชั้นวาง":"The partner brand's full-color panel sits under the Mayuree logo so your brand stands out on the shelf","พื้นครีมกลมกลืนกับมยุรี และแทรกภาพเมนูของแบรนด์ลงในฉลาก":"A cream base that blends with Mayuree, with your signature menu artwork worked into the label","ชาไทย":"Thai tea","ชา":"Tea","รีสอร์ต":"Resort","เบเกอรี่":"Bakery","มะพร้าว":"Coconut","พริก":"Chili","กาแฟ":"Coffee","น้ำผึ้ง":"Honey","แบ่งกันกิน":"Sharing","รสเค็ม Salted":"Salted","฿165 · ดูรสเค็ม":"฿165 · View Salted","ภาพบรรยากาศ":"Lifestyle photo","รูปชุดของขวัญ":"Gift set photo","ตัวอย่างฉลากร่วมแบรนด์บนกระปุกมยุรี ชื่อแบรนด์ในภาพเป็นตัวอย่างเพื่อแสดงรูปแบบ":"Sample co-branded labels on the Mayuree jar. The brand names shown are examples of the format.","มยุรี × Rimnam Resort":"Mayuree × Rimnam Resort","มยุรี × Prik Baan":"Mayuree × Prik Baan","มยุรี × Namwan Honey":"Mayuree × Namwan Honey","น้ำพริก":"Chili relish","น้ำผึ้ง":"Honey","ของขวัญบริษัท · Co-branding · ใบเสนอราคา":"Company gifts · Co-branding · Quotation","ข้อมูลสินค้า":"Product information","หน้าข้อมูลสินค้า":"Product information page","ข้าวตังเสิร์ฟคู่ชาเขียวบนโต๊ะเล็ก":"Rice crackers served with green tea on a small table","ข้าวตังและผลไม้บนโต๊ะที่แบ่งกันกิน":"Rice crackers and fruit on a shared table","กล่อง Mini ในตะกร้า":"Mini boxes in a basket","กระปุกมยุรี × Rimnam Resort ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Rimnam Resort — sample co-branded label","กระปุกมยุรี × แบรนด์พาร์ทเนอร์ ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × partner brand — sample design","ดีไซน์ตัวอย่าง":"Sample design","กระปุกมยุรี × Prik Baan ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Prik Baan — sample co-branded label","กระปุกมยุรี × Namwan Honey ตัวอย่างฉลากร่วมแบรนด์":"Mayuree jar × Namwan Honey — sample co-branded label","ชุดของขวัญก่อนหน้า":"Previous gift set","ชุดของขวัญถัดไป":"Next gift set","รูปก่อนหน้า":"Previous photo","รูปถัดไป":"Next photo","ข้าวตังในกระทะใหญ่":"Rice crackers in a large wok","คำถามที่พบบ่อย":"Frequently asked questions","รวมคำตอบเรื่องการสั่งซื้อ การจัดส่ง และตัวสินค้า":"Answers about ordering, delivery and the product","ยังมีคำถามอื่น?":"Any other questions?","ทักไลน์หรือโทรหาเราได้เลย":"Send us a message on LINE or give us a call.","ค่าจัดส่งเท่าไหร่?":"How much does shipping cost?","EMS 100 บาท / กล่อง":"EMS shipping is 100 baht per box.","หากแยกหลายกล่องหรือหลายที่อยู่ จะคิดค่าจัดส่งแยกตามจำนวนกล่อง":"If your order requires multiple boxes or needs to be sent to multiple addresses, we charge for each box separately.","ใช้เวลาจัดส่งกี่วัน?":"How long does delivery take?","กรุงเทพฯ และปริมณฑลประมาณ 1–2 วัน":"About 1–2 days within Bangkok and the surrounding areas.","ระยะเวลาจัดส่งขึ้นอยู่กับการดำเนินงานของไปรษณีย์ไทย และอาจล่าช้าได้ในกรณีเหตุสุดวิสัย โดยทางร้านจะจัดส่งสินค้าให้เร็วที่สุดค่ะ":"We’ll dispatch your order as soon as possible. Delivery times depend on Thailand Post and may vary.","สามารถเรียกรถมารับสินค้าได้ไหม?":"Can I arrange my own courier pickup?","ได้ค่ะ":"Yes.","รบกวนคุณลูกค้าเรียกรถเข้ามารับสินค้าที่ร้านเอง เพื่อความสะดวกในการติดต่อและลดความสับสนในการจัดส่ง":"Please book your courier directly and have them collect your order from our shop. This makes it easier to coordinate the pickup and helps avoid mix-ups.","ข้าวตังเก็บได้นานแค่ไหน?":"What’s the shelf life?","อายุสินค้าประมาณ 6 เดือน":"6 months.","สามารถตรวจสอบวันหมดอายุบนบรรจุภัณฑ์ได้ค่ะ":"Check the packaging for the expiry date.","สามารถขอถุงเพิ่มได้ไหม?":"Can I get extra bags?","ทางร้านจะจัดให้ตามความเหมาะสม ขั้นต่ำซื้อ 2 กระปุกได้ฟรี 1 ถุง หากต้องการถุงเพิ่มสามารถเพิ่มได้ถุงละ 10 บาทค่ะ":"Order two or more jars and get one free bag. Extra bags are 10 baht each.","มีผงชูรสหรือวัตถุกันเสียไหม?":"Do your rice crackers contain MSG or preservatives?","ไม่มีค่ะ":"No.","เราไม่ใส่ผงชูรส ผงปรุงแต่ง และไม่เติมวัตถุกันเสียในตัวข้าวตัง":"We don’t add MSG, flavor-enhancing powders, or preservatives to our rice crackers.","สามารถออกใบเสร็จ / ใบกำกับภาษีได้ไหม?":"Can I get a receipt or tax invoice?","กรุณาแจ้ง ณ วันที่สั่งซื้อ":"Please request it on the same day you place your order.","nav-faq|คำถามที่พบบ่อย":"FAQ","Happy Holiday":"Happy Holiday","ชุดเทศกาล · ถุงผ้าปักลาย":"Festive set · embroidered tote","เนื้อในชุด":"Contents","กระเป๋าผ้าปักลาย + กล่อง Mini 95 g × 2":"Embroidered tote + 2 Mini 95 g boxes","Happy Holiday gift set":"Happy Holiday gift set","รสดั้งเดิม":"Original","รสข้าว":"Jasmine Rice","รสเค็ม":"Salted","1 กระปุก":"1 jar","สั่งได้ที่ร้านสุขุมวิท 51 ·":"Order at our Sukhumvit 51 shop ·",
     /* รอบแก้ 1 (พ.ย. 2026) */
     "ถุงผ้าปักลายเทศกาล พกไปได้ทุกที่ ทั้งปิกนิก คาเฟ่ และมื้อค่ำกับเพื่อน":"An embroidered festive tote to take anywhere — picnics, cafés and dinners with friends.",
     "แพ็กเกจใหม่ ถุงช้อปปิ้งลายวงกลมสีสด สอบถามราคาและสั่งซื้อทาง LINE":"Our new packaging: a shopping bag in a bold circle print. Ask about price and order on LINE.",
     "แพ็กเกจใหม่":"New packaging","สอบถามราคาทาง LINE":"Ask for the price on LINE",
     "ถุงผ้า Happy Holiday ที่ปิกนิกกับเพื่อน":"Happy Holiday tote at a picnic with friends","ถุงผ้า Happy Holiday บนเบาะรถ":"Happy Holiday tote on a car seat","ถือถุงผ้า Happy Holiday ไปรับกาแฟ":"Carrying the Happy Holiday tote to pick up coffee","ถุงผ้า Happy Holiday ที่โต๊ะอาหารค่ำ":"Happy Holiday tote at a dinner table","ถุงผ้า Happy Holiday ริมสระน้ำ":"Happy Holiday tote by the pool","ถือถุงผ้า Happy Holiday สีเขียวเซจ":"Holding the sage-green Happy Holiday tote","ถุงผ้า Happy Holiday พร้อมของใช้ประจำวัน":"Happy Holiday tote with everyday essentials",
-    "ถือถุง Shopping Bag ลายวงกลมเดินริมถนน":"Walking with the circle-print Shopping Bag","ถุง Shopping Bag หน้าร้านดอกไม้":"Shopping Bag at a flower stall","สะพายถุง Shopping Bag ไปยิม":"Shopping Bag slung over the shoulder on the way to the gym",
+    "ฟรี":"Free","ถือถุง Shopping Bag ลายวงกลมเดินริมถนน":"Walking with the circle-print Shopping Bag","ถุง Shopping Bag หน้าร้านดอกไม้":"Shopping Bag at a flower stall","สะพายถุง Shopping Bag ไปยิม":"Shopping Bag slung over the shoulder on the way to the gym",
     "ถามทาง LINE":"Ask on LINE","ข้าวตังและผลไม้บนโต๊ะที่แบ่งกัน":"Rice crackers and fruit on a shared table","กล่องมยุรีวางบนชั้นขายในร้านของฝาก":"Mayuree boxes on a shop shelf",
     "ความอร่อยที่บ้านเรา":"Grandma made it.","อยากแบ่งให้คุณลอง":"We grew up loving it.",
     "เมื่อก่อนคุณยายทำข้าวตังให้ลูก ๆ กินเล่น ใครได้ลองก็ติดใจ จนค่อย ๆ ทำขาย ผ่านมากว่า 50 ปี วันนี้รุ่นหลานก็ยังทำข้าวตังสูตรของคุณยาย ให้ทุกคนได้อร่อยไปด้วยกัน":"It started with a snack she made for her kids. More than 50 years and three generations later, we’re still making her crispy rice crackers. And now we get to share them with you.",
@@ -1960,14 +2058,14 @@ const PRODUCT = {
     "กล่องใหม่ รสดั้งเดิม รสเค็ม และ รสข้าว":"New packs: Original, Salted & Jasmine Rice",
     /* gift sets */
     "ชุดของขวัญ":"Gift Set","จากครัวมยุรี":"from the Mayuree kitchen","เลือกชุดที่ใช่ แล้วทักไลน์สั่งได้เลย":"Pick your set, then message us on LINE to order.",
-    "ชุดเล็กชะลอม":"Small Woven Basket","2 กระปุกใหญ่":"2 original","ใหญ่ 2 + เล็ก 2":"2 original + 2 mini","ชุดเล็กกระเป๋า":"Mini Basket Bag","4 กระปุกมินิ":"4 mini","กระเป๋าเปล่า":"Just the Bag!","ชุดเดียว":"Single set",
+    "ชุดเล็กชะลอม":"Small Woven Basket","2 กระปุกใหญ่":"2 original","ใหญ่ 2 + เล็ก 2":"2 original + 2 mini","2 กระปุกใหญ่ + 2 กระปุกเล็ก":"2 original + 2 mini","2 กระปุกมินิ":"2 mini","1 กระปุกใหญ่ + 1 กระปุกมินิ":"1 original + 1 mini","ซื้อข้าวตังครบทุก ๆ 500 บาท":"Spend 500 baht on crackers","รับฟรี Shopping Bag 1 ใบ":"and get 1 free Shopping Bag","ซื้อเฉพาะถุง ใบละ 30 บาท":"Bag only: 30 baht each","ชุดเล็กกระเป๋า":"Mini Basket Bag","4 กระปุกมินิ":"4 mini","กระเป๋าเปล่า":"Just the Bag!","ชุดเดียว":"Single set",
     "ชุดถุงผ้าดอกโบตั๋น":"Peony Bag","ชุดชะลอมผ้า Summer Garden Party":"Summer Garden Party","มินิ 2 กระปุก":"2 mini jars","1 กระปุกใหญ่ + 1 mini":"1 original + 1 mini","รูปชุดของขวัญปีใหม่":"New Year gift set photo",
     "สนใจเป็นของขวัญ?":"Thinking of a gift?","เลือกกระปุกตามงบ จัดใส่ชะลอมหรือกระเป๋าผ้า ส่งต่อให้คนที่คุณรัก":"Pick jars to suit your budget, packed in a basket or cloth bag for someone you love.","ขั้นที่ 1":"Step 1","ขั้นที่ 2":"Step 2","ขั้นที่ 3":"Step 3","เลือกกระปุก ใหญ่หรือ mini":"Choose a jar, large or mini","เลือกชะลอมหรือกระเป๋าผ้าที่ชอบ":"Choose a basket or cloth bag","ทักไลน์บอกโอกาสและงบ เราช่วยจัดให้":"Message us on LINE with the occasion and budget and we will put it together","ปรึกษาทาง LINE":"Ask us on LINE",
     /* reviews */
     "จาก 54 รีวิวบน Google":"from 54 Google reviews","5.0 ★ · 54 รีวิว":"5.0 ★ · 54 reviews","คะแนนร้าน 97% · ซื้อซ้ำ 100%":"Shop rating 97% · 100% repeat buyers",
     "สื่อ":"Press","กรุงเทพธุรกิจ · ไทยรัฐ · มติชน":"Bangkok Biz News · Thairath · Matichon",
     /* visit */
-    "หน้าร้านมยุรี":"The Mayuree shop","แวะมารับ":"Drop by","ข้าวตังที่ร้าน":"for fresh crackers","ที่อยู่":"Address",
+    "หน้าร้านมยุรี":"The Mayuree shop","แวะมารับ":"PICK UP","ข้าวตังที่ร้าน":" HERE!","ที่อยู่":"Address",
     "78/4 ซ.สุขุมวิท 51 แขวงคลองตันเหนือ":"78/4 Sukhumvit Soi 51, Khlong Tan Nuea","เขตวัฒนา กรุงเทพฯ 10110":"Watthana, Bangkok 10110",
     "เวลาเปิด":"Hours","08:00 – 17:00 น. · หยุดวันอาทิตย์":"8:00 AM – 5:00 PM · Closed Sundays","สัตว์เลี้ยง":"Pets","Pet-friendly พาน้องมาได้":"Pet-friendly — bring your pup",
     "เมนูสินค้า":"Shop","โทร":"Phone","รีวิว Google":"Google reviews","★★★★★ 5.0 จาก 54 รีวิว":"★★★★★ 5.0 from 54 reviews",
@@ -2057,8 +2155,14 @@ const PRODUCT = {
     restart();
   });
   /* ----- แถบสั่งซื้อมือถือ: โผล่เมื่อเลื่อนผ่านช่วงบน ----- */
-  const dockToggle = () => document.body.classList.toggle("dock-on", scrollY > 420 && (innerHeight + scrollY) < document.body.scrollHeight - 120);
-  addEventListener("scroll", dockToggle, { passive:true }); dockToggle();
+  let docH = document.body.scrollHeight, dockBusy = false, dockState = null;
+  const dockTick = () => {
+    dockBusy = false;
+    const on = scrollY > 420 && (innerHeight + scrollY) < docH - 120;
+    if (on !== dockState){ dockState = on; document.body.classList.toggle("dock-on", on); }
+  };
+  new ResizeObserver(() => { docH = document.body.scrollHeight; dockTick(); }).observe(document.body);
+  addEventListener("scroll", () => { if (!dockBusy){ dockBusy = true; requestAnimationFrame(dockTick); } }, { passive:true }); dockTick();
   /* ----- มือถือ: ฟุตเตอร์พับเก็บได้ ----- */
   $$("footer .links>div:not(:last-child) h5").forEach(h => h.addEventListener("click", () => {
     if (matchMedia("(max-width:700px)").matches) h.parentElement.classList.toggle("open");
@@ -2074,7 +2178,7 @@ const PRODUCT = {
 })();
 </script>
 <script src="assets/ui-icons.js?v=1" defer></script>
-<script src="assets/presentation.js?v=8" defer></script>
-<script src="assets/mobile.js?v=28" defer></script>
+<script src="assets/presentation.js?v=9" defer></script>
+<script src="assets/mobile.js?v=34" defer></script>
 </body>
 </html>

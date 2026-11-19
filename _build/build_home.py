@@ -5,6 +5,7 @@ import sys
 sys.path.insert(0,HERE)
 from relink import relink
 from ui_icons import iconize
+from perf import lazyfy
 src=open(HERE+'/master.html',encoding='utf-8').read()
 head=src[:src.index('</style>')]                      # head + all shared CSS
 hdr=src[src.index('<!-- ===== HEADER ===== -->'):src.index('<main id="top">')]
@@ -379,7 +380,7 @@ html[lang="th"] .nw{white-space:nowrap}                    /* ไม่ตัด
   /* กินแบบมยุรี: รูปเต็มขอบ ชิปเลื่อนแถวเดียว */
   .hm-use .shot{margin-inline:-16px;border-radius:0!important;aspect-ratio:4/3!important}
   .hm-use>*{min-width:0}
-  .hm-use ul{flex-wrap:nowrap!important;overflow-x:auto;margin-inline:-16px!important;padding:0 16px 4px!important;scrollbar-width:none}
+  .hm-use ul{flex-wrap:wrap!important;gap:8px!important}
   .hm-use ul::-webkit-scrollbar{display:none}
   .hm-use li{flex:0 0 auto;white-space:nowrap}
   .hm-use h3{font-size:1.85rem!important}
@@ -486,11 +487,11 @@ main=f'''<main id="top">
 
 <section class="wrap hm-two">
   <div class="hm-blurb rv-in">
-    <div class="art"><img class="line" src="assets/lineart-rice.png" alt="" role="presentation"></div>
+    <div class="art"><img class="line" src="assets/lineart-rice.webp" alt="" role="presentation"></div>
     <div class="txt"><h3 class="display">วัตถุดิบดี ข้าวตังก็อร่อย</h3><p>ปลายข้าวหอมมะลิจากสุรินทร์ หมูหยองจากขอนแก่น ปรุงตามสูตรคุณยายสมสมร ไม่ใส่ผงชูรส ไม่ใส่สารกันบูด</p></div>
   </div>
   <div class="hm-blurb rv-in">
-    <div class="art"><img class="line" src="assets/lineart-pour.png" alt="" role="presentation"></div>
+    <div class="art"><img class="line" src="assets/lineart-pour.webp" alt="" role="presentation"></div>
     <div class="txt"><h3 class="display">ทำใหม่ทุกวันจากใจส่งถึงมือ</h3><p>เราทำข้าวตังที่ร้านสุขุมวิท 51 คั่วบนเตาถ่านเพื่อให้มีกลิ่นหอมเฉพาะตัว แล้วบรรจุในกระปุกพร้อมส่งต่อความอร่อย</p></div>
   </div>
 </section>
@@ -508,7 +509,7 @@ main=f'''<main id="top">
 <!-- ===== PRODUCTS ===== -->
 <section class="hm-trio">
   <div class="wrap">
-    <img class="jar-fx j3" src="assets/lineart-jar.png" alt="" role="presentation">
+    <img class="jar-fx j3" src="assets/lineart-jar.webp" alt="" role="presentation">
     <figure class="hm-lineup rv-in"><img src="assets/photos/product-packs-trio.jpg" alt="ข้าวตังทรงเครื่องกล่องใหม่ทุกรส" loading="lazy"></figure>
     <div class="hm-prods">
       <a class="hm-prod rv-in" href="shop.html?opt=original">
@@ -529,7 +530,7 @@ main=f'''<main id="top">
       </a>
       <a class="hm-prod rv-in d2" href="shop.html?opt=jasmine">
         <div class="meta"><span class="label">รสข้าว</span><span class="label">190 g</span></div>
-        <div class="stage photo"><img class="pk-ph" src="assets/photos/product-marble-jasmine.jpg" alt="กล่องรสข้าว Jasmine Rice" loading="lazy"></div>
+        <div class="stage photo"><img class="pk-ph" src="assets/photos/product-marble-jasmine.jpg?v=13" alt="กล่องรสข้าว Jasmine Rice" loading="lazy"></div>
         <span class="tag label">สูตรไม่ใส่หมูหยอง หอมกลิ่นข้าว</span>
         <h3>รสข้าว</h3>
         <p>สำหรับมังสวิรัติหรือคนที่ไม่ทานหมู</p>
@@ -562,7 +563,7 @@ main=f'''<main id="top">
 </section>
 
 <section class="hm-about wrap">
-  <img class="about-lady jar-fx" src="assets/lineart-couple.png" alt="" role="presentation">
+  <img class="about-lady jar-fx" src="assets/lineart-couple.webp" alt="" role="presentation">
   <a class="pill" href="story.html">เรื่องของเรา ›</a>
 </section>
 
@@ -656,8 +657,8 @@ out=head+css+'</style>\n</head>\n<body>\n\n'+hdr+main+ftr+'\n'+script
 out=out.replace('__TITLE_EN__','Mayuree Kaotang Songkrueng — Homemade Thai Rice Crackers since 1968').replace('__DESC_EN__',"Handmade Thai rice crackers roasted over charcoal, Grandma's recipe since 1968 · Sukhumvit 51, Bangkok").replace('__TITLE__','มยุรี ข้าวตังทรงเครื่อง — ข้าวตังทำมือตั้งแต่ปี 1968').replace('__DESC__','ข้าวตังทรงเครื่องทำมือ คั่วบนเตาถ่าน สูตรคุณยายตั้งแต่ปี 1968 · ร้านสุขุมวิท 51 กรุงเทพฯ · สั่งทาง LINE')
 out=re.sub(r'<title>[^<]*</title>','<title>'+'มยุรี ข้าวตังทรงเครื่อง — ข้าวตังทำมือตั้งแต่ปี 1968'+'</title>',out,count=1)
 out=out.replace('<nav>\n      <a href="index.html"','<nav>\n      <a aria-current="page" href="index.html"',1)
-out=out.replace('</head>', '<link rel="stylesheet" href="assets/presentation.css?v=4">\n<link rel="stylesheet" href="assets/mobile.css?v=54">\n</head>', 1)
+out=out.replace('</head>', '<link rel="stylesheet" href="assets/presentation.css?v=39">\n<link rel="stylesheet" href="assets/mobile.css?v=72">\n</head>', 1)
 out=out.replace('<body>', '<body class="home-page">', 1)
-out=out.replace('</body>', '<script src="assets/ui-icons.js?v=1" defer></script>\n<script src="assets/presentation.js?v=8" defer></script>\n<script src="assets/mobile.js?v=27" defer></script>\n</body>', 1)
-open('index.html','w',encoding='utf-8').write(iconize(out))
+out=out.replace('</body>', '<script src="assets/ui-icons.js?v=1" defer></script>\n<script src="assets/presentation.js?v=9" defer></script>\n<script src="assets/mobile.js?v=34" defer></script>\n</body>', 1)
+open('index.html','w',encoding='utf-8').write(iconize(lazyfy(out)))
 print(len(out))

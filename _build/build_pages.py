@@ -7,6 +7,7 @@ PAGEMETA=json.loads(open(HERE+'/pagemeta.json',encoding='utf-8').read())
 sys.path.insert(0,HERE)
 from relink import relink
 from ui_icons import iconize
+from perf import lazyfy
 src=open(HERE+'/master.html',encoding='utf-8').read()
 head=src[:src.index('<!-- ===== HEADER')]
 hdr=src[src.index('<!-- ===== HEADER'):src.index('<main id="top">')]
@@ -36,6 +37,11 @@ for fn,keys in pages.items():
         rv='<div class="visit-rv"><div class="rv-left"><p class="label">เสียงจากลูกค้า</p><div class="rv-score"><b>5.0</b><span class="stars">★★★★★</span></div><p class="rv-cap">จาก 54 รีวิวบน Google</p></div><div class="rv-chips"><div class="chip"><b>Google Maps</b><span>5.0 ★ · 54 รีวิว</span></div><div class="chip"><b>Lazada</b><span>คะแนนร้าน 97% · ซื้อซ้ำ 100%</span></div></div><div class="vr-photos">'+''.join('<img src="assets/photos/%s.jpg" alt="%s" loading="lazy">'%(n,ALTS[n]) for n in ('lifestyle-sharing-spoons','lifestyle-tea-table','lifestyle-picnic-bowl','lifestyle-beach-bag-book','lifestyle-shared-table'))+'</div></div>'
         i=body.rindex('  </div>\n</section>')
         body=body[:i]+'      '+rv+'\n'+body[i:]
+    if fn=='shop.html':
+        # มือถือ: ย้ายรูปสินค้าเข้ากรอบก่อนวาดหน้าจอครั้งแรก (ไม่รอ assets/mobile.js) ลดการกระโดดของหน้า — mobile.js ใช้ window.__mediaHome ต่อ
+        early='<script>(function(){var h=document.getElementById("shop"),c=document.getElementById("productChoose"),m=h&&h.querySelector(".media");if(!m||!c||!matchMedia("(max-width:700px)").matches)return;var home=document.createComment("Desktop product media position");m.before(home);window.__mediaHome=home;c.prepend(m)})();</script>\n'
+        i=body.index('</section>')
+        body=body[:i]+early+body[i:]
     ids=set(re.findall(r'id="(\w+)"',body))|{k for k in keys}
     ids|={'menu'} if 'menu' in keys else set()
     full=body+hdr+ftr
@@ -55,17 +61,18 @@ for fn,keys in pages.items():
     for a_,href in (('เมนู','shop.html'),('ชุดของขวัญ','gift.html'),('เรื่องของเรา','story.html'),('พาร์ทเนอร์','partner.html'),('คำถามที่พบบ่อย','faq.html'),('หน้าร้าน','visit.html')):
         if href==fn: page=re.sub(r'<a href="'+href+r'"( data-mega="\w+")?>'+a_+'</a>',lambda m:'<a aria-current="page" href="'+href+'"'+(m.group(1) or '')+'>'+a_+'</a>',page,count=1)
     if fn=='faq.html': page=page.replace('</head>','<script type="application/ld+json">'+FAQ_LD+'</script>\n</head>',1)
-    open(fn,'w',encoding='utf-8').write(iconize(page))
+    if fn=='shop.html': page=page.replace('</head>','<link rel="preload" as="image" href="assets/photos/product-marble-original.jpg?v=13" fetchpriority="high">\n</head>',1)
+    open(fn,'w',encoding='utf-8').write(iconize(lazyfy(page)))
     print(fn,len(page),sorted(ids))
 
 # ---- 404 page (same header/footer, friendly message)
 fn='404.html'
-body='<section class="e404"><div><img src="assets/lineart-couple.png" alt="" role="presentation"><p class="label">404</p><h1 class="display">ไม่พบหน้านี้</h1><p>หน้าที่คุณหาอาจถูกย้ายหรือไม่มีอยู่แล้ว</p><div class="row"><a class="pill" href="index.html">กลับหน้าแรก</a><a class="pill outline" href="shop.html">ดูเมนู</a></div></div></section>'
+body='<section class="e404"><div><img src="assets/lineart-couple.webp" alt="" role="presentation"><p class="label">404</p><h1 class="display">ไม่พบหน้านี้</h1><p>หน้าที่คุณหาอาจถูกย้ายหรือไม่มีอยู่แล้ว</p><div class="row"><a class="pill" href="index.html">กลับหน้าแรก</a><a class="pill outline" href="shop.html">ดูเมนู</a></div></div></section>'
 stubs=''.join(('<video hidden id="chVideo" muted></video>' if n=='chVideo' else '<div hidden id="title"><small></small></div>' if n=='title' else f'<div hidden id="{n}"></div>') for n in need if f'id="{n}"' not in hdr)+''.join(f'<i hidden data-u="{u}"></i>' for u in 'dhm')
 page=head+relink(hdr,set())+'<main id="top">'+body+'</main>'+relink(ftr,set())+stubs+scripts
 tt,te,dt,de=PAGEMETA[fn]
 page=page.replace('__TITLE_EN__',te).replace('__DESC_EN__',de).replace('__TITLE__',tt).replace('__DESC__',dt)
 page=re.sub(r'<title>[^<]*</title>','<title>'+tt+'</title>',page,count=1)
 page=page.replace('<meta name="viewport"','<meta name="robots" content="noindex">\n<meta name="viewport"',1)
-open(fn,'w',encoding='utf-8').write(iconize(page))
+open(fn,'w',encoding='utf-8').write(iconize(lazyfy(page)))
 print(fn,len(page))
