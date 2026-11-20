@@ -259,7 +259,7 @@ main :is(h1,h2,h3){text-wrap:balance}
 #shop.hero .info{justify-content:center}
 .product-deck{width:100%;min-width:0;border:1.5px solid var(--ink);border-radius:24px;background:var(--paper);overflow:hidden}
 .deck-nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 18px;border-bottom:1px solid var(--line)}
-.deck-title{font-size:13px;font-weight:500}
+.deck-title{font-size:15px;font-weight:500}
 .deck-arrows{display:flex;gap:8px}
 .deck-arrows button{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--ink);border-radius:50%;font-size:20px;line-height:1;background:transparent;color:var(--ink)}
 .deck-arrows button:hover:not(:disabled){background:var(--cream)}
@@ -268,7 +268,7 @@ main :is(h1,h2,h3){text-wrap:balance}
 .deck-track::-webkit-scrollbar{display:none}
 .deck-page{flex:0 0 100%;min-width:0;padding:18px 20px;scroll-snap-align:start;scroll-snap-stop:always}
 .deck-footer{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
-.deck-footer button{padding:11px 6px;font-size:12px;background:transparent;color:var(--ink)}
+.deck-footer button{padding:14px 8px;font-size:15px;line-height:1.4;background:transparent;color:var(--ink)}
 .deck-footer button+button{border-left:1px solid var(--line)}
 .deck-footer button.on{background:var(--ink);color:var(--paper)}
 #shop .product-deck .box-card{border:0;padding:0;margin:16px 0 0;background:none}
@@ -285,14 +285,17 @@ main :is(h1,h2,h3){text-wrap:balance}
 #shop .product-deck .qty b{font-size:15px;padding-top:0}
 #shop .product-deck .qty span{font-size:11.5px;padding-bottom:9px}
 .deck-page .tabs{margin:0;border-radius:14px;border-width:1px}
-.deck-page .tabs nav button{padding:9px 0;font-size:12px;letter-spacing:0}
-.deck-page .tabs .panel{padding:16px;font-size:14px;line-height:1.6}
+.deck-page .tabs nav button{padding:12px 6px;font-size:15px;line-height:1.4;letter-spacing:0}
+.deck-page .tabs .panel{padding:20px 22px;font-size:16.5px;line-height:1.7}
+.deck-page .tabs .panel p+p{margin-top:12px}
+.deck-page .tabs .fine{font-size:13.5px;line-height:1.6}
+.deck-page .nf-link{font-size:14px}
 .deck-page .nutri{gap:5px}
-.deck-page .nutri dt,.deck-page .nutri dd,.deck-page .nutri span{font-size:12px!important}
+.deck-page .nutri dt,.deck-page .nutri dd,.deck-page .nutri span{font-size:14px!important}
 .deck-page .purchase-channels{border:0;border-radius:0;padding:16px 0 0;background:none}
-.deck-page .purchase-channels>.sel-label{font-size:13px;margin:0 0 10px!important}
-.deck-page .shops a{height:34px;font-size:12px!important}
-.deck-page .purchase-channels .fine{font-size:11px;line-height:1.5;margin-top:10px}
+#shop .deck-page .purchase-channels>.sel-label,.deck-page .purchase-channels>.sel-label{font-size:15px;line-height:1.5;margin:0 0 12px!important}
+.deck-page .shops a{height:44px;font-size:15px!important}
+.deck-page .purchase-channels .fine{font-size:13.5px;line-height:1.6;margin-top:12px}
 .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 @media(min-width:1001px) and (max-height:760px){
  .deck-nav{padding:8px 14px}
@@ -302,8 +305,8 @@ main :is(h1,h2,h3){text-wrap:balance}
  #shop .product-deck .price{margin-top:6px}
  #shop .product-deck .box-card{margin-top:12px}
  #shop .product-deck .badges{margin-bottom:8px}
- .deck-footer button{padding:8px 4px}
- .deck-page .tabs .panel{padding:12px;font-size:13px}
+ .deck-footer button{padding:10px 4px}
+ .deck-page .tabs .panel{padding:14px 18px;font-size:15px}
 }
 @media(max-width:700px){
  .home-page .hm-hero .in{padding-top:100px!important;padding-bottom:32px!important}
@@ -326,10 +329,10 @@ main :is(h1,h2,h3){text-wrap:balance}
  #shop .product-deck .qty .jar img{height:22px!important;max-height:22px!important}
  #shop .product-deck .qty b{font-size:14px}
  #shop .product-deck .qty span{padding-bottom:7px}
- .deck-footer button{padding:9px 4px;font-size:11px}
- .deck-page .tabs .panel{padding:12px;font-size:13px}
- .deck-page .tabs .fine{font-size:11px;line-height:1.5}
- .deck-page .nutri dt,.deck-page .nutri dd,.deck-page .nutri span{font-size:10px!important}
+ .deck-footer button{padding:11px 4px;font-size:14px}
+ .deck-page .tabs .panel{padding:14px 14px;font-size:15px}
+ .deck-page .tabs .fine{font-size:13px;line-height:1.55}
+ .deck-page .nutri dt,.deck-page .nutri dd,.deck-page .nutri span{font-size:12.5px!important}
 }
 .home-page .header:not(.is-framed) .lang{background:transparent}
 .home-page .header:has(.mega.open) .lang{background:var(--paper);color:var(--ink);border-color:var(--ink)}
@@ -360,3 +363,18 @@ main :is(h1,h2,h3){text-wrap:balance}
  .visit-overview .visit-card .body .visit-cta{margin:0}
 }
 
+/* หน้า "รายละเอียดสินค้า": กรอบข้อความขยายเต็มพื้นที่ที่เหลือ ตัวอักษรใหญ่เต็มกรอบ และแถบช่องทางสั่งซื้ออยู่ล่างสุดเสมอ (เดสก์ท็อป) */
+@media(min-width:701px){
+ .deck-page#productRead{justify-content:flex-start}
+ .deck-page#productRead .tabs{flex:1 1 auto;display:flex;flex-direction:column}
+ .deck-page#productRead .tabs .panel.on{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;padding:26px 30px;font-size:clamp(18px,1.55vw,21px);line-height:1.75}
+ .deck-page#productRead .tabs .panel p{font-size:inherit;line-height:inherit}
+ .deck-page#productRead .tabs .panel .fine{font-size:.78em;line-height:1.6}
+ .deck-page#productRead .purchase-channels{margin-top:auto;padding-top:18px}
+}
+/* กรอบแดงรอบกริดชุดของขวัญ = วงโฟกัสของ tabindex (กริดเลื่อนด้วยคีย์บอร์ดได้) ไม่ต้องโชว์เป็นเส้นแดงล้อมการ์ด */
+.gift-grid:focus,.gift-grid:focus-visible{outline:none}
+/* จัดบรรทัดให้สวย: หัวข้อตัดสมดุล ย่อหน้าไม่ทิ้งคำเดี่ยวท้ายบรรทัด (ไม่เปลี่ยนคำ) */
+main :is(h1,h2,h3,h4){text-wrap:balance}
+main :is(p,li,dd,figcaption,small){text-wrap:balance}  /* ≤6 บรรทัดจะถ่วงสมดุล เกินนั้นเบราว์เซอร์กลับเป็นปกติ */
+footer p,footer .lede{text-wrap:pretty}

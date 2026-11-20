@@ -6,7 +6,7 @@
  body{font:400 16px/1.7 var(--body-font);overflow-x:clip}
  .wrap{width:calc(100% - 40px)}
  main,main>section,main .wrap,main .txt{min-width:0}
- html[lang="th"] main .nw{white-space:normal}
+ html[lang="th"] main .nw{display:inline-block;max-width:100%;white-space:normal}
  html[lang="th"] .home-page .hm-hero .nw{white-space:nowrap}
  main p{font:400 16px/1.75 var(--body-font)}
  main :is(h1,h2,h3){font-family:var(--display);word-break:normal;overflow-wrap:break-word;letter-spacing:0;text-wrap:balance}
@@ -111,7 +111,7 @@
  #shop.hero .info{display:block!important;border:0;padding:0!important}
  .product-deck{border-width:1px;border-radius:22px}
  .deck-nav{padding:10px 16px;min-height:64px}
- .deck-title{font:600 14px/1.4 var(--body-font)}
+ .deck-title{font:600 15px/1.4 var(--body-font)}
  .deck-arrows{gap:8px}
  .deck-arrows button{width:44px;height:44px;font:400 22px/1 var(--body-font)}
  .deck-track{align-items:flex-start;transition:none}
@@ -125,7 +125,7 @@
  #shop .product-deck .box-card{margin:22px 0 0;padding:0}
  #shop .product-deck .badges{gap:5px;margin:0 0 22px}
  #shop .product-deck .badges li{font:500 11px/1.4 var(--body-font);padding:5px 8px}
- #shop .sel-label{font:600 14px/1.5 var(--body-font)!important;margin:0 0 10px}
+ #shop .sel-label{font:600 15px/1.5 var(--body-font)!important;margin:0 0 10px}
  #shop .sel-label[style]{margin-top:22px!important}
  #shop .opts{gap:8px}
  #shop .opt{padding:12px 4px!important;border-width:1px;min-height:80px;display:flex;flex-direction:column;justify-content:center;gap:5px}
@@ -140,18 +140,19 @@
  #shop .qty span{font:500 12px/1.5 var(--body-font);padding:3px 0 10px}
  #shop .cta-row{margin-top:22px}
  #shop .cta-row .pill{min-height:44px;width:100%;font-size:14.5px!important;padding-block:0}
- .deck-footer button{min-height:48px;padding:12px 6px;font:600 13px/1.4 var(--body-font)}
+ .deck-footer button{min-height:52px;padding:12px 6px;font:600 15px/1.4 var(--body-font)}
  .deck-page#productRead{justify-content:flex-start;padding:20px 16px}
- .deck-page .tabs nav button{font:600 13px/1.4 var(--body-font);min-height:48px;padding:8px 4px}
- .deck-page .tabs .panel{padding:18px 12px;font:400 15px/1.75 var(--body-font)}
- .deck-page .tabs p{font:400 15px/1.75 var(--body-font)}
- .deck-page .tabs .fine{font:400 12px/1.6 var(--body-font)}
+ .deck-page .tabs nav button{font:600 15px/1.4 var(--body-font);min-height:52px;padding:8px 4px}
+ .deck-page .tabs .panel{padding:18px 14px;font:400 16.5px/1.75 var(--body-font)}
+ .deck-page .tabs p{font:400 16.5px/1.75 var(--body-font)}
+ .deck-page .tabs .fine{font:400 14px/1.65 var(--body-font)}
  .deck-page .nutri{grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}
- .deck-page .nutri dt,.deck-page .nutri dd,.deck-page .nutri span{font:500 13px/1.5 var(--body-font)!important;padding:6px 2px}
+ .deck-page .nutri dt,.deck-page .nutri dd,.deck-page .nutri span{font:500 14.5px/1.5 var(--body-font)!important;padding:6px 2px}
  .deck-page .purchase-channels{padding-top:24px}
  .deck-page .shops{display:flex;flex-wrap:wrap;gap:8px}
- .deck-page .shops a{flex:1 1 80px;min-height:44px;height:auto;font:500 13px/1.4 var(--body-font)!important;padding:10px 8px}
- .deck-page .purchase-channels .fine{font:400 12px/1.6 var(--body-font)}
+ .deck-page .shops a{flex:1 1 90px;min-height:48px;height:auto;font:500 15px/1.4 var(--body-font)!important;padding:10px 8px}
+ .deck-page .purchase-channels .fine{font:400 14px/1.6 var(--body-font)}
+ #shop .deck-page .purchase-channels>.sel-label{font-size:15px!important}
  .flavors{padding:40px 0}
  .fl-head .bowl{display:none}
  .sec-title{font-size:30px;line-height:1.3;max-width:18ch}
@@ -391,7 +392,7 @@
  :root{--section-space:56px}
  .wrap{width:calc(100% - 48px)}
  main :is(h1,h2,h3){line-height:1.3;overflow-wrap:break-word}
- html[lang="th"] main .nw{white-space:normal}
+ html[lang="th"] main .nw{display:inline-block;max-width:100%;white-space:normal}
  main p{font-size:16px;line-height:1.8}
  .pill,.pill.sm{min-height:44px;height:auto;padding:12px 20px;letter-spacing:0;font-size:15px!important}
  .rv-in{opacity:1;transform:none}
@@ -812,3 +813,9 @@ button,a.pill{line-height:1.5}
  html[lang="en"] #shop .opt b{display:flex;align-items:center;justify-content:center;min-height:2.6em;text-align:center}
 }
 
+/* รูปสินค้าบนมือถือ: ตัวกล่องในไฟล์อยู่ต่ำกว่ากึ่งกลางภาพ (~57%) → ขยายเล็กน้อยแล้วยกขึ้นให้อยู่กึ่งกลางกรอบทุกรส (ออริจินัล/เค็ม/ข้าว/มินิ) */
+@media(max-width:700px){
+ #shop.hero .frame .ph.filled img[src*="product-marble-"]{transform:translateY(-8%) scale(1.14);transform-origin:50% 50%}
+}
+/* รูปหน้าร้าน (ครอปสายไฟออกแล้ว): ให้เห็นป้ายชื่อ "มยุรี" ครบ ไม่โดนตัดขอบบน */
+.visit-overview .gal-track img[src*="store-front-new-sign"]{object-position:50% 8%!important}

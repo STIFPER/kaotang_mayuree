@@ -7,7 +7,7 @@
  const toggle=document.querySelector('#menuBtn');
  if(header&&panel&&toggle){
   const nav=document.createElement('nav');nav.className='mobile-nav';nav.dataset.i18nSkip='';
-  const pages=[['index.html','หน้าแรก','Home'],['shop.html','เมนูและสินค้า','Shop'],['gift.html','ชุดของขวัญ','Gift Set'],['story.html','เรื่องของเรา','Our Story'],['craft.html','วิธีทำข้าวตัง','Process'],['partner.html','พาร์ทเนอร์','Partners'],['faq.html','คำถามที่พบบ่อย','FAQ'],['visit.html','หน้าร้านและติดต่อ','Visit us']];
+  const pages=[['index.html','หน้าแรก','Welcome Home'],['shop.html','เมนูและสินค้า','Shop'],['gift.html','ชุดของขวัญ','Gift Set'],['story.html','เรื่องของเรา','Our Story'],['craft.html','วิธีทำข้าวตัง','Process'],['partner.html','พาร์ทเนอร์','Partners'],['faq.html','คำถามที่พบบ่อย','FAQ'],['visit.html','หน้าร้านและติดต่อ','Visit us']];
   const active=location.pathname.split('/').pop()||'index.html';
   const render=()=>{
    const en=document.documentElement.lang==='en';
@@ -49,6 +49,8 @@
   const controls=document.createElement('div');controls.className='photo-carousel-controls';controls.dataset.i18nSkip='';
   controls.innerHTML='<button type="button" aria-label="รูปก่อนหน้า">←</button><span aria-live="polite"></span><button type="button" aria-label="รูปถัดไป">→</button>';grid.after(controls);
   const [prev,next]=controls.querySelectorAll('button'),cards=[...grid.children];
+  const setLabels=()=>{const en=document.documentElement.lang==='en';prev.setAttribute('aria-label',en?'Previous photo':'รูปก่อนหน้า');next.setAttribute('aria-label',en?'Next photo':'รูปถัดไป')};
+  new MutationObserver(setLabels).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});setLabels();
   const step=()=>cards[0].getBoundingClientRect().width+parseFloat(getComputedStyle(grid).gap||0);
   const at=()=>Math.min(cards.length-1,Math.max(0,Math.round(grid.scrollLeft/step())));
   const update=()=>{prev.disabled=at()===0;next.disabled=at()===cards.length-1;controls.querySelector('span').textContent=(at()+1)+' / '+cards.length};

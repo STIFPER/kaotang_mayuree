@@ -70,7 +70,7 @@
   --original:#BC342A;
   --jasmine:#F1ECDD;
   --jasmine-badge:#1F4D36;
-  --ochre:#E8B04B;
+  --ochre:#EF958F;          /* เดิมเหลือง — เปลี่ยนเป็นชมพูตามฟีดแบ็ก พ.ย. 2026 (ชื่อตัวแปรคงเดิมเพื่อไม่ต้องแก้ทุกจุด) */
   --green:#1F4D36;          /* สีแซม — จากตราวงกลมบนกล่องรสข้าว */
   --blush:#EFEAD6;
   --tan:#AE9070;            /* ใช้คู่กับครีม */
@@ -276,7 +276,7 @@ hr.dash{border:0;border-top:var(--rule);opacity:.7}
 .ch-facts li{padding:16px 12px 0 0}
 .ch-facts b{display:block;font-size:1.5rem;color:var(--ochre)}
 .ch-facts span{font-size:.8rem;color:rgba(246,241,227,.75)}
-.pill.light{background:var(--paper);color:var(--ink);border-color:var(--paper);box-shadow:0 3px 0 var(--ochre)}
+.pill.light{background:var(--paper);color:var(--ink);border-color:var(--paper);box-shadow:0 3px 0 var(--red)}
 .ch-media{position:relative;justify-self:center}
 .phone{position:relative;width:min(340px,80vw);aspect-ratio:9/16;border-radius:34px;overflow:hidden;border:8px solid var(--paper);box-shadow:0 40px 60px -30px rgba(0,0,0,.6);rotate:3deg;cursor:none;transition:rotate .5s var(--ease)}
 .phone:hover{rotate:0deg}
@@ -405,6 +405,7 @@ hr.dash{border:0;border-top:var(--rule);opacity:.7}
 .pt-intro{text-align:center;max-width:760px;margin:clamp(56px,8vw,110px) auto 0}
 .pt-intro h2{font-size:clamp(2rem,4.4vw,3.4rem);margin:.3em 0 .4em}
 .pt-intro p{color:var(--ink-2)}
+.pt-intro .label,.pt-intro h2{font-weight:700!important}
 .pt-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,28px);margin:clamp(28px,4vw,48px) 0 clamp(28px,3.5vw,44px)}
 .pt-tile{margin:0}
 .pt-photo{background:#E9E5E4;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:700/1054}
@@ -550,7 +551,10 @@ footer .legal{display:flex;justify-content:space-between;font-size:.75rem;margin
 
 /* story: รูปคุณยาย + โพลารอยด์ครัววันนี้ + ไทม์ไลน์ 4 ขั้น */
 .story .art .ph.founder{--r:4/5;box-shadow:0 30px 50px -30px rgba(40,10,5,.55)}
-.founder-tag{position:absolute;left:18px;top:18px;z-index:2;background:var(--paper);color:var(--ink);font-size:.78rem;padding:7px 14px;border-radius:999px;border:1.5px solid var(--ink)}
+/* ป้ายชื่อคุณยาย: เดิมลอยทับมุมรูปและยื่นออกนอกขอบ → วางเหนือรูป ชิดซ้าย ไม่ทับรูป */
+.story .art{display:flex;flex-direction:column;align-items:center}
+.story .art .ph.founder{width:100%}
+.founder-tag{position:static;order:-1;align-self:flex-start;margin:0 0 16px;z-index:2;background:var(--paper);color:var(--ink);font-size:.78rem;padding:7px 14px;border-radius:999px;border:1.5px solid var(--ink)}
 .polaroid{position:absolute;left:-34px;bottom:-40px;z-index:2;width:38%;background:#fff;padding:8px 8px 0;rotate:-7deg;box-shadow:0 18px 30px -16px rgba(40,10,5,.5);transition:rotate .5s var(--ease),scale .5s var(--ease)}
 .polaroid img{aspect-ratio:1;object-fit:cover;width:100%}
 .polaroid figcaption{font-size:.72rem;text-align:center;padding:8px 0 10px;color:var(--ink)}
@@ -561,6 +565,11 @@ footer .legal{display:flex;justify-content:space-between;font-size:.75rem;margin
 ol.timeline{list-style:none;grid-template-columns:repeat(4,1fr);counter-reset:none}
 ol.timeline li{padding:16px 14px 0 0;position:relative}
 ol.timeline li::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--red)}
+/* เส้นไทม์ไลน์เชื่อมจุดต่อจุด + ข้อความใต้ปีตัดบรรทัดให้สมดุล */
+ol.timeline li::after{content:"";position:absolute;top:-1px;left:4px;right:0;height:1.5px;background:rgba(188,52,42,.55)}
+ol.timeline span{text-wrap:balance}
+ol.timeline li:last-child::after{display:none}  /* เส้นจบที่จุด 2026 ไม่ลากเลยไป */
+@media (max-width:700px){ol.timeline li::after{display:none}}  /* มือถือไม่มีเส้น เหลือแค่จุด */
 ol.timeline b{display:block;font-family:var(--display);font-size:1.5rem;line-height:1.1;margin-bottom:4px}
 ol.timeline span{font-size:.78rem;color:var(--ink-2);line-height:1.5;display:block}
 @media (max-width:700px){ol.timeline{grid-template-columns:1fr 1fr;row-gap:22px}.polaroid{left:-6px;width:42%}.story .art{margin-bottom:56px}}
@@ -760,6 +769,7 @@ h1,h2,h3,.display{font-weight:700}
 .blob p{font-size:.82rem;color:var(--ink)}
 .blob.b3 p{color:rgba(246,241,227,.94)}
 .blob.b3 h3{color:var(--cream)}
+.blob.b3 h3{white-space:normal;text-wrap:balance;max-width:11em;margin-inline:auto;line-height:1.15}
 .ch-blob{aspect-ratio:1.04;width:164px;padding:20px;color:var(--ink)}
 @media (max-width:700px){.blob{padding:24px}.why .b1,.why .b2,.why .b3{width:min(270px,78%)!important;left:auto!important;right:auto!important;top:auto!important}.blob h3{font-size:1.35rem}}
 
@@ -945,6 +955,7 @@ html[lang="en"] .fl p{line-height:1.6}
 .gal-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
 .gal-track::-webkit-scrollbar{display:none}
 .gal-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;object-position:50% 60%;scroll-snap-align:start}
+.gal-track img[src*="store-front-new-sign"],.place.now .pic img[src*="store-front-new-sign"]{object-position:50% 8%!important}
 .gal-btn{position:absolute;bottom:18px;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font:inherit;font-size:1.4rem;line-height:1;cursor:pointer;z-index:3;box-shadow:0 3px 0 var(--ink);transition:transform .2s var(--ease)}
 .gal-btn:hover{transform:translateY(-2px)}
 .gal-btn.prev{left:18px}.gal-btn.next{left:72px}
@@ -1187,7 +1198,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 .corp-hero .label{color:var(--red)}
 .corp-hero .lead{font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.75;max-width:40ch;margin-bottom:26px}
 .corp-hero .row{display:flex;flex-wrap:wrap;gap:10px}
-.corp-hero .shot{aspect-ratio:4/5;border-radius:var(--r-lg);overflow:hidden;background:#E8B04B}
+.corp-hero .shot{aspect-ratio:4/5;border-radius:var(--r-lg);overflow:hidden;background:var(--ochre)}
 .corp-hero .shot img{width:100%;height:100%;object-fit:cover}
 .corp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,22px);margin-bottom:clamp(48px,7vw,96px)}
 .corp-card{background:var(--cream);border-radius:var(--r-lg);padding:14px 14px 22px}
@@ -1330,6 +1341,8 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 .fl .pack-pair.cut img{mix-blend-mode:normal;border-radius:0;filter:drop-shadow(0 14px 14px rgba(60,20,10,.22));width:auto;max-width:none}
 .fl .pack-pair.cut img.big{height:var(--h);position:relative;z-index:1}
 .fl .pack-pair.cut img.mini{height:calc(var(--h) * .74);margin-left:calc(var(--h) * -.06);position:relative;z-index:2;rotate:4deg}
+/* ตำแหน่งเดิม แต่ให้มินิเป็นเลเยอร์ทึบอยู่หน้ากล่องใหญ่: ปิด multiply ที่ทำให้สองกล่องซึมเข้าหากันตรงส่วนที่ซ้อน */
+.fl .pack-pair.photo.cut img{mix-blend-mode:normal}
 @media (max-width:700px){.fl .pack-pair.cut{--h:min(62vw,300px)}}
 
 /* ===== ชุดของขวัญ: Happy Holiday + Shopping Bag ===== */
@@ -1348,7 +1361,7 @@ footer .links>div:last-child a{display:inline-flex;align-items:center;gap:7px}
 .gset-ph[data-pos=c1] img{object-position:50% 40%}
 .gset-ph[data-pos=c2] img{object-position:50% 25%}
 .gset-ph[data-pos=c3] img{object-position:50% 30%}
-.gset-ph[data-pos=c4] img{object-position:50% 35%}
+.gset-ph[data-pos=c4] img{object-position:50% 0%}
 .gset-ph[data-pos=c5] img{object-position:50% 25%}
 .gset-ph[data-pos=sb] img{object-fit:cover!important;object-position:50% 70%!important}
 @media (max-width:700px){
@@ -1425,14 +1438,15 @@ html[lang="en"] .visit-title-br{display:none}
 .gset-ph{cursor:zoom-in}
 .lightbox{border:0;padding:0;background:transparent;max-width:min(92vw,1100px);max-height:92svh;overflow:visible}
 .lightbox::backdrop{background:rgba(30,6,8,.82)}
-.lightbox.fixed img{height:min(88svh,860px);width:auto;max-width:92vw;aspect-ratio:2/3;object-fit:contain;background:var(--cream)}
+/* เดิมบังคับกรอบ 2:3 พื้นครีม ทำให้รูปสัดส่วนอื่นมีขอบ → ให้กรอบพอดีกับรูปทุกใบ */
+.lightbox.fixed img{height:auto;width:auto;max-width:min(92vw,1100px);max-height:88svh;aspect-ratio:auto;object-fit:contain;background:none}
 @media (max-width:700px){.lightbox.fixed img{width:auto;height:auto;max-width:92vw;max-height:84svh;aspect-ratio:auto;background:none}}
 .lightbox img{display:block;max-width:min(92vw,1100px);max-height:88svh;width:auto;height:auto;border-radius:14px}
 .lb-x{position:absolute;top:-14px;right:-14px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font-size:1.4rem;line-height:1;cursor:pointer}
 @media (max-width:700px){.lb-x{top:8px;right:8px}}
 </style>
-<link rel="stylesheet" href="assets/presentation.css?v=39">
-<link rel="stylesheet" href="assets/mobile.css?v=72">
+<link rel="stylesheet" href="assets/presentation.css?v=45">
+<link rel="stylesheet" href="assets/mobile.css?v=82">
 </head>
 <body>
 
@@ -1467,11 +1481,11 @@ html[lang="en"] .visit-title-br{display:none}
     <div class="wrap mega-in">
       <div class="mega-cols">
         <div><h6>รสชาติ</h6>
-          <a href="shop.html?opt=original" data-pick-opt="original">รสดั้งเดิม Original</a>
-          <a href="shop.html?opt=salted" data-pick-opt="salted">รสเค็ม Salted</a>
-          <a href="shop.html?opt=jasmine" data-pick-opt="jasmine">รสข้าว Jasmine Rice</a>
+          <a href="shop.html?opt=original" data-pick-opt="original">รสดั้งเดิม</a>
+          <a href="shop.html?opt=salted" data-pick-opt="salted">รสเค็ม</a>
+          <a href="shop.html?opt=jasmine" data-pick-opt="jasmine">รสข้าว</a>
           <a href="shop.html">เมนูและราคา</a>
-          <a href="gift.html">Gift Set</a></div>
+          <a href="gift.html">ชุดของขวัญ</a></div>
         <div><h6>สั่งซื้อ</h6>
           <a href="https://lin.ee/xAbIkYZn" target="_blank" rel="noopener">LINE</a>
           <a href="https://shopee.co.th/kaotang_songkrueng" target="_blank" rel="noopener">Shopee</a>
@@ -1503,7 +1517,6 @@ html[lang="en"] .visit-title-br{display:none}
         <div><h6>มยุรี</h6>
           <a href="story.html">เรื่องราวของคุณยาย</a>
           <a href="#charcoal">ยังใช้เตาถ่าน</a>
-          <a href="story.html#why">ทำไมต้องมยุรี</a>
           <a href="story.html#places">สถานที่ของเรา</a>
           <a href="#process">วิธีทำข้าวตัง</a>
           <a href="visit.html">หน้าร้าน</a></div>
@@ -1596,7 +1609,7 @@ html[lang="en"] .visit-title-br{display:none}
 <section class="strip" id="strip">
   <div class="wrap head">
     <p>ดูว่ามยุรีกำลังทำอะไรอยู่:</p>
-    <a href="https://www.instagram.com/kaotang_mayuree" target="_blank" rel="noopener" class="follow"><span>FOLLOW US</span><i><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" data-i18n-skip><path d="M5 19 19 5M5 5h14v14"/></svg></i></a>
+    <a href="https://www.instagram.com/kaotang_mayuree" target="_blank" rel="noopener" class="follow"><span>ติดตามเรา</span><i><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" data-i18n-skip><path d="M5 19 19 5M5 5h14v14"/></svg></i></a>
   </div>
   <div class="rail"><div class="track" id="track"></div></div>
 </section>
@@ -1611,7 +1624,7 @@ html[lang="en"] .visit-title-br{display:none}
         <a class="pill" href="https://lin.ee/xAbIkYZn" target="_blank" rel="noopener">รับข่าวทาง LINE</a>
       </div>
       <div class="links">
-        <div><h5>สินค้า</h5><ul><li><a href="shop.html">รสดั้งเดิม Original</a></li><li><a href="shop.html">รสเค็ม Salted</a></li><li><a href="shop.html">รสข้าว Jasmine Rice</a></li><li><a href="shop.html">เมนูและราคา</a></li><li><a href="gift.html">Gift Set</a></li><li><a href="story.html">เรื่องของเรา</a></li><li><a href="#process">วิธีทำข้าวตัง</a></li></ul></div>
+        <div><h5>สินค้า</h5><ul><li><a href="shop.html">รสดั้งเดิม</a></li><li><a href="shop.html">รสเค็ม</a></li><li><a href="shop.html">รสข้าว</a></li><li><a href="shop.html">เมนูและราคา</a></li><li><a href="gift.html">ชุดของขวัญ</a></li><li><a href="story.html">เรื่องของเรา</a></li><li><a href="#process">วิธีทำข้าวตัง</a></li></ul></div>
         <div><h5>ช่องทางสั่งซื้อ</h5><ul>
           <li><a href="visit.html">หน้าร้าน สุขุมวิท 51</a></li>
           <li><a href="partner.html">พาร์ทเนอร์</a></li>
@@ -1677,17 +1690,17 @@ const PRODUCT = {
     { id:"mini", tag:"Mini",       w:"95 g",  price:99,  en:{ tag:"Mini" } },
   ],
   flavors: [
-    { pack:"salted", opt:"original", photos:["assets/photos/product-dicut-original.webp?v=1","assets/photos/product-dicut-original-mini.webp?v=1"], q:"รสดั้งเดิม", sub:"Original", text:"สูตรโบราณดั้งเดิม มีมานานกว่า 50 ปี ข้าวตังกลิ่นหอมเตาถ่าน ใส่หมูหยองเต็มคำ ทานอร่อยเพลินๆ รสชาติกลมกล่อมลงตัว ระวังทานหมดกระปุกภายในวันเดียว",
+    { pack:"salted", opt:"original", photos:["assets/photos/product-dicut-original.webp?v=1","assets/photos/product-dicut-original-mini.webp?v=1"], q:"รสดั้งเดิม", sub:"", text:"สูตรโบราณดั้งเดิม มีมานานกว่า 50 ปี ข้าวตังกลิ่นหอมเตาถ่าน ใส่หมูหยองเต็มคำ ทานอร่อยเพลินๆ รสชาติกลมกล่อมลงตัว ระวังทานหมดกระปุกภายในวันเดียว",
       notes:[["รสชาติ","หวานเค็ม กลมกล่อม"],["จุดเด่น","ข้าวตังหอมมะลิกรอบบาง เคล้าหมูหยองฟู ๆ รสหวานเค็มกลมกล่อมตามสูตรคุณยาย"],["ขนาด","190 g · Mini 95 g"]], pickLabel:"เลือกรสดั้งเดิม",
-      en:{ q:"Original", sub:"ดั้งเดิม", text:"The classic recipe, made for over 50 years — charcoal-fragrant crackers with generous pork floss, perfectly balanced. Careful: a whole jar can disappear in a day.",
+      en:{ q:"Original", sub:"", text:"The classic recipe, made for over 50 years — charcoal-fragrant crackers with generous pork floss, perfectly balanced. Careful: a whole jar can disappear in a day.",
            notes:[["Flavor","Sweet & savoury, well balanced"],["Highlight","Thin, crispy jasmine rice crackers tossed with fluffy pork floss, sweet and savoury just like Grandma’s recipe"],["Size","190 g · Mini 95 g"]], pickLabel:"Choose Original" } },
-    { pack:"orange", opt:"salted", photos:["assets/photos/product-dicut-salted.webp?v=1"], q:"รสเค็ม", sub:"Salted", text:"สูตรโบราณรสเค็ม หอมอร่อยเหมือนเดิม สูตรนี้ไม่ใส่น้ำตาลเพิ่ม เหมาะสำหรับคนที่ไม่ชอบทานหวาน ข้าวตังกลิ่นหอมเตาถ่าน ใส่หมูหยองเต็มคำ",
+    { pack:"orange", opt:"salted", photos:["assets/photos/product-dicut-salted.webp?v=1"], q:"รสเค็ม", sub:"", text:"สูตรโบราณรสเค็ม หอมอร่อยเหมือนเดิม สูตรนี้ไม่ใส่น้ำตาลเพิ่ม เหมาะสำหรับคนที่ไม่ชอบทานหวาน ข้าวตังกลิ่นหอมเตาถ่าน ใส่หมูหยองเต็มคำ",
       notes:[["รสชาติ","หอมหมูหยอง ไม่มีความหวานจากน้ำตาลเพิ่ม เค็มนำ"],["จุดเด่น","ทานได้เรื่อย ๆ ไม่มีความหวาน"],["ขนาด","190 g"]], pickLabel:"เลือกรสเค็ม",
-      en:{ q:"Salted", sub:"เค็ม", text:"The classic salty recipe, as delicious as ever, with no added sugar — for anyone who prefers less sweet. Charcoal-fragrant crackers with generous pork floss.",
+      en:{ q:"Salted", sub:"", text:"The classic salty recipe, as delicious as ever, with no added sugar — for anyone who prefers less sweet. Charcoal-fragrant crackers with generous pork floss.",
            notes:[["Flavor","Pork floss aroma, salty-forward, no added sugar"],["Highlight","Easy to keep snacking — not sweet at all"],["Size","190 g"]], pickLabel:"Choose Salted" } },
-    { pack:"jasmine", opt:"jasmine", photos:["assets/photos/product-dicut-jasmine.webp?v=1"], q:"รสข้าว", sub:"Jasmine Rice", text:"หอมข้าวหอมมะลิล้วน ๆ สูตรนี้ไม่ใส่หมูหยอง คนไม่ทานเนื้อสัตว์ก็ทานได้ ให้กลิ่นข้าวเป็นหลัก",
+    { pack:"jasmine", opt:"jasmine", photos:["assets/photos/product-dicut-jasmine.webp?v=1"], q:"รสข้าว", sub:"", text:"หอมข้าวหอมมะลิล้วน ๆ สูตรนี้ไม่ใส่หมูหยอง คนไม่ทานเนื้อสัตว์ก็ทานได้ ให้กลิ่นข้าวเป็นหลัก",
       notes:[["รสชาติ","หวานเค็มเบา ๆ ได้กลิ่นหอมของข้าว"],["จุดเด่น","ข้าวเน้น ๆ ไม่มีหมูหยอง"],["ขนาด","190 g"]], pickLabel:"เลือกรสข้าว",
-      en:{ q:"Jasmine Rice", sub:"ข้าว", text:"Pure jasmine-rice fragrance. This recipe has no pork floss, so vegetarians can enjoy it too — the aroma of rice comes first.",
+      en:{ q:"Jasmine Rice", sub:"", text:"Pure jasmine-rice fragrance. This recipe has no pork floss, so vegetarians can enjoy it too — the aroma of rice comes first.",
            notes:[["Flavor","Lightly sweet & salty with a jasmine rice aroma"],["Highlight","All about the rice — no pork floss"],["Size","190 g"]], pickLabel:"Choose Jasmine Rice" } },
   ],
   reviews: [
@@ -1855,7 +1868,7 @@ const PRODUCT = {
         ${f.photos ? `<div class="pack-pair photo cut${f.photos.length > 1 ? " two" : ""}">${f.photos.map((p,k) => `<img class="${k ? "mini" : "big"}" src="${p}" alt="${k ? pick(f,"q") + " Mini" : pick(f,"q")}" loading="lazy">`).join("")}</div>` : f.photo ? `<div class="pack-pair photo"><img src="${f.photo}" alt="" loading="lazy"></div>` : `<div class="pack-pair"><div class="pack ${f.pack}" data-pack></div>${f.pack === "jasmine" || f.pack === "orange" ? "" : `<div class="pack ${f.pack} mini" data-pack data-size="mini"></div>`}</div>`}
         <div>
           <div class="q">${pick(f,"q")}</div>
-          <div class="fen">${pick(f,"sub")}</div>
+          ${pick(f,"sub") ? `<div class="fen">${pick(f,"sub")}</div>` : ""}
           <p>${pick(f,"text")}</p>
           <dl>${pick(f,"notes").map(([k,v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
           <a href="#shop" class="pill outline sm" data-pick="${f.opt || f.pack}">${pick(f,"pickLabel")}</a>
@@ -1981,7 +1994,7 @@ const PRODUCT = {
   new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? vid.play().catch(()=>{}) : vid.pause()), { threshold:.4 }).observe(vid);
 
   /* ----- photo strip: ป้ายชื่อสีสลับกันเมื่อชี้ ----- */
-  const chips = ["#E8B04B","#EFEAD6","#E4572E","#F6F1E3"];
+  const chips = ["#EF958F","#EFEAD6","#E4572E","#F6F1E3"];
   [...$("#track").children].forEach((f,i) => {
     f.dataset.cap = f.querySelector("b")?.textContent || "";
     f.style.setProperty("--chip", chips[i % chips.length]);
@@ -2021,7 +2034,7 @@ const PRODUCT = {
     "หน้าร้านมยุรี สุขุมวิท 51":"Mayuree shop, Sukhumvit 51","หน้าร้านมยุรี มุมกว้าง":"Mayuree shop, wide view","รูปหน้าร้าน":"Shop front photo","ภายในร้านมยุรี":"Inside the Mayuree shop","ก่อนหน้า":"Previous","ถัดไป":"Next",
     "ขั้นตอนการทำ":"How it’s made","จากข้าวถึงกระปุก":"From rice to jar","ทำมือทุกขั้นตอนที่ร้านสุขุมวิท 51 ด้วยวิธีเดิมของคุณยาย":"Handmade at every step in our Sukhumvit 51 shop, the way Grandma did it.","หุงและกดเป็นแผ่น":"Cook and press into sheets","ข้าวหอมมะลิหุงสุก กดเป็นแผ่นบางด้วยแท่นกดเหล็ก":"Cooked jasmine rice pressed into thin sheets with an iron press","ย่างบนเตาถ่าน":"Grilled over charcoal","วางแผ่นข้าวบนถ่านแดง ย่างทีละแผ่นจนกรอบ":"Each sheet goes over red-hot coals until crisp","แผ่นข้าวตังพร้อมปรุง":"Sheets, ready to season","เรียงซ้อนเป็นตั้ง รอเข้ากระทะ":"Stacked and waiting for the wok","คั่วในกระทะบนเตา":"Toasted in a pan over charcoal.","หุงข้าวให้สุก":"We cook our jasmine rice in small batches.","กดเป็นแผ่นกรอบบนเตาถ่าน":"Pressed the cooked rice into thin, crispy sheets over charcoal.","แผ่นข้าวตังพร้อมผัด":"Rice crispy ready to cook!","เติมหมูหยอง":"Add our favorite pork floss!","บรรจุเข้ากระปุก":"Pack and ready to ship!","คลุกเคล้าด้วยตะหลิวทีละกระทะ":"Tossed with a spatula, one wok at a time","คลุกเครื่องปรุง":"Tossed with seasoning","คลุกจนเครื่องปรุงเข้ากันทั่วทุกแผ่น":"Mixed until every piece is coated","บรรจุทีละกระปุก":"Packed jar by jar","ตักใส่กระปุกด้วยมือ ปิดฝาเกลียวล็อกความกรอบ":"Scooped in by hand, sealed with a screw lid to lock in the crunch",
     /* nav + mega menu */
-    "สินค้า":"Shop","ยินดีต้อนรับกลับบ้าน":"Welcome home","จัดชุดของขวัญ":"Gift Set","บ้านมยุรี":"Welcome home","โทรหาเรา":"Call us","หน้าแรก":"Home","เมนู":"Our Snacks","ของขวัญ":"Gifting","เรื่องของเรา":"Our Story","หน้าร้าน":"Visit us","ติดต่อ":"Contact","สั่งทาง LINE":"Order on LINE",
+    "สินค้า":"Shop","ยินดีต้อนรับกลับบ้าน":"Welcome home","จัดชุดของขวัญ":"Gift Set","บ้านมยุรี":"Welcome Home","โทรหาเรา":"Call us","หน้าแรก":"Home","เมนู":"Our Snacks","ของขวัญ":"Gifting","เรื่องของเรา":"Our Story","หน้าร้าน":"Visit us","ติดต่อ":"Contact","สั่งทาง LINE":"Order on LINE",
     "มยุรี ข้าวตังทรงเครื่อง":"Mayuree Kaotang Songkrueng","มยุรี":"Mayuree","ข้าวตังทรงเครื่อง":"Kaotang Songkrueng",
     "รสชาติ":"Flavors","รสดั้งเดิม Original":"Original","รสข้าว Jasmine Rice":"Jasmine Rice","เมนูและราคา":"Menu & prices","สั่งซื้อ":"Order",
     "หน้าร้าน สุขุมวิท 51":"Shop · Sukhumvit 51","เตาถ่าน":"Charcoal stove","แนะนำ":"Featured","รสเค็ม":"Salted","รสข้าว":"Jasmine Rice",
@@ -2087,6 +2100,7 @@ const PRODUCT = {
     "หลานรุ่น 3 ตั้งชื่อ “มยุรี” ตามชื่อคุณแม่":"Third generation names it “Mayuree” after their mother",
     "กล่องใหม่ รสดั้งเดิม รสเค็ม และ รสข้าว":"New packs: Original, Salted & Jasmine Rice",
     /* gift sets */
+    "ตัวเลือก 1":"Option 1","ตัวเลือก 2":"Option 2","ตัวเลือก 3":"Option 3","ติดตามเรา":"FOLLOW US","แวะมาหาเรา":"VISIT US",
     "ชุดของขวัญ":"Gift Set","จากครัวมยุรี":"from the Mayuree kitchen","เลือกชุดที่ใช่ แล้วทักไลน์สั่งได้เลย":"Pick your set, then message us on LINE to order.",
     "ชุดเล็กชะลอม":"Small Woven Basket","2 กระปุกใหญ่":"2 original","ใหญ่ 2 + เล็ก 2":"2 original + 2 mini","2 กระปุกใหญ่ + 2 กระปุกเล็ก":"2 original + 2 mini","2 กระปุกมินิ":"2 mini","1 กระปุกใหญ่ + 1 กระปุกมินิ":"1 original + 1 mini","ซื้อข้าวตังครบทุก ๆ 500 บาท":"Spend 500 baht on crackers","รับฟรี Shopping Bag 1 ใบ":"and get 1 free Shopping Bag","ซื้อเฉพาะถุง ใบละ 30 บาท":"Bag only: 30 baht each","ชุดเล็กกระเป๋า":"Mini Basket Bag","4 กระปุกมินิ":"4 mini","กระเป๋าเปล่า":"Just the Bag!","ชุดเดียว":"Single set",
     "ชุดถุงผ้าดอกโบตั๋น":"Peony Bag","ชุดชะลอมผ้า Summer Garden Party":"Summer Garden Party","มินิ 2 กระปุก":"2 mini jars","1 กระปุกใหญ่ + 1 mini":"1 original + 1 mini","รูปชุดของขวัญปีใหม่":"New Year gift set photo",
@@ -2163,6 +2177,8 @@ const PRODUCT = {
     $$("#langBtn b").forEach(b => b.classList.toggle("on", b.dataset.l === LANG));
     const mb = $("#menuBtn"); mb.textContent = mb.getAttribute("aria-expanded") === "true" ? t("ปิด","Close") : t("เมนู","Menu");
     mb.setAttribute("aria-label", t("เมนู","Menu"));
+    $("#langBtn").setAttribute("aria-label", t("ภาษา","Language"));
+    const dk = document.querySelector(".deck-footer"); if (dk) dk.setAttribute("aria-label", t("หน้าข้อมูลสินค้า","Product information page"));
     [...$("#track").children].forEach(f => { f.dataset.cap = f.querySelector("b")?.textContent || ""; });
   }
   $("#langBtn").addEventListener("click", () => {
@@ -2208,7 +2224,7 @@ const PRODUCT = {
 })();
 </script>
 <script src="assets/ui-icons.js?v=1" defer></script>
-<script src="assets/presentation.js?v=9" defer></script>
-<script src="assets/mobile.js?v=34" defer></script>
+<script src="assets/presentation.js?v=10" defer></script>
+<script src="assets/mobile.js?v=35" defer></script>
 </body>
 </html>

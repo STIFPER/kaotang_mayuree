@@ -59,6 +59,8 @@
     controls.innerHTML = '<button type="button" aria-label="ชุดของขวัญก่อนหน้า">←</button><span aria-live="polite"></span><button type="button" aria-label="ชุดของขวัญถัดไป">→</button>';
     grid.insertAdjacentElement('afterend', controls);
     const [prev, next] = controls.querySelectorAll('button');
+    const setLabels = () => { const en = document.documentElement.lang === 'en'; prev.setAttribute('aria-label', en ? 'Previous gift set' : 'ชุดของขวัญก่อนหน้า'); next.setAttribute('aria-label', en ? 'Next gift set' : 'ชุดของขวัญถัดไป'); };
+    new MutationObserver(setLabels).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); setLabels();
     const step = () => cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(grid).gap || 0);
     const current = () => Math.max(0,Math.min(cards.length-1,Math.round(grid.scrollLeft/step())));
     const update = () => { const at=current(); prev.disabled=at===0; next.disabled=at===cards.length-1; controls.querySelector('span').textContent=(at+1)+' / '+cards.length; };

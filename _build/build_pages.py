@@ -28,7 +28,7 @@ for i,s0 in enumerate(starts):
     key=(re.search(r'id="(\w+)"',tag) or re.search(r'class="(\w+)',tag)).group(1)
     secs.append((key,blk))
 print([k for k,_ in secs])
-pages={'shop.html':['shop','flavors'],'story.html':['about','story','chapters','places','why'],'craft.html':['charcoal','process','bleed','strip'],'gift.html':['gift'],'visit.html':['visit'],'partner.html':['partner'],'faq.html':['faq']}
+pages={'shop.html':['shop','flavors'],'story.html':['about','story','chapters','places'],'craft.html':['charcoal','process','bleed','strip'],'gift.html':['gift'],'visit.html':['visit'],'partner.html':['partner'],'faq.html':['faq']}
 need=['addBtn','addPrice','barName','bleedPh','chSound','chVideo','chVideoWrap','fda','flGrid','ingr','opts','price','qtys','selName','shop','sizeName','thumbs','title','track']
 titles={'shop.html':'เมนูและสินค้า','story.html':'เรื่องของเรา','gift.html':'ชุดของขวัญ','visit.html':'หน้าร้าน'}
 for fn,keys in pages.items():
